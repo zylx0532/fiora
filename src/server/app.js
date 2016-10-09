@@ -119,14 +119,14 @@ app.use(function* (next) {
 
 // socket handle
 io.on('connection', socket => {
-    console.log('new connection');
+    // console.log('new connection');
 
     socket.on('message', (data, cb) => {
         router.handle(io, socket, data, cb);
     });
 
     socket.on('disconnect', () => {
-        console.log('some one disconnect');
+        // console.log('some one disconnect');
         router.handle(io, socket, { method: 'DELETE', path: '/auth', data: { } }, () => { });
     });
 });
