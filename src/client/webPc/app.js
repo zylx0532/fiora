@@ -61,7 +61,7 @@ class App extends React.Component {
                 this.sound.play();
             }
 
-            if (window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
+            if (!api.getVirtualMessageName(data.content) && window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
                 const notification = new window.Notification(
                     `${data.from.username} - 发来消息:`,
                     {
@@ -88,7 +88,7 @@ class App extends React.Component {
                 this.sound.play();
             }
 
-            if (window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
+            if (!api.getVirtualMessageName(data.content) && window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
                 const notification = new window.Notification(
                     `${data.from.username} - 发来消息:`,
                     {

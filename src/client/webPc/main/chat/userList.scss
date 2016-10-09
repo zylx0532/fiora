@@ -33,7 +33,7 @@
         @include size(16px, 16px);
         @include flexCenter;
         border-radius: 50%;
-        background-color: #289dda;
+        background-color: $lightBlue4;
         color: white;
         position: absolute;
         left: 32px;
@@ -55,7 +55,7 @@
 
             p:first-child {
                 font-size: 14px;
-                color: $lightBlue5;
+                color: $grey9;
                 margin: 0;
                 margin-top: 5px;
             }

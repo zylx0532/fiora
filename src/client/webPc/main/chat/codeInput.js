@@ -50,7 +50,7 @@ class CodeInput extends React.Component {
                     >
                         <textarea
                             ref={code => this.code = code}
-                            placeholder="输入要发送的代码"
+                            placeholder="输入要展示的代码"
                         />
                         <div>
                             <button
