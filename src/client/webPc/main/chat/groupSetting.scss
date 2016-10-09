@@ -70,3 +70,21 @@
         display: none;
     }
 }
+
+.group-info-exit {
+    @include size(100%, 50px);
+    @include flexCenter;
+
+    & > button {
+        @include size(100px, 36px);
+        background-color: #f44336;
+        color: white;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #b71c1c;
+        }
+    }
+}

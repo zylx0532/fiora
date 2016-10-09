@@ -182,6 +182,20 @@ const actions = {
         });
     },
 
+    leaveGroup: function (groupId) {
+        return new Promise(resolve => {
+            socket.delete('/group/members', { groupId }, response => {
+                if (response.status === 204) {
+                    dispatch({
+                        type: 'LeaveGroup',
+                        groupId,
+                    });
+                }
+                resolve(response);
+            });
+        });
+    },
+
     updateGroupAnnouncement: function (groupId, content) {
         return new Promise(resolve => {
             socket.put('/group/announcement', { groupId, content }, response => {

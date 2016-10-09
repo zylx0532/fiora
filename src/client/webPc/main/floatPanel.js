@@ -10,7 +10,7 @@ class FloatPanel extends React.Component {
         onClose: PropTypes.func.isRequired,
         show: PropTypes.bool.isRequired,
         title: PropTypes.string.isRequired,
-        children: PropTypes.object,
+        children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     };
 
     constructor(props) {

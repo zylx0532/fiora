@@ -66,6 +66,12 @@ function reducer(state = initialState, action) {
             linkmans => linkmans.unshift(immutable.fromJS(action.group))
         );
     }
+    case 'LeaveGroup': {
+        return state.update(
+            'linkmans',
+            linkmans => linkmans.delete(linkmans.findIndex(l => l.get('_id') === action.groupId))
+        );
+    }
     case 'UpdateGroupAnnouncement': {
         return state.update(
             'linkmans',

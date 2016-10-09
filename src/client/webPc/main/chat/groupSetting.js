@@ -18,10 +18,15 @@ class GroupSetting extends React.Component {
         linkmanId: PropTypes.string.isRequired,
     };
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired,
+    }
+
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleSelectImage = this.handleSelectImage.bind(this);
+        this.handleLeaveGroup = this.handleLeaveGroup.bind(this);
     }
 
     handleSelectImage() {
@@ -51,6 +56,17 @@ class GroupSetting extends React.Component {
             });
         };
         reader.readAsDataURL(image);
+    }
+
+    handleLeaveGroup() {
+        const { linkmanId } = this.props;
+        user.leaveGroup(linkmanId).then(response => {
+            if (response.status === 204) {
+                this.context.router.replace('/main/chat');
+                ui.closeMaskLayout();
+                ui.closeGroupSetting();
+            }
+        });
     }
 
     render() {
@@ -104,6 +120,11 @@ class GroupSetting extends React.Component {
                         accept="image/*"
                         onChange={this.handleSelectImage}
                     />
+                </div>
+                <div className="group-info-exit">
+                    <button
+                        onClick={this.handleLeaveGroup}
+                    >退出群组</button>
                 </div>
             </FloatPanel>
         );

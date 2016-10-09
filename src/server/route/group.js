@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const assert = require('../util/assert');
 const User = require('../model/user');
 const Group = require('../model/group');
+const GroupMessage = require('../model/groupMessage');
 const Auth = require('../model/auth');
 const isLogin = require('../police/isLogin');
 const imageUril = require('../util/image');
@@ -109,7 +110,47 @@ const GroupRoute = {
         ];
         yield Group.populate(group, groupOpts);
         yield Group.populate(group, { path: 'creator', select: '_id username' });
+        let skip = group.messages.length - 30;
+        if (skip < 0) {
+            skip = 0;
+        }
+        group.messages = yield GroupMessage.find({ to: group._id }, null, { skip: skip }).populate({ path: 'from', select: '_id username gender birthday avatar' });
         this.end(201, group);
+    },
+
+    'DELETE /group/members': function* (data) {
+        yield* isLogin(this.socket, data, this.end);
+        assert(!data.groupId, this.end, 400, 'need groupId param but not exists');
+
+        const group = yield Group.findById(data.groupId);
+        assert(!group, this.end, 400, 'group not exists');
+
+        const user = yield User.findById(this.socket.user);
+
+        try {
+            const userGroupsIndex = user.groups.indexOf(group._id);
+            if (userGroupsIndex !== -1) {
+                user.groups.splice(userGroupsIndex, 1);
+                yield user.save();
+            }
+            else {
+                return this.end(400, 'you are not in this group');
+            }
+
+            const groupMembersIndex = group.members.indexOf(user._id);
+            if (groupMembersIndex !== -1) {
+                group.members.splice(groupMembersIndex, 1);
+                yield group.save();
+            }
+            else {
+                return this.end(400, 'you are not in this group');
+            }
+        }
+        catch (err) {
+            return this.end(500, 'server error when add user to group');
+        }
+
+        this.end(204);
     },
 
     'PUT /group/announcement': function* (data) {

@@ -26,7 +26,7 @@ class AddGroup extends React.Component {
             if (response.status === 201) {
                 ui.closeAddGroupInput();
                 ui.closeMaskLayout();
-                this.context.router.push('/main/chat');
+                this.context.router.push(`/main/chat/group/${response.data._id}`);
             }
             else {
                 if (response.data === 'group not exists') {

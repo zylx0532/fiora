@@ -23,6 +23,7 @@ class Chat extends React.Component {
 
     render() {
         const { linkmans, me, location, routeParams } = this.props;
+        const currentLinkman = linkmans.find(linkman => linkman.get('type') === routeParams.type && linkman.get('_id') === routeParams.id);
 
         return (
             <div className="body">
@@ -37,11 +38,11 @@ class Chat extends React.Component {
                     }
                 </UserList.container>
                 {
-                    location.pathname === '/main' || location.pathname === '/main/chat' ?
+                    location.pathname === '/main' || location.pathname === '/main/chat' || !currentLinkman ?
                         <EmptyChatPanel />
                         :
                         <ChatPanel
-                            linkman={linkmans.find(linkman => linkman.get('type') === routeParams.type && linkman.get('_id') === routeParams.id)}
+                            linkman={currentLinkman}
                             me={me}
                         />
                 }
