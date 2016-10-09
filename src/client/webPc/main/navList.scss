@@ -20,19 +20,19 @@
 .nav-list-item {
     @include size(70px, 45px);
     @include flexCenter;
-    background-color: $darkPrimaryColor;
+    background-color: $lightBlue7;
     cursor: pointer;
 
     &:hover {
-        background-color: $selectColor;
+        background-color: $lightBlue4;
     }
 
     i {
         font-size: 30px;
-        color: $textIconColor;
+        color: white;
     }
 }
 
 .selected {
-    background-color: $selectColor;
+    background-color: $lightBlue4;
 }
