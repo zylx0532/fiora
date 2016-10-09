@@ -71,7 +71,7 @@ class PluginMessage extends React.Component {
     }
     renderMessage() {
         jQuery(this.dom).empty()
-            .append(api.getMessage(this.props.name, this.props.content));
+            .append(api.getMessage(this.props.name, `系统消息:${this.props.content}`));
     }
     render() {
         return (<div

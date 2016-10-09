@@ -49,8 +49,9 @@
         flex-direction: row;
         flex-wrap: wrap;
 
-        div {
+        & > div {
             @include flexCenter(column);
+            justify-content: flex-start;
             margin: 3px 0px;
             max-width: 60px;
             text-align: center;
