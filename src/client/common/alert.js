@@ -23,7 +23,7 @@ class Alert extends React.Component {
                 <div>{ title }</div>
                 <div>{ children }</div>
                 <div>
-                {
+                    {
                     buttons.map((b, index) => (
                         <span
                             key={index}
