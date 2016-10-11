@@ -98,6 +98,8 @@ const GroupRoute = {
             return this.end(500, 'server error when add user to group');
         }
 
+        this.socket.join(group._id);
+
         const groupOpts = [
             {
                 path: 'members',
@@ -149,6 +151,8 @@ const GroupRoute = {
         catch (err) {
             return this.end(500, 'server error when add user to group');
         }
+
+        this.socket.leave(group._id);
 
         this.end(204);
     },
