@@ -57,9 +57,19 @@ const GroupMessageRoute = {
         }
 
         yield GroupMessage.populate(savedMessage, { path: 'from', select: '_id username gender birthday avatar' });
-        this.socket.to(group._id.toString()).emit('groupMessage', savedMessage);
+        yield GroupMessage.populate(savedMessage, { path: 'to', select: '_id' });
+        const sendMessage = {
+            _id: savedMessage._id,
+            content: savedMessage.content,
+            type: savedMessage.type,
+            from: savedMessage.from,
+            to: savedMessage.to,
+            createTime: savedMessage.createTime,
+        };
 
-        this.end(201, savedMessage);
+        this.socket.to(group._id.toString()).emit('groupMessage', sendMessage);
+
+        this.end(201, sendMessage);
     },
 
     'GET /groupMessage/history': function* (data) {
