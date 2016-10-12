@@ -2,6 +2,16 @@ import user from '../action/user';
 import Store from '../store';
 import ui from '../action/pc';
 
+const filterReg = [
+    /^\d+$/,
+    /^hello\s*w/i,
+    /^test/,
+    /sdf|sfd|dsf|dfs|fsd|fds/,
+    /abc/,
+    /^\.+$/,
+    /^ceshi/,
+];
+
 function send(linkmanType, linkmanId, messageType, messageContent) {
     const messageId = `self${Date.now()}`;
     user.addSelfMessage(linkmanType, linkmanId, messageType, messageContent, messageId);
@@ -12,15 +22,13 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
     if (
         userCreateTime.getFullYear() === nowTime.getFullYear() &&
         userCreateTime.getMonth() === nowTime.getMonth() &&
-        userCreateTime.getDay() === nowTime.getDay() &&
-        /^\d+$/.test(messageContent) &&
-        /^hello\s*w/i.test(messageContent) &&
-        /^test/.test(messageContent) &&
-        /^sdf/.test(messageContent) &&
-        /^abc/.test(messageContent) &&
-        /^\.+$/.test(messageContent)
+        userCreateTime.getDay() === nowTime.getDay()
     ) {
-        return;
+        for (const reg of filterReg) {
+            if (reg.test(messageContent)) {
+                return;
+            }
+        }
     }
 
     if (linkmanType === 'group') {
