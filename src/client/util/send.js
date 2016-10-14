@@ -14,6 +14,14 @@ const filterReg = [
 
 function send(linkmanType, linkmanId, messageType, messageContent) {
     const messageId = `self${Date.now()}`;
+    if (messageType === 'text') {
+        messageContent = messageContent
+            .replace(/&/g, '&amp')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/'/g, '&apos;');
+    }
     user.addSelfMessage(linkmanType, linkmanId, messageType, messageContent, messageId);
 
     // If the user is created today, the message filtering rules apply
