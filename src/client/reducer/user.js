@@ -48,6 +48,9 @@ function reducer(state = initialState, action) {
             introduce: action.user.introduce,
             linkmans: action.user.linkmans,
             expressions: action.user.expressions,
+            github: action.user.github,
+            website: action.user.website,
+            qq: action.user.qq,
         });
     }
     case 'CreateGroup': {

@@ -13,7 +13,7 @@ const initialState = immutable.fromJS({
     shouldScrollMessage: true,
     windowFocus: false,
     showSystemSetting: false,
-    showUserSetting: false,
+    showUserSetting: true,
     showUserInfo: false,
     userInfoData: {},
 

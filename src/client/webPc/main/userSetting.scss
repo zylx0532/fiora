@@ -3,20 +3,19 @@
 .user-setting {
     @include floatIndex;
     @include containerCenter;
-    background-color: #f1f1f1;
     width: 300px;
-    height: 200px;
+    max-height: max-content;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
 
     & > :nth-child(1000n+1) {
-        @include flexCenter;
+        @include flexCenter(column);
         background-color: #ffffff;
-        height: 50px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         position: relative;
+        padding-bottom: 10px;
 
         & > i {
             position: absolute;
@@ -25,31 +24,112 @@
             font-size: 20px;
             color: #999;
             cursor: pointer;
+            z-index: 2;
 
             &:hover {
                 color: #c02721;
             }
         }
+        .background-image {
+            @include size(300px, 300px);
+            @include containerStart;
+            filter: blur(30px);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .background-mask {
+            @include size(300px, 300px);
+            @include containerStart;
+            background-color: black;
+            opacity: 0.25;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .content {
+            @include flexCenter(column);
+            z-index: 1;
+
+            & > :nth-child(1000n+1) {
+                margin-top: 20px;
+                cursor: pointer;
+            }
+            & > :nth-child(1000n+2) {
+                margin-top: 15px;
+                color: white;
+                font-size: 20px;
+            }
+            .icon-list {
+                @include flexCenter;
+                margin-top: 10px;
+
+                & > a {
+                    font-size: 26px;
+                    color: $grey0;
+                    background-color: rgba(black, 0);
+                    margin-right: 15px;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $lightBlue5;
+                    }
+                }
+                & > a:last-child {
+                    margin-right: 0px;
+                }
+            }
+            .avatar-mask {
+                @include size(80px, 80px);
+                @include horizontalCenter;
+                @include flexCenter;
+                border-radius: 50%;
+                background-color: rgba(black, 0.3);
+                top: 20px;
+                color: $grey2;
+                font-size: 28px;
+                pointer-events: none;
+            }
+            input {
+                display: none;
+            }
+        }
     }
 
-    & > :nth-child(1000n+2) {
+    .normal-status {
         flex: 1;
-        background-color: #fafafc;
+        background-color: $grey0;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        padding: 10px;
+        z-index: 1;
+        padding-bottom: 20px;
 
         & > :nth-child(1000n+1) {
             @include flexCenter;
-            justify-content: space-between;
 
             & > div {
-                display: flex;
-                flex-direction: column;
-                
-                & > span {
-                    font-size: 14px;
-                    margin-bottom: 5px;
+                @include flexCenter;
+                padding-top: 20px;
+
+                & > div {
+                    @include flexCenter(column);
+
+                    & > span {
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                        color: $grey7;
+                    }
+                }
+
+                & > div:nth-child(1000n+1) {
+                    align-items: flex-end;
+
+                    & > span {
+                        color: $grey5;
+                    }
+                }
+                & > div:nth-child(1000n+2) {
+                    align-items: flex-start;
+                    margin-left: 10px;
                 }
             }
 
@@ -57,26 +137,90 @@
                 margin-right: 10px;
                 cursor: pointer;
             }
+        }
 
-            input {
-                display: none;
+        & > :nth-child(1000n+2) {
+            @include flexCenter;
+            @include size(100%, auto);
+            margin-top: 10px;
+
+            & > button {
+                @include size(120px, 30px);
+                border-radius: 5px;
+                color: white;
+                background-color: $lightBlue5;
+                cursor: pointer;
+                font-size: 14px;
+
+                &:hover {
+                    background-color: $lightBlue7;
+                }
+            }
+        }
+    }
+
+    .edit-status {
+        flex: 1;
+        background-color: $grey0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        z-index: 1;
+        padding-bottom: 20px;
+
+        & > :nth-child(1000n+1) {
+            @include flexCenter;
+
+            & > div {
+                @include flexCenter;
+                padding-top: 20px;
+
+                & > div:nth-child(1000n+1) {
+                    @include flexCenter(column);
+                    align-items: flex-end;
+
+                    & > span {
+                        color: $grey5;
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                    }
+                }
+                & > div:nth-child(1000n+2) {
+                    @include flexCenter(column);
+                    align-items: flex-start;
+                    margin-left: 10px;
+                    position: relative;
+                    top: -3px;
+
+                    & > input, & > select {
+                        @include size(150px, 26px);
+                        margin-bottom: 2px;
+                        border: 1px solid $grey2;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            & > :nth-child(1000n+2) {
+                margin-right: 10px;
+                cursor: pointer;
             }
         }
 
         & > :nth-child(1000n+2) {
             @include flexCenter;
             @include size(100%, auto);
-            margin-top: 20px;
+            margin-top: 10px;
 
             & > button {
                 @include size(120px, 30px);
                 border-radius: 5px;
                 color: white;
-                background-color: #0288D1;
+                background-color: $lightBlue5;
                 cursor: pointer;
+                font-size: 14px;
 
                 &:hover {
-                    background-color: #2ea7e0;
+                    background-color: $lightBlue7;
                 }
             }
         }

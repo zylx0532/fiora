@@ -11,6 +11,8 @@ class Avatar extends React.Component {
         height: PropTypes.number.isRequired,
         title: PropTypes.string,
         onClick: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
     };
 
     constructor(props) {
@@ -19,7 +21,7 @@ class Avatar extends React.Component {
     }
 
     render() {
-        const { avatar, name, width, height, title, onClick } = this.props;
+        const { avatar, name, width, height, title, onClick, onMouseEnter, onMouseLeave } = this.props;
         return (
             avatar.match(/^(http|data:image)/) ?
                 <img
@@ -28,6 +30,8 @@ class Avatar extends React.Component {
                     src={/^http/.test(avatar) ? `${avatar}?imageView2/2/w/${width}/h/${height}` : avatar}
                     title={title}
                     onClick={onClick}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
                 />
             :
                 <div
@@ -35,6 +39,8 @@ class Avatar extends React.Component {
                     style={{ backgroundColor: avatar, width, height, fontSize: width / 2.5, minWidth: width, minHeight: height }}
                     title={title}
                     onClick={onClick}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
                 >
                     { name.slice(0, 1) }
                 </div>
