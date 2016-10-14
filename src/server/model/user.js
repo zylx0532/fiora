@@ -31,6 +31,18 @@ const UserSchema = new Schema({
         type: String,
         default: '无',
     },
+    location: {
+        type: String,
+    },
+    github: {
+        type: String,
+    },
+    website: {
+        type: String,
+    },
+    qq: {
+        type: String,
+    },
     friends: [
         {
             type: Schema.Types.ObjectId,

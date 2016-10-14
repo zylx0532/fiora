@@ -48,6 +48,7 @@ function reducer(state = initialState, action) {
             introduce: action.user.introduce,
             linkmans: action.user.linkmans,
             expressions: action.user.expressions,
+            location: action.user.location,
             github: action.user.github,
             website: action.user.website,
             qq: action.user.qq,
@@ -135,6 +136,15 @@ function reducer(state = initialState, action) {
                 linkman => linkman.set('unread', 0)
             )
         );
+    }
+    case 'UpdateUser': {
+        return state
+        .set('gender', action.user.gender)
+        .set('birthday', action.user.birthday)
+        .set('location', action.user.location)
+        .set('website', action.user.website)
+        .set('github', action.user.github)
+        .set('qq', action.user.qq);
     }
     case 'UpdateAvatar': {
         return state.set('avatar', action.user.avatar);

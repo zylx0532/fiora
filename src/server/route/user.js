@@ -57,6 +57,33 @@ const UserRoute = {
             this.end(404, 'user not exists');
         }
     },
+    'PUT /user': function* (data) {
+        yield* isLogin(this.socket, data, this.end);
+        assert(typeof data.gender !== 'string', this.end, 400, 'need gender param but not exists');
+        assert(typeof data.birthday !== 'string', this.end, 400, 'need birthday param but not exists');
+        assert(typeof data.location !== 'string', this.end, 400, 'need location param but not exists');
+        assert(typeof data.website !== 'string', this.end, 400, 'need website param but not exists');
+        assert(typeof data.github !== 'string', this.end, 400, 'need github param but not exists');
+        assert(typeof data.qq !== 'string', this.end, 400, 'need qq param but not exists');
+
+        const user = yield User.findById(this.socket.user, '-password -salt');
+        user.gender = data.gender;
+        user.birthday = new Date(data.birthday);
+        user.location = data.location;
+        user.website = data.website;
+        user.github = data.github;
+        user.qq = data.qq;
+        yield user.save();
+
+        this.end(200, {
+            gender: user.gender,
+            birthday: user.birthday,
+            location: user.location,
+            website: user.website === '' || /^http/.test(user.website) ? user.website : `http://${user.website}`,
+            github: user.github === '' || /^http/.test(user.github) ? user.github : `http://${user.github}`,
+            qq: user.qq,
+        });
+    },
     'GET /user/me': function* (data) {
         yield* isLogin(this.socket, data, this.end);
         const user = yield User.findById(this.socket.user, '-password -salt');

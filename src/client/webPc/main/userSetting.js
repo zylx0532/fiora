@@ -71,14 +71,18 @@ class UserSetting extends React.Component {
     }
 
     handleOk() {
-        this.setState({ editStatus: false });
-    }
-
-    handleUrl(url) {
-        if (url && !/^http/.test(url)) {
-            return `http://${url}`;
-        }
-        return url;
+        user.updateUser(
+            this.gender.value,
+            this.birthday.value,
+            this.location.value,
+            this.website.value,
+            this.github.value,
+            this.qq.value
+        ).then(response => {
+            if (response.status === 200) {
+                this.setState({ editStatus: false });
+            }
+        });
     }
 
     render() {
@@ -95,9 +99,9 @@ class UserSetting extends React.Component {
         }
         const location = userInfo.get('location') || '未知';
         const otherInfos = [
-            { key: 'github', value: this.handleUrl(userInfo.get('github')), icon: '&#xe61b;' },
-            { key: 'website', value: this.handleUrl(userInfo.get('website')), icon: '&#xe617;' },
-            { key: 'qq', value: `tencent://message/?uin=${userInfo.get('qq')}`, icon: '&#xe61a;' },
+            { key: 'github', value: userInfo.get('github'), icon: '&#xe61b;' },
+            { key: 'website', value: userInfo.get('website'), icon: '&#xe617;' },
+            { key: 'qq', value: userInfo.get('qq') ? `tencent://message/?uin=${userInfo.get('qq')}` : undefined, icon: '&#xe61a;' },
         ];
 
         return (
@@ -173,15 +177,38 @@ class UserSetting extends React.Component {
                                                 <span>qq:</span>
                                             </div>
                                             <div>
-                                                <select defaultValue={gender}>
+                                                <select
+                                                    defaultValue={gender}
+                                                    ref={g => this.gender = g}
+                                                >
                                                     <option value="male">男</option>
                                                     <option value="female">女</option>
                                                 </select>
-                                                <input type="date" defaultValue={moment(userInfo.get('birthday')).format('YYYY-MM-DD')} />
-                                                <input type="text" defaultValue={userInfo.get('location')} />
-                                                <input type="url" defaultValue={userInfo.get('website')} />
-                                                <input type="url" defaultValue={userInfo.get('github')} />
-                                                <input type="text" defaultValue={userInfo.get('qq')} />
+                                                <input
+                                                    type="date"
+                                                    defaultValue={moment(userInfo.get('birthday')).format('YYYY-MM-DD')}
+                                                    ref={b => this.birthday = b}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    defaultValue={userInfo.get('location')}
+                                                    ref={l => this.location = l}
+                                                />
+                                                <input
+                                                    type="url"
+                                                    defaultValue={userInfo.get('website')}
+                                                    ref={w => this.website = w}
+                                                />
+                                                <input
+                                                    type="url"
+                                                    defaultValue={userInfo.get('github')}
+                                                    ref={g => this.github = g}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    defaultValue={userInfo.get('qq')}
+                                                    ref={q => this.qq = q}
+                                                />
                                             </div>
                                         </div>
                                     </div>

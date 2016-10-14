@@ -71,6 +71,20 @@ const actions = {
         });
     },
 
+    updateUser: function (gender, birthday, location, website, github, qq) {
+        return new Promise(resolve => {
+            socket.put('/user', { gender, birthday, location, website, github, qq }, response => {
+                if (response.status === 200) {
+                    dispatch({
+                        type: 'UpdateUser',
+                        user: response.data,
+                    });
+                }
+                resolve(response);
+            });
+        });
+    },
+
     updateAvatar: function (avatar) {
         return new Promise(resolve => {
             socket.put('/user/avatar', { avatar }, response => {
