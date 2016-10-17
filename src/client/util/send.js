@@ -1,6 +1,7 @@
 import user from '../action/user';
 import Store from '../store';
 import ui from '../action/pc';
+import messageHandle from '../util/message';
 
 const filterReg = [
     /^\d+$/,
@@ -19,6 +20,7 @@ const filterReg = [
 ];
 
 function send(linkmanType, linkmanId, messageType, messageContent) {
+    const state = Store.getState();
     const messageId = `self${Date.now()}`;
     if (messageType === 'text') {
         messageContent = messageContent
@@ -28,10 +30,24 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
             .replace(/>/g, '&gt;')
             .replace(/'/g, '&apos;');
     }
-    user.addSelfMessage(linkmanType, linkmanId, messageType, messageContent, messageId);
+    messageHandle({
+        _id: messageId,
+        type: messageType,
+        content: messageContent,
+        from: {
+            _id: state.getIn(['user', '_id']),
+            avatar: state.getIn(['user', 'avatar']),
+            username: state.getIn(['user', 'username']),
+        },
+        to: {
+            _id: linkmanId,
+        },
+        linkmanType,
+        isSelf: true,
+    });
 
     // If the user is created today, the message filtering rules apply
-    const userCreateTime = new Date(Store.getState().getIn(['user', 'createTime']));
+    const userCreateTime = new Date(state.getIn(['user', 'createTime']));
     const nowTime = new Date();
     if (
         userCreateTime.getFullYear() === nowTime.getFullYear() &&

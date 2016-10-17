@@ -53,12 +53,12 @@ class App extends React.Component {
 
         // register server event
         socket.on('groupMessage', data => {
-            data.from.type = 'group';
+            data.linkmanType = 'group';
             handleMessage(data);
         });
 
         socket.on('message', data => {
-            data.from.type = 'stranger';
+            data.linkmanType = 'stranger';
             handleMessage(data);
         });
 

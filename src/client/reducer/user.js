@@ -99,20 +99,10 @@ function reducer(state = initialState, action) {
         return state.updateIn(
             ['linkmans'],
             linkmans => {
-                const groupIndex = linkmans.findIndex(g => g.get('type') === action.linkmanType && g.get('_id') === action.linkmanId);
-                const group = linkmans.get(
-                    groupIndex).updateIn(['messages'],
-                    m => m.push(immutable.fromJS({
-                        _id: action.messageId,
-                        type: action.messageType,
-                        content: action.messageContent,
-                        from: {
-                            _id: state.get('_id'),
-                            avatar: state.get('avatar'),
-                            username: state.get('username'),
-                        },
-                        to: action.linkmanId,
-                    })).slice(m.size > maxMessageRecords ? maxMessageRecords / 2 : 0)).update('unread', () => 0);
+                const groupIndex = linkmans.findIndex(g => g.get('type') === action.message.linkmanType && g.get('_id') === action.message.to._id);
+                const group = linkmans.get(groupIndex).updateIn(
+                    ['messages'],
+                    m => m.push(immutable.fromJS(action.message)).slice(m.size > maxMessageRecords ? maxMessageRecords / 2 : 0)).update('unread', () => 0);
                 return linkmans.delete(groupIndex).unshift(group);
             }
         );

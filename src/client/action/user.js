@@ -130,14 +130,10 @@ const actions = {
         });
     },
 
-    addSelfMessage: function (linkmanType, linkmanId, messageType, messageContent, messageId) {
+    addSelfMessage: function (message) {
         dispatch({
             type: 'AddSelfMessage',
-            linkmanType,
-            linkmanId,
-            messageType,
-            messageContent,
-            messageId,
+            message,
         });
     },
 

@@ -30,7 +30,7 @@ const beforeMiddleWareHandles = [
  * native handle after middleware
  */
 function playSound(message) {
-    if (message.playSound) {
+    if (message.playSound && !message.isSelf) {
         ui.playSound(true);
     }
 
@@ -39,7 +39,7 @@ function playSound(message) {
 }
 function openNotification(message) {
     const state = store.getState();
-    if (message.notification.show && window.Notification && window.Notification.permission === 'granted' && !state.getIn(['pc', 'windowFocus']) && state.getIn(['pc', 'desktopNotification'])) {
+    if (message.notification.show && !message.isSelf && window.Notification && window.Notification.permission === 'granted' && !state.getIn(['pc', 'windowFocus']) && state.getIn(['pc', 'desktopNotification'])) {
         const notification = new window.Notification(
             message.notification.title,
             {
@@ -77,10 +77,13 @@ function messageHandle(message) {
     message = applyMiddleWares(message, thirdPartyMiddlewares);
     message = applyMiddleWares(message, afterMiddleWareHandles);
 
-    if (message.from.type === 'group') {
+    if (message.isSelf) {
+        return user.addSelfMessage(message);
+    }
+    if (message.linkmanType === 'group') {
         user.addGroupMessage(message);
     }
-    else if (message.from.type === 'stranger') {
+    else if (message.linkmanType === 'stranger') {
         user.addMessage(message);
     }
 }
