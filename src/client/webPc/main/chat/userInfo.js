@@ -43,7 +43,10 @@ class UserInfo extends React.Component {
             this.setState(initialState);
             user.getUserInfo(nextProps.userId).then(response => {
                 if (response.status) {
-                    this.setState(response.data);
+                    this.setState({
+                        _id: nextProps.userId,
+                        ...response.data,
+                    });
                 }
             });
         }

@@ -153,10 +153,12 @@ function reducer(state = initialState, action) {
         if (state.get('linkmans').findIndex(g => g.get('type') === 'stranger' && g.get('_id') === action.user._id) !== -1) {
             return state;
         }
-        action.user = action.user.set('type', 'stranger').set('unread', 0).set('messages', immutable.fromJS([]));
+        action.user.type = 'stranger';
+        action.user.unread = 0;
+        action.user.messages = [];
         return state.update(
             'linkmans',
-            linkmans => linkmans.unshift(action.user)
+            linkmans => linkmans.unshift(immutable.fromJS(action.user))
         );
     }
 
