@@ -49,8 +49,8 @@ const MessageRoute = {
         let savedMessage = null;
         try {
             savedMessage = yield message.save();
-            yield Message.populate(message, { path: 'from', select: '_id username gender birthday avatar' });
-            yield Message.populate(message, { path: 'to', select: '_id username gender birthday avatar' });
+            yield Message.populate(message, { path: 'from', select: '_id username avatar' });
+            yield Message.populate(message, { path: 'to', select: '_id username avatar' });
         }
         catch (err) {
             return this.end(500, 'server error when save new message');

@@ -56,7 +56,7 @@ const GroupMessageRoute = {
             return this.end(500, 'server error when save new message');
         }
 
-        yield GroupMessage.populate(savedMessage, { path: 'from', select: '_id username gender birthday avatar' });
+        yield GroupMessage.populate(savedMessage, { path: 'from', select: '_id username avatar' });
         yield GroupMessage.populate(savedMessage, { path: 'to', select: '_id' });
         const sendMessage = {
             _id: savedMessage._id,
