@@ -77,8 +77,11 @@ const UserRoute = {
         assert(typeof data.qq !== 'string', this.end, 400, 'need qq param but not exists');
 
         const user = yield User.findById(this.socket.user, '-password -salt');
+
         user.gender = data.gender;
-        user.birthday = new Date(data.birthday);
+        const updateBirthday = new Date(data.birthday);
+        const now = new Date();
+        user.birthday = updateBirthday > now ? now : updateBirthday;
         user.location = data.location;
         user.website = data.website;
         user.github = data.github;
