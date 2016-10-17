@@ -19,6 +19,7 @@ const initialState = immutable.fromJS({
 
     desktopNotification: true,
     soundNotification: true,
+    playSound: false,
 
     showCreateGroupInput: false,
     showAddGroupInput: false,
@@ -79,6 +80,8 @@ function reducer(state = initialState, action) {
     case 'CloseImageViewer': { return state.set('showImageViewer', false); }
 
     case 'GetUserAvatar': { return state.set('username', action.username).set('avatar', action.avatar); }
+
+    case 'PlaySound': { return state.set('playSound', action.value); }
 
     default:
         return state;

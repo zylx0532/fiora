@@ -72,6 +72,9 @@ const actions = {
             });
         })
     ),
+
+    // app
+    playSound: (value) => dispatch({ type: 'PlaySound', value }),
 };
 
 export default actions;

@@ -7,6 +7,7 @@ import user from '../action/user';
 import ui from '../action/pc';
 import socket from '../socket';
 import api, { publicApi } from '../api';
+import handleMessage from '../util/message';
 
 import Notification from '../common/notification';
 import MaskLayout from '../common/maskLayout';
@@ -19,9 +20,7 @@ class App extends React.Component {
         state: PropTypes.object.isRequired,
         children: PropTypes.element,
         location: PropTypes.object.isRequired,
-        windowFocus: PropTypes.bool,
-        desktopNotification: PropTypes.bool,
-        soundNotification: PropTypes.bool,
+        playSound: PropTypes.bool,
     };
 
     static contextTypes = {
@@ -54,59 +53,13 @@ class App extends React.Component {
 
         // register server event
         socket.on('groupMessage', data => {
-            api.emit('rawMessage', data);
-            user.addGroupMessage(data);
-
-            if (this.props.soundNotification) {
-                this.sound.play();
-            }
-
-            if (!api.getVirtualMessageName(data.content) && window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
-                const notification = new window.Notification(
-                    `${data.from.username} - 发来消息:`,
-                    {
-                        icon: data.from.avatar,
-                        body: data.type === 'text' ? data.content : `[${data.type}]`,
-                        tag: data.from.id,
-                    }
-                );
-                notification.onclick = function () {
-                    window.blur();
-                    window.focus();
-                    this.close();
-                };
-                // auto close
-                setTimeout(notification.close.bind(notification), 3000);
-            }
+            data.from.type = 'group';
+            handleMessage(data);
         });
 
         socket.on('message', data => {
-            api.emit('rawMessage', data);
-            user.addMessage(data);
-
-            if (this.props.soundNotification) {
-                this.sound.play();
-            }
-
-            if (!api.getVirtualMessageName(data.content) && window.Notification && window.Notification.permission === 'granted' && !this.props.windowFocus && this.props.desktopNotification) {
-                const notification = new window.Notification(
-                    `${data.from.username} - 发来消息:`,
-                    {
-                        icon: data.from.avatar,
-                        body: data.type === 'text' ? data.content : `[${data.type}]`,
-                        tag: data.from.id,
-                    }
-                );
-                notification.onclick = function () {
-                    this.close();
-                    window.blur();
-                    setTimeout(() => {
-                        window.focus();
-                    }, 0);
-                };
-                // auto close
-                setTimeout(notification.close.bind(notification), 3000);
-            }
+            data.from.type = 'stranger';
+            handleMessage(data);
         });
 
         socket.on('disconnect', () => {
@@ -131,6 +84,13 @@ class App extends React.Component {
     componentDidMount() {
         window.onfocus = () => ui.windowFocus(true);
         window.onblur = () => ui.windowFocus(false);
+    }
+
+    componentWillUpdate(nextProps) {
+        if (nextProps.playSound && this.props.playSound !== nextProps.playSound) {
+            this.sound.play();
+            ui.playSound(false);
+        }
     }
 
     render() {
@@ -171,8 +131,6 @@ class App extends React.Component {
 export default connect(
     state => ({
         state: state,
-        windowFocus: state.getIn(['pc', 'windowFocus']),
-        desktopNotification: state.getIn(['pc', 'desktopNotification']),
-        soundNotification: state.getIn(['pc', 'soundNotification']),
+        playSound: state.getIn(['pc', 'playSound']),
     })
 )(App);
