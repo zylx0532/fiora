@@ -79,7 +79,6 @@ class Linkman extends React.Component {
         else {
             if (message.get('type') === 'text') {
                 const text = message.get('content');
-                console.log(text);
                 const PluginMessageInfo = api.getVirtualMessageName(text);
                 if (PluginMessageInfo) {
                     content = PluginMessageInfo.content;
