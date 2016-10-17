@@ -47,11 +47,21 @@ const UserRoute = {
         this.end(201, savedUser);
     },
     'GET /user': function* (data) {
-        assert(!mongoose.Types.ObjectId.isValid(data.id), this.end, 400, `id:'${data.id}' is invalid`);
+        assert(!mongoose.Types.ObjectId.isValid(data.userId), this.end, 400, 'userId is invalid');
 
-        const user = yield User.findById(data.id, '-password -salt');
+        const user = yield User.findById(data.userId, '-password -salt');
         if (user) {
-            this.end(200, user);
+            this.end(200, {
+                avatar: user.avatar,
+                username: user.username,
+                gender: user.gender,
+                birthday: user.birthday,
+                location: user.location,
+                website: user.website,
+                github: user.github,
+                qq: user.qq,
+                createTime: user.createTime,
+            });
         }
         else {
             this.end(404, 'user not exists');

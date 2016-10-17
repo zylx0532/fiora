@@ -1,5 +1,6 @@
 @import "../../common/commonStyle";
 
+$borderRadius: 10px;
 .user-setting {
     @include floatIndex;
     @include containerCenter;
@@ -7,20 +8,20 @@
     max-height: max-content;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: $borderRadius;
 
     & > :nth-child(1000n+1) {
         @include flexCenter(column);
         background-color: #ffffff;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: $borderRadius;
+        border-top-right-radius: $borderRadius;
         position: relative;
         padding-bottom: 10px;
 
         & > i {
             position: absolute;
             right: 5px;
-            top: 5px;
+            top: 1px;
             font-size: 20px;
             color: #999;
             cursor: pointer;
@@ -34,16 +35,16 @@
             @include size(300px, 300px);
             @include containerStart;
             filter: blur(30px);
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            border-top-left-radius: $borderRadius;
+            border-top-right-radius: $borderRadius;
         }
         .background-mask {
             @include size(300px, 300px);
             @include containerStart;
             background-color: black;
             opacity: 0.25;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            border-top-left-radius: $borderRadius;
+            border-top-right-radius: $borderRadius;
         }
         .content {
             @include flexCenter(column);
@@ -98,8 +99,8 @@
     .normal-status {
         flex: 1;
         background-color: $grey0;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
         z-index: 1;
         padding-bottom: 20px;
 
@@ -162,8 +163,8 @@
     .edit-status {
         flex: 1;
         background-color: $grey0;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
         z-index: 1;
         padding-bottom: 20px;
 

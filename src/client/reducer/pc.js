@@ -13,9 +13,9 @@ const initialState = immutable.fromJS({
     shouldScrollMessage: true,
     windowFocus: false,
     showSystemSetting: false,
-    showUserSetting: true,
+    showUserSetting: false,
     showUserInfo: false,
-    userInfoData: {},
+    userInfoId: '',
 
     desktopNotification: true,
     soundNotification: true,
@@ -67,7 +67,7 @@ function reducer(state = initialState, action) {
 
     case 'OpenUserSetting': { return state.set('showUserSetting', true); }
     case 'CloseUserSetting': { return state.set('showUserSetting', false); }
-    case 'OpenUserInfo': { return state.set('showUserInfo', true).set('userInfoData', immutable.fromJS(action.user)); }
+    case 'OpenUserInfo': { return state.set('showUserInfo', true).set('userInfoId', action.userId); }
     case 'CloseUserInfo': { return state.set('showUserInfo', false); }
 
     case 'OpenCreateGroupInput': { return state.set('showCreateGroupInput', true); }

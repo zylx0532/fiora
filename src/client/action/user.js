@@ -343,6 +343,14 @@ const actions = {
             });
         });
     },
+
+    getUserInfo: function (userId) {
+        return new Promise(resolve => {
+            socket.get('/user', { userId }, response => {
+                resolve(response);
+            });
+        });
+    },
 };
 
 export default actions;

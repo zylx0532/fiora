@@ -29,7 +29,6 @@ class UserSetting extends React.Component {
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
         this.handleSelectImage = this.handleSelectImage.bind(this);
-        // this.handleLogoutClick = this.handleLogoutClick.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleOk = this.handleOk.bind(this);
     }
@@ -55,16 +54,6 @@ class UserSetting extends React.Component {
         };
         reader.readAsDataURL(image);
     }
-
-    // handleLogoutClick() {
-    //     user.logout().then(response => {
-    //         if (response.status === 204) {
-    //             this.context.router.push('/login');
-    //             window.localStorage.removeItem('token');
-    //             user.init();
-    //         }
-    //     });
-    // }
 
     handleEdit() {
         this.setState({ editStatus: true });
@@ -97,7 +86,7 @@ class UserSetting extends React.Component {
         else {
             createdDays = `${parseInt(createdDays, 10)}天`;
         }
-        const location = userInfo.get('location') || '未知';
+        const location = userInfo.get('location') || '火星';
         const otherInfos = [
             { key: 'github', value: userInfo.get('github'), icon: '&#xe61b;' },
             { key: 'website', value: userInfo.get('website'), icon: '&#xe617;' },
@@ -135,7 +124,7 @@ class UserSetting extends React.Component {
                                     onMouseEnter={() => this.setState({ avatarHover: true })}
                                     onMouseLeave={() => this.setState({ avatarHover: false })}
                                 />
-                                <span>碎碎酱</span>
+                                <span>{username}</span>
                                 <div className="icon-list">
                                     {
                                         otherInfos.map((o, index) => (

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import moment from 'moment';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 
 import './userInfo.scss';
@@ -10,10 +9,21 @@ import ui from '../../../action/pc';
 import user from '../../../action/user';
 import Avatar from '../../../common/avatar';
 
+const initialState = {
+    avatar: '',
+    username: '',
+    gender: 'male',
+    birthday: new Date(),
+    location: '',
+    website: '',
+    github: '',
+    qq: '',
+};
+
 class UserInfo extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
-        userInfo: PropTypes.object.isRequired,
+        userId: PropTypes.string.isRequired,
     };
 
     static contextTypes = {
@@ -22,9 +32,21 @@ class UserInfo extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = initialState;
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
         this.handleSendMessageClick = this.handleSendMessageClick.bind(this);
+    }
+
+    componentWillUpdate(nextProps) {
+        if (this.props.show !== nextProps.show && nextProps.show) {
+            this.setState(initialState);
+            user.getUserInfo(nextProps.userId).then(response => {
+                if (response.status) {
+                    this.setState(response.data);
+                }
+            });
+        }
     }
 
     handleCloseClick() {
@@ -33,14 +55,28 @@ class UserInfo extends React.Component {
     }
 
     handleSendMessageClick() {
-        user.addUserLinkman(this.props.userInfo);
+        user.addUserLinkman(this.state);
         ui.closeUserInfo();
         ui.closeMaskLayout();
-        this.context.router.push(`/main/chat/stranger/${this.props.userInfo.get('_id')}`);
+        this.context.router.push(`/main/chat/stranger/${this.props.userId}`);
     }
 
     render() {
-        const { show, userInfo } = this.props;
+        const { show } = this.props;
+        const { avatar, username } = this.state;
+        const otherInfos = [
+            { key: 'github', value: this.state.github, icon: '&#xe61b;' },
+            { key: 'website', value: this.state.website, icon: '&#xe617;' },
+            { key: 'qq', value: this.state.qq ? `tencent://message/?uin=${this.state.qq}` : undefined, icon: '&#xe61a;' },
+        ];
+        const location = this.state.location || '火星';
+        let createdDays = (Date.now() - new Date(this.state.createTime).getTime()) / (1000 * 60 * 60 * 24);
+        if (createdDays > 365) {
+            createdDays = `${parseInt(createdDays / 365, 10)}年`;
+        }
+        else {
+            createdDays = `${parseInt(createdDays, 10)}天`;
+        }
 
         return (
             <Motion
@@ -54,30 +90,65 @@ class UserInfo extends React.Component {
                         style={{ opacity, transform: `scale(${scale})`, display: opacity === 0 ? 'none' : 'flex' }}
                     >
                         <div>
-                            <span>用户信息</span>
                             <i
                                 className="icon"
                                 onClick={this.handleCloseClick}
                             >&#xe603;</i>
+                            <div
+                                className="background-image"
+                                style={{ backgroundImage: `url('${/^http/.test(avatar) ? avatar : 'http://assets.suisuijiang.com/user_avatar_default.png'}')` }}
+                            />
+                            <div className="background-mask" />
+                            <div className="content">
+                                <Avatar
+                                    width={80}
+                                    height={80}
+                                    avatar={avatar}
+                                    name={username}
+                                />
+                                <span>{this.state.username}</span>
+                                <div className="icon-list">
+                                    {
+                                        otherInfos.map((o, index) => (
+                                            o.value ?
+                                                <a
+                                                    key={index}
+                                                    className="icon"
+                                                    title={o.key}
+                                                    href={o.value}
+                                                    rel="noopener noreferrer"
+                                                    target="_blank"
+                                                    dangerouslySetInnerHTML={{ __html: o.icon }}
+                                                    style={o.key === 'website' ? { position: 'relative', top: 3 } : {}}
+                                                />
+                                            : null
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         </div>
-                        <div>
+
+                        <div className="normal-status">
                             <div>
                                 <div>
-                                    <span>昵称: { userInfo.get('username') }</span>
-                                    <span>性别: { userInfo.get('gender') === 'male' ? '男' : '女' }</span>
-                                    <span>生日: { moment(userInfo.get('birthday')).format('YYYY年MM月DD日') }</span>
+                                    <div>
+                                        <span>性别:</span>
+                                        <span>年龄:</span>
+                                        <span>时长:</span>
+                                        <span>位置:</span>
+                                    </div>
+                                    <div>
+                                        <span>{this.state.gender === 'male' ? '男' : '女'}</span>
+                                        <span>{(1 + new Date().getFullYear()) - new Date(this.state.birthday).getFullYear()}</span>
+                                        <span>{createdDays}</span>
+                                        <span>{location}</span>
+                                    </div>
                                 </div>
-                                <Avatar
-                                    width={60}
-                                    height={60}
-                                    avatar={userInfo.get('avatar') || ''}
-                                    name={userInfo.get('username') || ''}
-                                />
                             </div>
                             <div>
                                 <button
                                     onClick={this.handleSendMessageClick}
-                                >发送消息</button>
+                                >发起聊天</button>
                             </div>
                         </div>
                     </div>
@@ -91,6 +162,6 @@ class UserInfo extends React.Component {
 export default connect(
     state => ({
         show: state.getIn(['pc', 'showUserInfo']),
-        userInfo: state.getIn(['pc', 'userInfoData']),
+        userId: state.getIn(['pc', 'userInfoId']),
     })
 )(UserInfo);

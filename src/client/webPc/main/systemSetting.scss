@@ -3,7 +3,7 @@
 .system-setting {
     @include floatIndex;
     @include containerCenter;
-    @include size(300px, 231px);
+    @include size(300px, 270px);
     background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
@@ -71,7 +71,7 @@
 
         .button {
             @include flexCenter;
-            margin: 0px 20px;
+            margin: 0px 20px 10px 20px;
             background-color: $lightBlue4;
             color: white;
             height: 35px;
@@ -93,9 +93,8 @@
             top: -2px;
         }
 
-        & > :nth-child(1000n+4) {
-            margin-top: 10px;
-            margin-bottom: 5px;
+        .button:last-child {
+            margin-bottom: 10px;
         }
     }
 }

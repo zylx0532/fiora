@@ -108,7 +108,7 @@ class Message extends React.Component {
     }
 
     handleAvatarClick() {
-        ui.openUserInfo(this.props.message.get('from'));
+        ui.openUserInfo(this.props.message.getIn(['from', '_id']));
         mask(ui.closeUserInfo);
     }
 

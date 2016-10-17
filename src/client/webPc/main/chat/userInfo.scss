@@ -1,56 +1,136 @@
 @import "../../../common/commonStyle";
 
+$borderRadius: 10px;
 .user-info {
-    @include containerCenter;
     @include floatIndex;
-    @include size(300px, 200px);
-    background-color: $grey1;
+    @include containerCenter;
+    width: 300px;
+    max-height: max-content;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: $borderRadius;
 
     & > :nth-child(1000n+1) {
-        @include flexCenter;
-        background-color: white;
-        height: 50px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        @include flexCenter(column);
+        background-color: #ffffff;
+        border-top-left-radius: $borderRadius;
+        border-top-right-radius: $borderRadius;
         position: relative;
+        padding-bottom: 10px;
 
         & > i {
             position: absolute;
             right: 5px;
-            top: 5px;
+            top: 1px;
             font-size: 20px;
             color: #999;
             cursor: pointer;
+            z-index: 2;
 
             &:hover {
                 color: #c02721;
             }
         }
+        .background-image {
+            @include size(300px, 300px);
+            @include containerStart;
+            filter: blur(30px);
+            border-top-left-radius: $borderRadius;
+            border-top-right-radius: $borderRadius;
+        }
+        .background-mask {
+            @include size(300px, 300px);
+            @include containerStart;
+            background-color: black;
+            opacity: 0.25;
+            border-top-left-radius: $borderRadius;
+            border-top-right-radius: $borderRadius;
+        }
+        .content {
+            @include flexCenter(column);
+            z-index: 1;
+
+            & > :nth-child(1000n+1) {
+                margin-top: 20px;
+                cursor: pointer;
+            }
+            & > :nth-child(1000n+2) {
+                margin-top: 15px;
+                color: white;
+                font-size: 20px;
+            }
+            .icon-list {
+                @include flexCenter;
+                margin-top: 10px;
+
+                & > a {
+                    font-size: 26px;
+                    color: $grey0;
+                    background-color: rgba(black, 0);
+                    margin-right: 15px;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $lightBlue5;
+                    }
+                }
+                & > a:last-child {
+                    margin-right: 0px;
+                }
+            }
+            .avatar-mask {
+                @include size(80px, 80px);
+                @include horizontalCenter;
+                @include flexCenter;
+                border-radius: 50%;
+                background-color: rgba(black, 0.3);
+                top: 20px;
+                color: $grey2;
+                font-size: 28px;
+                pointer-events: none;
+            }
+            input {
+                display: none;
+            }
+        }
     }
 
-    & > :nth-child(1000n+2) {
+    .normal-status {
         flex: 1;
-        background-color: #fafafc;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding: 10px;
+        background-color: $grey0;
+        border-bottom-left-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+        z-index: 1;
+        padding-bottom: 20px;
 
         & > :nth-child(1000n+1) {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            @include flexCenter;
 
             & > div {
-                display: flex;
-                flex-direction: column;
-                
-                & > span {
-                    font-size: 14px;
-                    margin-bottom: 5px;
+                @include flexCenter;
+                padding-top: 20px;
+
+                & > div {
+                    @include flexCenter(column);
+
+                    & > span {
+                        font-size: 16px;
+                        margin-bottom: 10px;
+                        color: $grey7;
+                    }
+                }
+
+                & > div:nth-child(1000n+1) {
+                    align-items: flex-end;
+
+                    & > span {
+                        color: $grey5;
+                    }
+                }
+                & > div:nth-child(1000n+2) {
+                    align-items: flex-start;
+                    margin-left: 10px;
                 }
             }
 
@@ -58,26 +138,23 @@
                 margin-right: 10px;
                 cursor: pointer;
             }
-
-            input {
-                display: none;
-            }
         }
 
         & > :nth-child(1000n+2) {
             @include flexCenter;
-            width: 100%;
-            margin-top: 20px;
+            @include size(100%, auto);
+            margin-top: 10px;
 
             & > button {
                 @include size(120px, 30px);
                 border-radius: 5px;
                 color: white;
-                background-color: #0288D1;
+                background-color: $lightBlue5;
                 cursor: pointer;
+                font-size: 14px;
 
                 &:hover {
-                    background-color: #2ea7e0;
+                    background-color: $lightBlue7;
                 }
             }
         }

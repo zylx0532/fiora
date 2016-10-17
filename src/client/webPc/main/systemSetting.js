@@ -6,6 +6,7 @@ import pureRenderMixin from 'react-addons-pure-render-mixin';
 import './systemSetting.scss';
 
 import ui from '../../action/pc';
+import user from '../../action/user';
 
 class SystemSetting extends React.Component {
     static propTypes = {
@@ -14,15 +15,30 @@ class SystemSetting extends React.Component {
         soundNotification: PropTypes.bool,
     };
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired,
+    }
+
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
     }
 
     handleCloseClick() {
         ui.closeSystemSetting();
         ui.closeMaskLayout();
+    }
+
+    handleLogoutClick() {
+        user.logout().then(response => {
+            if (response.status === 204) {
+                this.context.router.push('/login');
+                window.localStorage.removeItem('token');
+                user.init();
+            }
+        });
     }
 
     render() {
@@ -84,6 +100,13 @@ class SystemSetting extends React.Component {
                             >
                                 <i className="icon">&#xe612;</i>
                                 <span>作者</span>
+                            </a>
+                            <a
+                                className="button"
+                                onClick={this.handleLogoutClick}
+                            >
+                                <i className="icon">&#xe614;</i>
+                                <span>登出</span>
                             </a>
                         </div>
                     </div>
