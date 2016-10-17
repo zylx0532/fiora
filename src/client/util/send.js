@@ -6,10 +6,16 @@ const filterReg = [
     /^\d+$/,
     /^hello\s*w/i,
     /^test/,
-    /sdf|sfd|dsf|dfs|fsd|fds/,
+    /sdf|sfd|dsf|dfs|fsd|fds|sad/,
     /abc/,
     /^\.+$/,
     /^ceshi/,
+    /^fds\w*$/i,
+    /时候的/,
+    /^dfg/,
+    /^\d+[^\w]+$/,
+    /^(\w)\1{2,}$/,
+    /的范德萨发生/,
 ];
 
 function send(linkmanType, linkmanId, messageType, messageContent) {
