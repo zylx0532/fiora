@@ -14,9 +14,15 @@ import mask from '../../../util/mask';
 
 import textMessage from './message/text';
 import unknownMessage from './message/unknown';
+import imageMessage from './message/image';
+import urlMessage from './message/url';
+import codeMessage from './message/code';
 
 const messageTypes = [
     textMessage,
+    imageMessage,
+    urlMessage,
+    codeMessage,
 ];
 
 let onScrollHandle = null;
@@ -198,7 +204,7 @@ class Message extends React.Component {
         let messageComponent = unknownMessage.render(message, me);
         for (const type of messageTypes) {
             if (type.shouldRender(message.get('type'))) {
-                messageComponent = type.render(message, me);
+                messageComponent = type.render(message, me, scrollMessage);
                 break;
             }
         }
