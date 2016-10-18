@@ -1,18 +1,23 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
-import jQuery from 'jquery';
+// import jQuery from 'jquery';
 
 import './messageList.scss';
 
-import Avatar from '../../../common/avatar';
 import expressions from '../../../util/expressions';
 import ui from '../../../action/pc';
 import user from '../../../action/user';
 import mask from '../../../util/mask';
-import api from '../../../api';
+// import api from '../../../api';
+
+import textMessage from './message/text';
+import unknownMessage from './message/unknown';
+
+const messageTypes = [
+    textMessage,
+];
 
 let onScrollHandle = null;
 let scrollMessage = null;
@@ -57,29 +62,29 @@ class MessageList extends React.Component {
     }
 }
 
-class PluginMessage extends React.Component {
-    static propTypes = {
-        name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-    };
+// class PluginMessage extends React.Component {
+//     static propTypes = {
+//         name: PropTypes.string.isRequired,
+//         content: PropTypes.string.isRequired,
+//     };
 
-    componentDidMount() {
-        this.renderMessage();
-    }
-    componentDidUpdate() {
-        this.renderMessage();
-    }
-    renderMessage() {
-        jQuery(this.dom).empty()
-            .append(api.getMessage(this.props.name, `系统消息:${this.props.content}`));
-    }
-    render() {
-        return (<div
-            className="plugin-dom-container"
-            ref={dom => this.dom = dom}
-        />);
-    }
-}
+//     componentDidMount() {
+//         this.renderMessage();
+//     }
+//     componentDidUpdate() {
+//         this.renderMessage();
+//     }
+//     renderMessage() {
+//         jQuery(this.dom).empty()
+//             .append(api.getMessage(this.props.name, `系统消息:${this.props.content}`));
+//     }
+//     render() {
+//         return (<div
+//             className="plugin-dom-container"
+//             ref={dom => this.dom = dom}
+//         />);
+//     }
+// }
 
 class Message extends React.Component {
     static propTypes = {
@@ -190,31 +195,25 @@ class Message extends React.Component {
 
     render() {
         const { me, message } = this.props;
-
-        const PluginMessageInfo = api.getVirtualMessageName(message.get('content'));
-        if (PluginMessageInfo) {
-            return <div ref={dom => this.dom = dom}><PluginMessage name={PluginMessageInfo.name} content={PluginMessageInfo.content} /></div>;
+        let messageComponent = unknownMessage.render(message, me);
+        for (const type of messageTypes) {
+            if (type.shouldRender(message.get('type'))) {
+                messageComponent = type.render(message, me);
+                break;
+            }
         }
+
+        // const PluginMessageInfo = api.getVirtualMessageName(message.get('content'));
+        // if (PluginMessageInfo) {
+        //     return <div ref={dom => this.dom = dom}><PluginMessage name={PluginMessageInfo.name} content={PluginMessageInfo.content} /></div>;
+        // }
 
         return (
             <div
-                className={`message-list-item ${message.getIn(['from', '_id']) === me ? 'message-self' : ''}`}
+                className={'message-list-item'}
                 ref={dom => this.dom = dom}
             >
-                <Avatar
-                    avatar={message.getIn(['from', 'avatar']) || ''}
-                    name={message.getIn(['from', 'username']) || ''}
-                    width={40}
-                    height={40}
-                    onClick={this.handleAvatarClick}
-                />
-                <div>
-                    <div>
-                        <span className="message-username">{ message.getIn(['from', 'username']) }</span>
-                        <span>{ moment(message.get('createTime')).format('HH:mm') }</span>
-                    </div>
-                    { this.renderContent(message.get('type'), message.get('content')) }
-                </div>
+                { messageComponent }
             </div>
         );
     }
