@@ -3,8 +3,10 @@ import ui from '../action/pc';
 import store from '../store';
 
 // third party middleware
-const thirdPartyMiddlewares = [
+import boom from '../middleware/boom';
 
+const thirdPartyMiddlewares = [
+    boom,
 ];
 
 /**

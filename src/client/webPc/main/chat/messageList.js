@@ -1,15 +1,12 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
-import Highlight from 'react-highlight';
 // import jQuery from 'jquery';
 
 import './messageList.scss';
 
-import expressions from '../../../util/expressions';
 import ui from '../../../action/pc';
 import user from '../../../action/user';
-import mask from '../../../util/mask';
 // import api from '../../../api';
 
 import textMessage from './message/text';
@@ -18,11 +15,14 @@ import imageMessage from './message/image';
 import urlMessage from './message/url';
 import codeMessage from './message/code';
 
+import boomMessage from './message/boom';
+
 const messageTypes = [
     textMessage,
     imageMessage,
     urlMessage,
     codeMessage,
+    boomMessage,
 ];
 
 let onScrollHandle = null;
@@ -106,8 +106,6 @@ class Message extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.renderContent = this.renderContent.bind(this);
-        this.handleAvatarClick = this.handleAvatarClick.bind(this);
     }
 
     componentDidMount() {
@@ -118,93 +116,14 @@ class Message extends React.Component {
         }
     }
 
-    handleAvatarClick() {
-        ui.openUserInfo(this.props.message.getIn(['from', '_id']));
-        mask(ui.closeUserInfo);
-    }
-
-    handleImageDoubleClick(src) {
-        ui.openImageViewer(src);
-    }
-
-    renderContent(type, content) {
-        if (type === 'text') {
-            content = content.replace(
-                /#\(([\u4e00-\u9fa5a-z]+)\)/g,
-                (r, e) => (
-                    expressions.indexOf(e) !== -1 ? `<img class="expression-message" src="data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw==" style="background-position: left ${-30 * expressions.indexOf(e)}px" onerror="this.style.display=\'none\'">` : r
-                )
-            ).replace(
-                /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
-                r => (
-                    `<a href="${r}" rel="noopener noreferrer" target="_blank">${r}</a>`
-                )
-            );
-
-            return (
-                <div
-                    className="text"
-                    dangerouslySetInnerHTML={{ __html: content }}
-                />
-            );
-        }
-        else if (type === 'image') {
-            return (
-                <div
-                    className="image"
-                >
-                    <img
-                        src={content}
-                        ref={img => this.img = img}
-                        onLoad={() => scrollMessage && scrollMessage()}
-                        onError={() => this.img.src = 'http://assets.suisuijiang.com/image_not_found.png?imageView2/2/w/250'}
-                        onDoubleClick={() => this.handleImageDoubleClick(content)}
-                    />
-                </div>
-            );
-        }
-        else if (type === 'code') {
-            return (
-                <div
-                    className="code"
-                >
-                    <Highlight>
-                        {content}
-                    </Highlight>
-                </div>
-            );
-        }
-        else if (type === 'url') {
-            return (
-                <div
-                    className="url"
-                >
-                    <a
-                        href={content}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    >
-                        { content }
-                    </a>
-                </div>
-            );
-        }
-
-        return (
-            <div
-                className="unknown"
-            >
-                不支持的消息类型
-            </div>
-        );
-    }
-
     render() {
         const { me, message } = this.props;
+        // 由于scrollMessage的更新是render后做的, 所以此时的scrollMessage是上一条消息的, 因此传递一个箭头函数, 以便调用时使用的是最新的scrollMessage
+        const scrollCallback = () => scrollMessage();
         let messageComponent = unknownMessage.render(message, me);
         for (const type of messageTypes) {
             if (type.shouldRender(message.get('type'))) {
-                messageComponent = type.render(message, me, scrollMessage);
+                messageComponent = type.render(message, me, scrollCallback);
                 break;
             }
         }

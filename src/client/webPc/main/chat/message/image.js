@@ -13,7 +13,7 @@ const imageMessage = {
                 <img
                     src={message.get('content')}
                     ref={i => img = i}
-                    onLoad={() => scrollMessage && scrollMessage()}
+                    onLoad={scrollMessage}
                     onError={() => img.src = 'http://assets.suisuijiang.com/image_not_found.png?imageView2/2/w/250'}
                     onDoubleClick={() => ui.openImageViewer(message.get('content'))}
                 />
