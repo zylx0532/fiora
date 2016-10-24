@@ -13,7 +13,7 @@
 }
 
 .message-list-item {
-    & > div {
+     > div:not(.plugin-dom-container) {
         display: flex;
         margin-top: 10px;
         min-height: min-content;
@@ -99,7 +99,7 @@
         }
     }
 
-    .message-self {
+    div.message-self {
         flex-direction: row-reverse;
 
         & > :nth-child(1000n+2) {
