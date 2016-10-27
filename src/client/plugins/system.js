@@ -8,7 +8,7 @@ api.registerMessage('system', (content) => {
     const $wrapper = $('<div></div>');
 
     $wrapper.append($dom);
-    $dom.text(`'系统消息:${content}`);
+    $dom.text(`系统消息:${content}`);
 
     $wrapper.css({
         margin: '10px 0',

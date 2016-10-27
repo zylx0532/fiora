@@ -1,13 +1,11 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
-import jQuery from 'jquery';
 
 import './messageList.scss';
 
 import ui from '../../../action/pc';
 import user from '../../../action/user';
-import api from '../../../api';
 
 import textMessage from './message/text';
 import unknownMessage from './message/unknown';
@@ -15,14 +13,14 @@ import imageMessage from './message/image';
 import urlMessage from './message/url';
 import codeMessage from './message/code';
 
-import boomMessage from './message/boom';
+import pluginMessage from './message/plugin';
 
 const messageTypes = [
     textMessage,
     imageMessage,
     urlMessage,
     codeMessage,
-    boomMessage,
+    pluginMessage,
 ];
 
 let onScrollHandle = null;
@@ -68,30 +66,6 @@ class MessageList extends React.Component {
     }
 }
 
-class PluginMessage extends React.Component {
-    static propTypes = {
-        name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-    };
-
-    componentDidMount() {
-        this.renderMessage();
-    }
-    componentDidUpdate() {
-        this.renderMessage();
-    }
-    renderMessage() {
-        jQuery(this.dom).empty()
-             .append(api.getMessage(this.props.name, this.props.content));
-    }
-    render() {
-        return (<div
-            className="plugin-dom-container"
-            ref={dom => this.dom = dom}
-        />);
-    }
- }
-
 class Message extends React.Component {
     static propTypes = {
         me: PropTypes.string.isRequired,
@@ -126,11 +100,6 @@ class Message extends React.Component {
                 messageComponent = type.render(message, me, scrollCallback);
                 break;
             }
-        }
-
-        const PluginMessageInfo = api.getVirtualMessageName(message.get('content'));
-        if (PluginMessageInfo) {
-            messageComponent = <PluginMessage name={PluginMessageInfo.name} content={PluginMessageInfo.content} />;
         }
 
         return (

@@ -3,11 +3,11 @@ import ui from '../action/pc';
 import store from '../store';
 
 // third party middleware
-// import boom from '../middleware/boom';
+import plugin from '../middleware/plugin';
 
-// const thirdPartyMiddlewares = [
-//    boom,
-// ];
+const thirdPartyMiddlewares = [
+    plugin,
+];
 
 /**
  * native handle before middleware
@@ -76,7 +76,7 @@ function applyMiddleWares(message, middlewares) {
 }
 function messageHandle(message) {
     message = applyMiddleWares(message, beforeMiddleWareHandles);
-//    message = applyMiddleWares(message, thirdPartyMiddlewares);
+    message = applyMiddleWares(message, thirdPartyMiddlewares);
     message = applyMiddleWares(message, afterMiddleWareHandles);
 
     if (message.isSelf) {

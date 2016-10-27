@@ -19,7 +19,7 @@ function handleAvatarClick(message) {
  */
 const baseMessage = function (payload, message, me) {
     return (
-        <div className={`${message.getIn(['from', '_id']) === me ? 'message-self' : ''}`}>
+        <div className={`native-message ${message.getIn(['from', '_id']) === me ? 'message-self' : ''}`}>
             <Avatar
                 avatar={message.getIn(['from', 'avatar']) || ''}
                 name={message.getIn(['from', 'username']) || ''}
