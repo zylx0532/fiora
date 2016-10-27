@@ -1,5 +1,6 @@
 import Store from '../store';
 import socket from '../socket';
+import messageTool from '../util/message';
 
 const dispatch = Store.dispatch;
 
@@ -26,6 +27,12 @@ const actions = {
         return new Promise(resolve => {
             socket.post('/auth', { username, password }, response => {
                 if (response.status === 201) {
+                    for (const group of response.data.user.groups) {
+                        group.messages = messageTool.initialMessagesHandle(group.messages);
+                    }
+                    for (const friend of response.data.user.friends) {
+                        friend.messages = messageTool.initialMessagesHandle(friend.messages);
+                    }
                     dispatch({
                         type: 'LoginSuccess',
                         user: response.data.user,
@@ -109,6 +116,12 @@ const actions = {
         return new Promise(resolve => {
             socket.post('/auth/re', { }, response => {
                 if (response.status === 201) {
+                    for (const group of response.data.groups) {
+                        group.messages = messageTool.initialMessagesHandle(group.messages);
+                    }
+                    for (const friend of response.data.friends) {
+                        friend.messages = messageTool.initialMessagesHandle(friend.messages);
+                    }
                     dispatch({
                         type: 'LoginSuccess',
                         user: response.data,

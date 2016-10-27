@@ -1,7 +1,7 @@
 import user from '../action/user';
 import Store from '../store';
 import ui from '../action/pc';
-import messageHandle from '../util/message';
+import messageTool from '../util/message';
 
 const filterReg = [
     /^\d+$/,
@@ -20,20 +20,21 @@ const filterReg = [
 ];
 
 function send(linkmanType, linkmanId, messageType, messageContent) {
+    let messageContentBackup = `${messageContent}`;
     const state = Store.getState();
     const messageId = `self${Date.now()}`;
     if (messageType === 'text') {
-        messageContent = messageContent
+        messageContentBackup = messageContentBackup
             .replace(/&/g, '&amp')
             .replace(/"/g, '&quot;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/'/g, '&apos;');
     }
-    messageHandle({
+    messageTool.messageHandle({
         _id: messageId,
         type: messageType,
-        content: messageContent,
+        content: messageContentBackup,
         from: {
             _id: state.getIn(['user', '_id']),
             avatar: state.getIn(['user', 'avatar']),

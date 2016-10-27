@@ -7,7 +7,7 @@ import user from '../action/user';
 import ui from '../action/pc';
 import socket from '../socket';
 import api, { publicApi } from '../api';
-import handleMessage from '../util/message';
+import messageTool from '../util/message';
 
 import Notification from '../common/notification';
 import MaskLayout from '../common/maskLayout';
@@ -54,12 +54,12 @@ class App extends React.Component {
         // register server event
         socket.on('groupMessage', data => {
             data.linkmanType = 'group';
-            handleMessage(data);
+            messageTool.messageHandle(data);
         });
 
         socket.on('message', data => {
             data.linkmanType = 'stranger';
-            handleMessage(data);
+            messageTool.messageHandle(data);
         });
 
         socket.on('disconnect', () => {

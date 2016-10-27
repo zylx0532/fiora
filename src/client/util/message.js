@@ -90,4 +90,8 @@ function messageHandle(message) {
     }
 }
 
-export default messageHandle;
+function initialMessagesHandle(messages) {
+    return messages.map(m => applyMiddleWares(m, thirdPartyMiddlewares));
+}
+
+export default { messageHandle, initialMessagesHandle };
