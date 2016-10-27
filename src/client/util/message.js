@@ -18,8 +18,8 @@ function addAdditionalFields(message) {
         icon: /^http/.test(message.from.avatar) ? message.from.avatar : 'http://assets.suisuijiang.com/user_avatar_default.png',
         body: message.type === 'text' ? message.content : `[${message.type}]`,
         tag: message.from.id,
-        show: true,
     };
+    message.showNotification = true;
     message.playSound = true;
     message.preview = message.type === 'text' ? `${message.from.username}: ${message.content}` : `${message.from.username}: [${message.type}]`;
     message.isNew = true;
@@ -42,7 +42,7 @@ function playSound(message) {
 }
 function openNotification(message) {
     const state = store.getState();
-    if (message.notification.show && !message.isSelf && window.Notification && window.Notification.permission === 'granted' && !state.getIn(['pc', 'windowFocus']) && state.getIn(['pc', 'desktopNotification'])) {
+    if (message.showNotification && !message.isSelf && window.Notification && window.Notification.permission === 'granted' && !state.getIn(['pc', 'windowFocus']) && state.getIn(['pc', 'desktopNotification'])) {
         const notification = new window.Notification(
             message.notification.title,
             {
@@ -61,6 +61,7 @@ function openNotification(message) {
     }
 
     delete message.notification;
+    delete message.showNotification;
     return message;
 }
 const afterMiddleWareHandles = [

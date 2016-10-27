@@ -7,7 +7,6 @@ import './linkman.scss';
 
 import Avatar from '../../common/avatar';
 import Header from './header';
-import api from '../../api';
 
 class LinkmanList extends React.Component {
     static propTypes = {
@@ -78,13 +77,7 @@ class Linkman extends React.Component {
         }
         else {
             if (message.get('type') === 'text') {
-                const text = message.get('content');
-                const PluginMessageInfo = api.getVirtualMessageName(text);
-                if (PluginMessageInfo) {
-                    content = PluginMessageInfo.content;
-                } else {
-                    content = `${message.getIn(['from', 'username'])}: ${text}`;
-                }
+                content = `${message.getIn(['from', 'username'])}: ${message.get('content')}`;
             } else {
                 content = `${message.getIn(['from', 'username'])}: [${message.get('type')}]`;
             }
