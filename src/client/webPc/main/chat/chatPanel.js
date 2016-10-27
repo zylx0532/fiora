@@ -54,6 +54,8 @@ class ChatPanel extends React.Component {
                                 key={linkman.get('type') + message.get('_id')}
                                 me={me}
                                 message={message}
+                                linkmanId={linkman.get('_id')}
+                                linkmanType={linkman.get('type')}
                             />
                         ))
                     }

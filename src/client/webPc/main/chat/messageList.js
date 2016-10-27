@@ -71,6 +71,8 @@ class Message extends React.Component {
         me: PropTypes.string.isRequired,
         message: PropTypes.object.isRequired,
         shouldScrollMessage: PropTypes.bool,
+        linkmanType: PropTypes.string,
+        linkmanId: PropTypes.string,
     };
 
     static contextTypes = {
@@ -80,6 +82,13 @@ class Message extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    componentWillMount() {
+        const { message, linkmanType, linkmanId } = this.props;
+        if (message.get('isNew')) {
+            user.readMessage(linkmanType, linkmanId, message.get('_id'));
+        }
     }
 
     componentDidMount() {

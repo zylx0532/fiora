@@ -281,6 +281,18 @@ const actions = {
         });
     },
 
+    readMessage: function (linkmanType, linkmanId, messageId) {
+        return new Promise(resolve => {
+            dispatch({
+                type: 'ReadMessage',
+                linkmanType,
+                linkmanId,
+                messageId,
+            });
+            resolve('success');
+        });
+    },
+
     getGroupInfo: function (groupId) {
         return new Promise(resolve => {
             socket.get('/group', { groupId }, response => {

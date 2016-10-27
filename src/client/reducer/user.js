@@ -182,6 +182,22 @@ function reducer(state = initialState, action) {
         );
     }
 
+    case 'ReadMessage': {
+        return state.updateIn(
+            ['linkmans'],
+            linkmans => {
+                const linkmanIndex = linkmans.findIndex(g => g.get('type') === action.linkmanType && g.get('_id') === action.linkmanId);
+                return linkmans.updateIn(
+                    [linkmanIndex, 'messages'],
+                    messages => messages.update(
+                        messages.findIndex(m => m.get('_id') === action.messageId),
+                        m => m.set('isNew', false)
+                    )
+                );
+            }
+        );
+    }
+
     case 'GetGroupInfo': {
         return state.update(
             'linkmans',

@@ -22,6 +22,7 @@ function addAdditionalFields(message) {
     };
     message.playSound = true;
     message.preview = message.type === 'text' ? `${message.from.username}: ${message.content}` : `${message.from.username}: [${message.type}]`;
+    message.isNew = true;
     return message;
 }
 const beforeMiddleWareHandles = [
@@ -91,7 +92,10 @@ function messageHandle(message) {
 }
 
 function initialMessagesHandle(messages) {
-    return messages.map(m => applyMiddleWares(m, thirdPartyMiddlewares));
+    return messages.map(m => {
+        m.isNew = false;
+        return applyMiddleWares(m, thirdPartyMiddlewares);
+    });
 }
 
 export default { messageHandle, initialMessagesHandle };
