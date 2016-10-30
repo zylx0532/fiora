@@ -1,7 +1,7 @@
 import api from '../api';
 
 function plugin(message) {
-    const pluginMessageInfo = api.getVirtualMessageName(message.content);
+    const pluginMessageInfo = api.getPluginMessageInfo(message);
     if (pluginMessageInfo) {
         message.type = 'plugin';
         message.preview = '[plugin]';

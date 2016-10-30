@@ -3,7 +3,9 @@ import api from '../api.js';
 
 const $ = jQuery;
 
-api.registerMessage('system', (content) => {
+const name = 'system';
+const showBase = false;
+const render = function (content) {
     const $dom = $('<p></p>');
     const $wrapper = $('<div></div>');
 
@@ -25,5 +27,5 @@ api.registerMessage('system', (content) => {
     });
 
     return $wrapper;
-});
-
+};
+api.registerMessage({ name, showBase, render });

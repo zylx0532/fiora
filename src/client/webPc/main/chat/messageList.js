@@ -98,7 +98,9 @@ class Message extends React.Component {
             scrollMessage();
         }
     }
-
+//    shouldComponentUpdate(nextProps, nextState){
+//        return this.props.message.get('isNew')===nextProps.message.get('isNew');
+//    }
     render() {
         const { me, message } = this.props;
         // 由于scrollMessage的更新是render后做的, 所以此时的scrollMessage是上一条消息的, 因此传递一个箭头函数, 以便调用时使用的是最新的scrollMessage

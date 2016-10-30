@@ -99,7 +99,7 @@
         }
     }
 
-    .native-message, .message-self {
+    .native-message.message-self {
         flex-direction: row-reverse;
 
         & > :nth-child(1000n+2) {

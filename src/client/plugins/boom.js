@@ -324,3 +324,12 @@ registerCommand('boom', (argStr, msg) => {
         }
     });
 });
+const name = 'boom';
+const showBase = true;
+const render = function (content, isNew) {
+//    console.log(content)
+    const $dom = $bombTpl.clone();
+    $dom.attr('a', isNew);
+    return $dom;
+};
+api.registerMessage({ name, showBase, render });

@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 import jQuery from 'jquery';
+import base from './base';
 
 import api from '../../../../api';
 
 class PluginMessage extends React.Component {
     static propTypes = {
         name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
+        content: PropTypes.any,
+        isNew: PropTypes.bool.isRequired,
     };
 
     componentDidMount() {
@@ -17,7 +19,7 @@ class PluginMessage extends React.Component {
     }
     renderMessage() {
         jQuery(this.dom).empty()
-             .append(api.getMessage(this.props.name, this.props.content));
+             .append(api.getMessage(this.props.name, this.props.content, this.props.isNew));
     }
     render() {
         return (<div
@@ -27,11 +29,17 @@ class PluginMessage extends React.Component {
     }
  }
 
-const boomMessage = {
+const plugin = {
     shouldRender: messageType => messageType === 'plugin',
-    render: (message) => (
-        <PluginMessage name={message.get('pluginMessageInfo').get('name')} content={message.get('pluginMessageInfo').get('content')} />
-    ),
+    render: (message, me) => {
+        const showBase = message.get('pluginMessageInfo').get('showBase');
+        const pluginMessage = <PluginMessage name={message.get('pluginMessageInfo').get('name')} content={message.get('pluginMessageInfo').get('content')} isNew={message.get('isNew')} />;
+        if (showBase) {
+            return base(pluginMessage, message, me);
+        } else {
+            return pluginMessage;
+        }
+    },
 };
 
-export default boomMessage;
+export default plugin;

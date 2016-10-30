@@ -41,10 +41,10 @@ class Chat extends React.Component {
                     location.pathname === '/main' || location.pathname === '/main/chat' || !currentLinkman ?
                         <EmptyChatPanel />
                         :
-                            <ChatPanel
-                                linkman={currentLinkman}
-                                me={me}
-                            />
+                        <ChatPanel
+                            linkman={currentLinkman}
+                            me={me}
+                        />
                 }
             </div>
         );

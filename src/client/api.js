@@ -10,37 +10,45 @@ const publicApi = {
         cb(null, this.apis);
     },
     getOnlineCount: function (cb) {
-        socket.get('/auth/count', { }, response => {
+        socket.get('/auth/count', {}, response => {
             cb(null, response.data.onlineCount);
         });
     },
     sendMessage: function (linkmanType, linkmanId, messageType, content, cb) {
         if (linkmanType === 'group') {
-            socket.post('/groupMessage', { linkmanId, type: messageType, content }, response => {
+            socket.post('/groupMessage', {
+                linkmanId,
+                type: messageType,
+                content,
+            }, response => {
                 if (response.status !== 201) {
                     return cb(response.data, null);
                 }
                 cb(null, response.data);
             });
-        }
-        else if (linkmanType === 'stranger') {
-            socket.post('/message', { linkmanId, type: messageType, content }, response => {
+        } else if (linkmanType === 'stranger') {
+            socket.post('/message', {
+                linkmanId,
+                type: messageType,
+                content,
+            }, response => {
                 if (response.status !== 201) {
                     return cb(response.data, null);
                 }
                 cb(null, response.data);
             });
-        }
-        else {
+        } else {
             cb('invalid linkman type', null);
         }
     },
 };
 
-export { publicApi };
+export {
+    publicApi,
+};
 
 
-const cbMap = { };
+const cbMap = {};
 let body;
 
 function getCurrentRoomId() {
@@ -62,8 +70,7 @@ function off(name, func) {
     if (index !== -1) {
         cbMap[name].splice(index, 1);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -88,7 +95,9 @@ function init(bodyInit) {
 
 function registerCommand(commandName, cb) {
     on('message', (msg) => {
-        const { content } = msg;
+        const {
+            content,
+        } = msg;
         const reg = new RegExp(`^${commandName}\\s*\\(([\\s\\S]*)\\)\\s*;?`);
         const match = content.trim().match(reg);
         if (match) {
@@ -97,20 +106,57 @@ function registerCommand(commandName, cb) {
     });
 }
 const messageList = {};
-function getMessage(messageTypeName, content) {
-    return messageList[messageTypeName](content);
+
+function getMessage(name, content, isNew) {
+    return messageList[name].render(content, isNew);
 }
-function registerMessage(messageTypeName, cb) {
-    messageList[messageTypeName] = cb;
+
+function registerMessage({
+    name,
+    showBase,
+    process,
+    render,
+}) {
+    messageList[name] = {
+        name,
+        showBase,
+        process,
+        render,
+    };
 }
-function getVirtualMessageName(content) {
+
+function getPluginMessageInfo(message) {
+    let {
+        content,
+    } = message;
+
     const match = content.trim().match(/^([a-zA-Z0-9_\-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
 
-    if (match && match[1] && messageList[match[1]]) {
-        return { name: match[1], content: match[2] };
-    } else {
+    const name = match && match[1];
+    if (!name) {
         return;
     }
+
+    const typeInfo = messageList[name];
+    if (!typeInfo) {
+        return;
+    }
+    const {
+        showBase,
+        process,
+    } = typeInfo;
+
+    if (process) {
+        content = process(message);
+    } else {
+        content = match[2];
+    }
+    const ret = {
+        name,
+        content: match[2],
+        showBase,
+    };
+    return ret;
 }
 export default {
     on,
@@ -119,6 +165,6 @@ export default {
     init,
     registerCommand,
     registerMessage,
-    getVirtualMessageName,
+    getPluginMessageInfo,
     getMessage,
 };
