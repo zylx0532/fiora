@@ -153,7 +153,7 @@ function getPluginMessageInfo(message) {
     }
     const ret = {
         name,
-        content: match[2],
+        content,
         showBase,
     };
     return ret;
