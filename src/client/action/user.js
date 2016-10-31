@@ -281,13 +281,12 @@ const actions = {
         });
     },
 
-    readMessage: function (linkmanType, linkmanId, messageId) {
+    readAllMessage: function (linkmanType, linkmanId) {
         return new Promise(resolve => {
             dispatch({
-                type: 'ReadMessage',
+                type: 'ReadAllMessage',
                 linkmanType,
                 linkmanId,
-                messageId,
             });
             resolve('success');
         });

@@ -6,7 +6,6 @@ import './userList.scss';
 
 import Avatar from '../../../common/avatar';
 import user from '../../../action/user';
-// import api from '../../../api';
 
 class UserList extends React.Component {
     static propTypes = {
@@ -30,6 +29,8 @@ class UserList extends React.Component {
 class User extends React.Component {
     static propTypes = {
         linkman: PropTypes.object,
+        location: PropTypes.object.isRequired,
+        routeParams: PropTypes.object.isRequired,
     };
 
     static contextTypes = {
@@ -43,9 +44,13 @@ class User extends React.Component {
     }
 
     handleUserListItemClick() {
-        const { linkman } = this.props;
+        const { linkman, routeParams } = this.props;
         this.context.router.push(`/main/chat/${linkman.get('type')}/${linkman.get('_id')}`);
         user.clearUnread(linkman.get('type'), linkman.get('_id'));
+        if (routeParams.id && routeParams.type) {
+            console.log('清空消息');
+            user.readAllMessage(routeParams.type, routeParams.id);
+        }
     }
 
     render() {
@@ -60,18 +65,11 @@ class User extends React.Component {
             content = '...';
         }
         else {
-            // content = message.get('preview');
             if (message.get('preview')) {
                 content = message.get('preview');
             }
             else if (message.get('type') === 'text') {
                 const text = message.get('content');
-                // const PluginMessageInfo = api.getVirtualMessageName(text);
-                // if (PluginMessageInfo) {
-                //     content = PluginMessageInfo.content;
-                // } else {
-                //     content = `${message.getIn(['from', 'username'])}: ${text}`;
-                // }
                 content = `${message.getIn(['from', 'username'])}: ${text}`;
             }
             else {
