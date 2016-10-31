@@ -283,9 +283,12 @@ function render(info, isNew) {
                 .css('transform', 'translate(-50%,-50%)');
         }
 
+        const G = 0.0007;
+        const time = 1000;
 
-        $bomb
-            .css('opacity', '0')
+//      x=vt+at2; v=(x-at2)/t 贴心小公式 helpful-little-format
+        const v = (pos1.top - pos2.top - G * time * time) / time;
+        $bomb.css('opacity', '0')
             .css('position', 'relative')
             .animate({
                 opacity: '1',
@@ -301,14 +304,16 @@ function render(info, isNew) {
             .delay(200)
             .animate({
                 left: pos1.left - pos2.left,
-                top: pos1.top - pos2.top,
-                borderSpacing: 1080,
+                borderSpacing: 1000,
             }, {
                 duration: 1000,
-                easing: 'easeOutCubic',
+                easing: 'linear',
                 step: function (now, fx) {
                     if (fx.prop === 'borderSpacing') {
-                        $bomb.css('transform', `rotate(${now}deg)`);
+                        $bomb.css({
+                            transform: `rotate(${now / 1000 * 1080}deg)`,
+                            top: v * now + G * now * now,
+                        });
                     }
                 },
                 done: function () {
@@ -319,7 +324,6 @@ function render(info, isNew) {
                         .css('transform', 'translate(50%,-50%)');
                 },
             })
-            //            .delay(200)
             .animate({
                 opacity: '0',
                 borderSpacing: '1500',

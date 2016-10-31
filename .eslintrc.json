@@ -38,6 +38,7 @@
         "react/no-multi-comp": 0, // 禁止一个文件定义多个组件
         "jsx-a11y/img-has-alt": 0, // <img>必须有alt属性
         "require-yield": 0, // generator函数必须有yield
-        "no-else-return": 0
+        "no-else-return": 0,
+        "no-mixed-operators": 0
     }
 }
