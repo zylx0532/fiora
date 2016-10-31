@@ -181,30 +181,35 @@ const $bombTpl = $('<img style="width:40px;" class="plugin-bomb"  src="data:imag
 // } = api;
 
 function findUserMessage(userName) {
+    let fullMatch = false;
+    const match = userName.match(/^"([\s\S]*)"$/);
+    if (match) {
+        userName = match[1];
+        fullMatch = true;
+    }
     const $names = $('.message-list-item').find('.message-username');
     let $item;
     for (let i = $names.length - 1; i >= 0; i--) {
-        if ($names.eq(i).text().indexOf(userName) !== -1) {
-            $item = $names.eq(i).parents('.message-list-item');
-            break;
+        const thisName = $names.eq(i).text();
+        if (fullMatch) {
+            if (thisName === userName) {
+                $item = $names.eq(i).parents('.message-list-item');
+                break;
+            }
+        } else {
+            if (thisName.indexOf(userName) !== -1) {
+                $item = $names.eq(i).parents('.message-list-item');
+                break;
+            }
         }
     }
     return $item;
 }
 
-// function checkBottom() {
-//    return $('.message-list').prop('scrollHeight') < $('.message-list').innerHeight() + $('.message-list').scrollTop() + 100;
-// }
-//
-// function toBottom() {
-//    $('.message-list').scrollTop($('.message-list').prop('scrollHeight'));
-// }
-// window.checkBottom = checkBottom;
-// registerCommand('boom', (argStr, msg) => {
-//
-// });
+
 const name = 'boom';
 const showBase = true;
+
 function process(message) {
     const match = message.content.trim().match(/^([a-zA-Z0-9_\-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
     return {
@@ -212,6 +217,7 @@ function process(message) {
         content: match[2],
     };
 }
+
 function render(info, isNew) {
     const $bomb = $bombTpl.clone();
 
@@ -221,10 +227,8 @@ function render(info, isNew) {
 
     let argStr = info.get('content');
     const from = info.get('from');
-//    let argStr=content;
-//    console.log("argStr",argStr);
-//    console.log("from",from);
 
+    argStr = argStr.replace(/&quot;/g, '"');
 
     let userName;
     let radius;
@@ -242,21 +246,28 @@ function render(info, isNew) {
     if (radius > 50) {
         radius = 50;
     }
-    const $target = findUserMessage(userName);
 
-    if (!$target) {
-        console.warn(`目标${userName}不存在`);
-    }
-
-    const $targetAvatar = $target.find('.avatar-image,.avatar-text');
-    if (!$targetAvatar.length) {
-        console.warn(`目标${userName}头像不存在`);
-        return;
-//        $target = findUserMessage(from);
-//        $targetAvatar = $target.find('.avatar-image,.avatar-text');
-    }
     setTimeout(() => {
         const $source = findUserMessage(from);
+
+
+        let $target = findUserMessage(userName);
+        let $targetAvatar;
+        if (!$target) {
+            console.warn(`目标${userName}不存在, 即将自爆`);
+            $target = $source;
+            $targetAvatar = $source.find('.avatar-image,.avatar-text');
+        } else {
+            $targetAvatar = $target.find('.avatar-image,.avatar-text');
+        }
+
+
+        if (!$targetAvatar.length) {
+            console.warn(`目标${userName}头像不存在, 即将自爆`);
+            $target = $source;
+            $targetAvatar = $source.find('.avatar-image,.avatar-text');
+        }
+
 
         $source.find('.text').replaceWith($bomb);
         const pos1 = $targetAvatar.offset();
@@ -308,7 +319,7 @@ function render(info, isNew) {
                         .css('transform', 'translate(50%,-50%)');
                 },
             })
-//            .delay(200)
+            //            .delay(200)
             .animate({
                 opacity: '0',
                 borderSpacing: '1500',
@@ -346,11 +357,13 @@ function render(info, isNew) {
 
                 },
             });
-//        if (checkBottom()) {
-//            toBottom();
-//        }
     });
     $bomb.css('opacity', '0');
     return $bomb;
 }
-api.registerMessage({ name, showBase, process, render });
+api.registerMessage({
+    name,
+    showBase,
+    process,
+    render,
+});
