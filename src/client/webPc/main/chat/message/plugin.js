@@ -14,9 +14,19 @@ class PluginMessage extends React.Component {
     componentDidMount() {
         this.renderMessage();
     }
+
+    shouldComponentUpdate(nextProps) {
+        const currentProps = this.props;
+        return !(
+            currentProps.content === nextProps.content &&
+            currentProps.name === nextProps.name
+        );
+    }
+
     componentDidUpdate() {
         this.renderMessage();
     }
+
     renderMessage() {
         jQuery(this.dom).empty()
              .append(api.getMessage(this.props.name, this.props.content, this.props.isNew));
