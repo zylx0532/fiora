@@ -319,7 +319,7 @@ const actions = {
                     dispatch({
                         type: 'GetGroupHistoryMessage',
                         groupId,
-                        messages: response.data,
+                        messages: messageTool.initialMessagesHandle(response.data),
                     });
                     resolve(response);
                 }

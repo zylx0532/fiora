@@ -48,7 +48,6 @@ class User extends React.Component {
         this.context.router.push(`/main/chat/${linkman.get('type')}/${linkman.get('_id')}`);
         user.clearUnread(linkman.get('type'), linkman.get('_id'));
         if (routeParams.id && routeParams.type) {
-            console.log('清空消息');
             user.readAllMessage(routeParams.type, routeParams.id);
         }
     }
