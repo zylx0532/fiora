@@ -97,7 +97,6 @@ $borderRadius: 10px;
     }
 
     .normal-status {
-        flex: 1;
         background-color: $grey0;
         border-bottom-left-radius: $borderRadius;
         border-bottom-right-radius: $borderRadius;
@@ -162,7 +161,6 @@ $borderRadius: 10px;
     }
 
     .edit-status {
-        flex: 1;
         background-color: $grey0;
         border-bottom-left-radius: $borderRadius;
         border-bottom-right-radius: $borderRadius;

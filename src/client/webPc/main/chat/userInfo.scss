@@ -35,6 +35,8 @@ $borderRadius: 10px;
             @include size(300px, 300px);
             @include containerStart;
             filter: blur(30px);
+            background-repeat: no-repeat;
+            background-size: 300px 300px;
             border-top-left-radius: $borderRadius;
             border-top-right-radius: $borderRadius;
         }
@@ -97,7 +99,6 @@ $borderRadius: 10px;
     }
 
     .normal-status {
-        flex: 1;
         background-color: $grey0;
         border-bottom-left-radius: $borderRadius;
         border-bottom-right-radius: $borderRadius;

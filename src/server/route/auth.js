@@ -70,7 +70,7 @@ const AuthRoute = {
         }
 
         // token expires time = 3 day
-        const token = jwt.encode({ userId: user._id, ip: this.socket.handshake.address, expires: Date.now() + (1000 * 60 * 60 * 24 * 3) }, config.jwtSecret);
+        const token = jwt.encode({ userId: user._id, ip: this.socket.handshake.address, expires: Date.now() + (1000 * 60 * 60 * 24 * 7) }, config.jwtSecret);
 
         let auth = yield Auth.findOne({ user: user._id });
         if (!auth) {
