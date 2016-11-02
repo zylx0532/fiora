@@ -353,7 +353,7 @@ function render(info, isNew) {
                         round: false,
                         minAngle: 0,
                         maxAngle: 360,
-                        gravity: 3,
+                        gravity: 2.5,
                         groundDistance: 30,
                     });
                 },
