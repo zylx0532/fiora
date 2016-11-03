@@ -1,8 +1,8 @@
+Language: [简体中文](readme-zh.md) | [English](readme.md)
+
 # Fiora
 
 Fiora is a web chat application. Made by node.js, koa, react.
-
-[中文版](readme-zh.md)
 
 ## Function
 
@@ -46,7 +46,7 @@ If you want to add functionality or fix bug, please observe the following proces
 
 ### v1.1
 
-* Mobile web support
+* ~~Mobile web support
 * ~~Self message instead to add it when before send~~
 * ~~Use chinese to format time~~
 

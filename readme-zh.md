@@ -1,8 +1,8 @@
+语言: [English](readme.md) | [简体中文](readme-zh.md)
+
 # Fiora
 
 Fiora是一款web聊天应用. 使用node.js, koa和react编写.
-
-[English](readme.md)
 
 ## 功能
 
@@ -41,7 +41,7 @@ Fiora是一款web聊天应用. 使用node.js, koa和react编写.
 
 ### v1.1
 
-* web移动端支持
+* ~~web移动端支持
 * ~~自己的消息改为发送前添加~~
 * ~~使用中文时间格式化~~
 
