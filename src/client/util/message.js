@@ -33,7 +33,8 @@ const beforeMiddleWareHandles = [
  * native handle after middleware
  */
 function playSound(message) {
-    if (message.playSound && !message.isSelf) {
+    const state = store.getState();
+    if (message.playSound && !message.isSelf && state.getIn(['pc', 'soundNotification'])) {
         ui.playSound(true);
     }
 
