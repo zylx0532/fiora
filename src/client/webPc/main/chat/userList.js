@@ -29,8 +29,6 @@ class UserList extends React.Component {
 class User extends React.Component {
     static propTypes = {
         linkman: PropTypes.object,
-        location: PropTypes.object.isRequired,
-        routeParams: PropTypes.object.isRequired,
     };
 
     static contextTypes = {
@@ -44,12 +42,10 @@ class User extends React.Component {
     }
 
     handleUserListItemClick() {
-        const { linkman, routeParams } = this.props;
+        const { linkman } = this.props;
         this.context.router.push(`/main/chat/${linkman.get('type')}/${linkman.get('_id')}`);
         user.clearUnread(linkman.get('type'), linkman.get('_id'));
-        if (routeParams.id && routeParams.type) {
-            user.readAllMessage(routeParams.type, routeParams.id);
-        }
+        user.readAllMessage(linkman.get('type'), linkman.get('_id'));
     }
 
     render() {

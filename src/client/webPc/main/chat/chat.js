@@ -33,8 +33,6 @@ class Chat extends React.Component {
                             <UserList.item
                                 key={linkman.get('type') + linkman.get('_id')}
                                 linkman={linkman}
-                                location={location}
-                                routeParams={routeParams}
                             />
                         ))
                     }
@@ -43,10 +41,10 @@ class Chat extends React.Component {
                     location.pathname === '/main' || location.pathname === '/main/chat' || !currentLinkman ?
                         <EmptyChatPanel />
                         :
-                        <ChatPanel
-                            linkman={currentLinkman}
-                            me={me}
-                        />
+                            <ChatPanel
+                                linkman={currentLinkman}
+                                me={me}
+                            />
                 }
             </div>
         );
