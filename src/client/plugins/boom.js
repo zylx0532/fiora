@@ -336,9 +336,6 @@ function render(info, isNew) {
                     }
                 },
                 start: function () {
-                    if ($targetAvatar.prop('tagName') !== 'IMG') {
-                        return;
-                    }
 
                     $targetAvatar.explode({
                         minWidth: 4,
