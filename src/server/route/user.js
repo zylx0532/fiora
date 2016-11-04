@@ -10,7 +10,7 @@ const imageUril = require('../util/image');
 // bcrypt salt length
 const saltRounds = 10;
 const avatarColors = ['aquamarine', 'blueviolet', 'chocolate', 'darkcyan', 'darkgrey', 'darkmagenta', 'darkorange', 'darkseagreen', 'darkslategrey',
-                    'deeppink', 'deepskyblue', 'dimgrey', 'forestgreen', 'indigo'];
+    'deeppink', 'deepskyblue', 'dimgrey', 'forestgreen', 'indigo'];
 
 const UserRoute = {
     'POST /user': function* (data) {

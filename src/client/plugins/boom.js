@@ -211,7 +211,7 @@ const name = 'boom';
 const showBase = true;
 
 function process(message) {
-    const match = message.content.trim().match(/^([a-zA-Z0-9_\-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
+    const match = message.content.trim().match(/^([a-zA-Z0-9_-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
     return {
         from: message.from.username,
         content: match[2],

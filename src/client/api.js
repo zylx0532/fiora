@@ -130,7 +130,7 @@ function getPluginMessageInfo(message) {
         content,
     } = message;
 
-    const match = content.trim().match(/^([a-zA-Z0-9_\-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
+    const match = content.trim().match(/^([a-zA-Z0-9_-]+)\s*\(([\s\S]*)\)\s*;?\s*$/);
 
     const name = match && match[1];
     if (!name) {

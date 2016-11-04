@@ -66,7 +66,7 @@ class InputBox extends React.Component {
             if (message.trim() === '') {
                 return;
             }
-            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(message)) {
+            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(message)) {
                 const img = new Image();
                 img.onload = () => {
                     send(type, linkmanId, 'image', message);

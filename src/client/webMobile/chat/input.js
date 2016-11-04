@@ -53,7 +53,7 @@ class Input extends React.Component {
             return;
         }
         if (type === 'group') {
-            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(message)) {
+            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(message)) {
                 const img = new Image();
                 img.onload = () => {
                     user.sendGroupMessage(linkmanId, 'image', message);
@@ -67,7 +67,7 @@ class Input extends React.Component {
             user.sendGroupMessage(linkmanId, 'text', message);
         }
         else {
-            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(message)) {
+            if (/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(message)) {
                 const img = new Image();
                 img.onload = () => {
                     user.sendMessage(linkmanId, 'image', message);
