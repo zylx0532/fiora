@@ -7,6 +7,9 @@
     "start": "export NODE_ENV=development && (./node_modules/.bin/webpack-dev-server --config webpack.pc.js --define process.env.NODE_ENV='\"development\"' --port 8080 --progress --colors --watch --display-error-details --history-api-fallback --content-base public/ &) && (./node_modules/.bin/webpack-dev-server --config webpack.mobile.js --define process.env.NODE_ENV='\"development\"' --port 8081 --progress --colors --watch --display-error-details --history-api-fallback --content-base public/ &) && node bin/develop.js",
     "buildPc": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --config webpack.pc.js --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "buildMobile": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --config webpack.mobile.js --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "rnServer": "node src/client/rnMobile/node_modules/react-native/local-cli/cli.js start",
+    "android": "cd src/client/rnMobile && react-native run-android && cd ../../../",
+    "ios": "cd src/client/rnMobile && react-native run-ios && cd ../../../",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "./node_modules/.bin/eslint ./ --cache --ignore-pattern .eslintignore --fix"
   },

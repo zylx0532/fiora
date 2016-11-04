@@ -1,4 +1,4 @@
-package com.rnmobile;
+package com.suisuijiang.fiora;
 
 import android.app.Application;
 import android.util.Log;

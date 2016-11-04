@@ -52,4 +52,4 @@ styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('rnMobile', () => rnMobile);
+AppRegistry.registerComponent('fiora', () => rnMobile);
