@@ -176,35 +176,6 @@ $.extend($.easing, {
 });
 
 const $bombTpl = $('<img style="width:40px;" class="plugin-bomb"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAABNVBMVEUAAAAiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiK1FxXUJBoiIiKnGxgiIiIiIiLXJRoiIiKrHBmuFBIiIiKQLCaQLCbYJRuxFRMiIiK2FxSQLCYiIiK7GRUiIiIiIiKGHhuCLSjCHBciIiKyFROuExLcJxyjHBnEHRfTJBoiIiKQLCaQLCbSIxoiIiIiIiKQLCZ6KiXfKR2QLCbJHxjeKB25GRXMIRk4PEM5PUhFSE06QE0iIiI9QERLTlGQLCZBREgmJigzNjzPOjotLjHoWFitExLlU1PyamnWRkYwMzntZGOdMy3sYWDqXl3VUU+6Qz9wNTOWLyncJxzNIRneT0/DSkfBREF1MzF7Mi/EMC/DHRe8GhVSPT+xPjtcOjunNjLVJBrgYmBkKie+KCdUKCWiHRmE5EKhAAAAOHRSTlMAupnUwrGihGFL/YRuMS8oIhgV7su4k5N+em5GQ0AhDwn9797Yy8TDwKSMcWRgVTwm7t3PzbGwcweVBRAAAAJkSURBVEjH7dXXctpQEIDhIzrExhiXuAZ3O+7pMlmxagGESQCDIRSX1Pd/hKw0Y+WgIxC5zNi/uNQ3uxLSiD31WDpfPTo+ZxM1e3oYjcxLsXgyxxbfoN3CaqCaiUvwt1eI1dtO/QpxMYBFgTJ1xU43f2H1e7lsGVYbcX9paX2kC9lKybt1sVYul68Nw+gV7Xan/a8tSkzNczWwTfDSMH6S+r0/V5zzky/CoNG0AvUA77B6SZWMXqrXxoXsbnFnw9epDnOo6tTF+mfKXtaq4nR2rrjidbl513HyBrH2hSqRrOMRW0nteGGM9lQLXKpTA69qn+wsq0N/yUYq5bnKBICi5IdSnL7a0ukWjxl7P1gahvOg27DAHYorrZLdPdLjszI4GHJTtKgw0ZVYJ3eNSHd0fbA1BCM00H8i1UCsdqx7XKATs/1+hnNnNFCc6HbTRWozy6itPv/gxcFUKJV3qsJ119j8AWeMets68W5KeQbK7kGZsMyog9YHDgLITpxUZU86SIx62XrGvUygyR6pKrI32GbUcx6uEXyQqssEqDnwGweTDnQtr3gIzqoCFPKHe80TYVUxcdVMs5nhXsVJoA5hOvVdc49xAQTDCkTte/M6w0MJ9EBowhQTWgbzIigN0iJMAwQ5HSLMJwkqAdCEuB9MgDbeyQCzzH+kGXCFIebbGoA8xlUgzEYUomU/jkoHSLJRRUdLGbhFhXIRV4rzYmM/xBKA7uNMwQnFADTZO04DetaCSoSJOlPzzu+iQkxKswk6JAqaWdF1vWKSgog7LnBqFNy2Y0n2L6UT8VAotHw6w576P/oD9Mc3kWf8L78AAAAASUVORK5CYII=">');
-// const {
-//    registerCommand,
-// } = api;
-
-function findUserMessage(userName) {
-    let fullMatch = false;
-    const match = userName.match(/^"([\s\S]*)"$/);
-    if (match) {
-        userName = match[1];
-        fullMatch = true;
-    }
-    const $names = $('.message-list-item').find('.message-username');
-    let $item;
-    for (let i = $names.length - 1; i >= 0; i--) {
-        const thisName = $names.eq(i).text();
-        if (fullMatch) {
-            if (thisName === userName) {
-                $item = $names.eq(i).parents('.message-list-item');
-                break;
-            }
-        } else {
-            if (thisName.indexOf(userName) !== -1) {
-                $item = $names.eq(i).parents('.message-list-item');
-                break;
-            }
-        }
-    }
-    return $item;
-}
 
 
 const name = 'boom';
@@ -248,10 +219,10 @@ function render(info, isNew) {
     }
 
     setTimeout(() => {
-        const $source = findUserMessage(from);
+        const $source = api.findUserMessage(from);
 
 
-        let $target = findUserMessage(userName);
+        let $target = api.findUserMessage(userName);
         let $targetAvatar;
         if (!$target) {
             console.warn(`目标${userName}不存在, 即将自爆`);
@@ -336,7 +307,6 @@ function render(info, isNew) {
                     }
                 },
                 start: function () {
-
                     $targetAvatar.explode({
                         minWidth: 4,
                         maxWidth: 8,

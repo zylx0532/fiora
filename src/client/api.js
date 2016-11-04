@@ -1,4 +1,7 @@
+import jQuery from 'jquery';
 import socket from './socket';
+
+const $ = jQuery;
 
 const publicApi = {
     apis: {
@@ -158,6 +161,32 @@ function getPluginMessageInfo(message) {
     };
     return ret;
 }
+
+function findUserMessage(userName) {
+    let fullMatch = false;
+    const match = userName.match(/^"([\s\S]*)"$/);
+    if (match) {
+        userName = match[1];
+        fullMatch = true;
+    }
+    const $names = $('.message-list-item').find('.message-username');
+    let $item;
+    for (let i = $names.length - 1; i >= 0; i--) {
+        const thisName = $names.eq(i).text();
+        if (fullMatch) {
+            if (thisName === userName) {
+                $item = $names.eq(i).parents('.message-list-item');
+                break;
+            }
+        } else {
+            if (thisName.indexOf(userName) !== -1) {
+                $item = $names.eq(i).parents('.message-list-item');
+                break;
+            }
+        }
+    }
+    return $item;
+}
 export default {
     on,
     off,
@@ -167,4 +196,5 @@ export default {
     registerMessage,
     getPluginMessageInfo,
     getMessage,
+    findUserMessage,
 };
