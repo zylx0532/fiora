@@ -46,7 +46,7 @@ If you want to add functionality or fix bug, please observe the following proces
 
 ### v1.1
 
-* ~~Mobile web support
+* ~~Mobile web support~~
 * ~~Self message instead to add it when before send~~
 * ~~Use chinese to format time~~
 
