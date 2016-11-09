@@ -1,40 +1,40 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     Image,
     TextInput,
 } from 'react-native';
 import color from '../../util/color.js';
+import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
 export default class Login extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.container()}>
                 <Image
-                    style={styles.avatar}
+                    style={styles.avatar()}
                     source={{ uri: 'https://ogbhsgzz2.qnssl.com/user_avatar_default.png' }}
                 />
-                <View style={styles.textInputContainer}>
+                <View style={styles.textInputContainer()}>
                     <TextInput
-                        style={styles.textInput}
+                        style={styles.textInput()}
                     />
                 </View>
-                <View style={[styles.textInputContainer, { borderTopWidth: 0 }]}>
+                <View style={[styles.textInputContainer(true)]}>
                     <TextInput
-                        style={styles.textInput}
+                        style={styles.textInput()}
                         secureTextEntry
                     />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <Text style={styles.button}>登录</Text>
+                <View style={styles.buttonContainer()}>
+                    <Text style={styles.button()}>登录</Text>
                 </View>
-                <View style={styles.textContainer}>
+                <View style={styles.textContainer()}>
                     <Text
-                        style={styles.text}
+                        style={styles.text()}
                     >新司机注册</Text>
                 </View>
             </View>
@@ -42,62 +42,48 @@ export default class Login extends Component {
     }
 }
 
-styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: color.gery[1],
-    },
-    avatar: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        marginTop: 50,
-        marginBottom: 5,
-    },
-    textInputContainer: {
-        height: 50,
-        alignSelf: 'stretch',
-        alignItems: 'stretch',
-        backgroundColor: 'white',
-        borderTopWidth: 1,
-        borderTopColor: color.gery[1],
-        borderBottomWidth: 1,
-        borderBottomColor: color.gery[1],
-    },
-    textInput: {
-        height: 50,
-        textAlign: 'center',
-        fontSize: 18,
-        color: color.gery[8],
-    },
-    buttonContainer: {
-        backgroundColor: color.lightBlue[4],
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 40,
-        marginLeft: 10,
-        marginRight: 10,
-        marginTop: 10,
-        borderRadius: 3,
-    },
-    button: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    textContainer: {
-        position: 'absolute',
-        right: 0,
-        bottom: 0,
-        width: 100,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        color: color.lightBlue[4],
-        fontSize: 14,
-    },
-});
+styles = {
+    container: () => ([
+        cs.layout('center'),
+        cs.flex(),
+        cs.bgColor(color.gery[1]),
+    ]),
+    avatar: () => ([
+        cs.size(80, 80),
+        cs.margin(50, undefined, 5, undefined),
+        cs.radius(40),
+    ]),
+    textInputContainer: (noTopBorder) => ([
+        cs.layout('stretch'),
+        cs.border(`${noTopBorder ? '' : 'Top'} Bottom`, 1, color.gery[1]),
+        cs.bgColor('white'),
+        cs.size(undefined, 50),
+        cs.alignSelf(),
+    ]),
+    textInput: () => ([
+        cs.size(undefined, 50),
+        cs.textAlign(),
+        cs.font(18),
+        cs.color(color.gery[8]),
+    ]),
+    buttonContainer: () => ([
+        cs.bgColor(color.lightBlue[4]),
+        cs.center(),
+        cs.alignSelf(),
+        cs.size(undefined, 40),
+        cs.margin(10, 10, undefined, 10),
+        cs.radius(3),
+    ]),
+    button: () => ([
+        cs.color('white'),
+        cs.font(18, undefined, 'bold'),
+    ]),
+    textContainer: () => ([
+        cs.center(),
+        cs.size(100, 50),
+        cs.position('absolute', undefined, 0, 0),
+    ]),
+    text: () => ([
+        cs.color(color.lightBlue[4]),
+    ]),
+};
