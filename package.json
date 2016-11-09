@@ -11,7 +11,8 @@
     "android": "cd src/client/rnMobile && react-native run-android && cd ../../../",
     "ios": "cd src/client/rnMobile && react-native run-ios && cd ../../../",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "./node_modules/.bin/eslint ./ --cache --ignore-pattern .eslintignore --fix"
+    "eslint": "./node_modules/.bin/eslint ./ --cache --ignore-pattern .eslintignore --fix",
+    "install": "cd src/client/rnMobile && npm install"
   },
   "pre-commit": [
     "eslint"
