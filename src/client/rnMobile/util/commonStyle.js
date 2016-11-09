@@ -115,4 +115,8 @@ export default {
         }
         return tempStyle;
     },
+
+    direction: (direction = 'row') => ({
+        flexDirection: direction,
+    }),
 };
