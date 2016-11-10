@@ -9,12 +9,12 @@ import {
     AppRegistry,
 } from 'react-native';
 
-import Login from './module/login/login.js';
+import Index from './module/index.js';
 
 export default class rnMobile extends Component {
     render() {
         return (
-            <Login />
+            <Index />
         );
     }
 }
