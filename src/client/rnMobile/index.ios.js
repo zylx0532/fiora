@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {
     AppRegistry,
 } from 'react-native';
@@ -13,9 +13,7 @@ import Index from './module/index.js';
 
 export default class rnMobile extends Component {
     render() {
-        return (
-            <Index />
-        );
+        return Index;
     }
 }
 
