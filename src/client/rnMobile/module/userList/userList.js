@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
     View,
 } from 'react-native';
-import color from '../../util/color.js';
+import cs from '../../util/commonStyle.js';
+
+import Header from './header.js';
+import LinkmanList from './linkmanList.js';
 
 let styles = null;
 
 export default class UserList extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Text>User List</Text>
+            <View style={styles.container()}>
+                <Header />
+                <LinkmanList />
             </View>
         );
     }
 }
 
-styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: color.gery[1],
-    },
-});
+styles = {
+    container: () => ([
+        cs.layout('stretch'),
+        cs.flex(),
+    ]),
+};
