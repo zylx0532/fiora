@@ -21,30 +21,38 @@ class Index extends Component {
     }
 
     render() {
-        console.log(this.props.state);
+        // for debug
+        console.log(this.props.state.toJS());
+
         return (
-            <Provider store={Store}>
-                <Navigator
-                    initialRoute={{ page: 'chat' }}
-                    renderScene={
-                        (route, navigator) => {
-                            const RenderComponent = routes[route.page];
-                            return (
-                                <RenderComponent
-                                    {...route}
-                                    navigator={navigator}
-                                />
-                            );
-                        }
+            <Navigator
+                initialRoute={{ page: 'chat' }}
+                renderScene={
+                    (route, navigator) => {
+                        const RenderComponent = routes[route.page];
+                        return (
+                            <RenderComponent
+                                {...route}
+                                navigator={navigator}
+                            />
+                        );
                     }
-                />
-            </Provider>
+                }
+            />
         );
     }
 }
 
-export default connect(
+const ConnectedIndex = connect(
     state => ({
         state,
     })
 )(Index);
+
+const provider = (
+    <Provider store={Store}>
+        <ConnectedIndex />
+    </Provider>
+);
+
+export default provider;
