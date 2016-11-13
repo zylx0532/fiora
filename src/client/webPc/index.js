@@ -11,12 +11,6 @@ import Main from '../webPc/main/main';
 import Chat from '../webPc/main/chat/chat';
 import GroupManage from '../webPc/main/linkmanManage/groupManage';
 
-function requireAll(requireContext) {
-    return requireContext.keys().map(requireContext);
-}
-// requires and returns all modules that match
-requireAll(require.context('../plugins/', true, /^\.\/.*\.js$/));
-
 ReactDom.render(
     <Provider store={Store}>
         <Router history={browserHistory}>

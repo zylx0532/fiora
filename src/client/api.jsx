@@ -1,7 +1,15 @@
 import jQuery from 'jquery';
 import socket from './socket';
+import plugin from 'chat-room-plugin'
+
+import React, {
+    PropTypes
+} from 'react'
 
 const $ = jQuery;
+
+window.jQuery = jQuery;
+window.$ = jQuery;
 
 const publicApi = {
     apis: {
@@ -51,82 +59,9 @@ export {
 };
 
 
-const cbMap = {};
-let body;
 
-function getCurrentRoomId() {
-    return body.props.params.id;
-}
 
-function on(name, func) {
-    if (!cbMap[name]) {
-        cbMap[name] = [];
-    }
-    cbMap[name].push(func);
-}
 
-function off(name, func) {
-    if (!cbMap[name]) {
-        return false;
-    }
-    const index = cbMap[name].indexOf(func);
-    if (index !== -1) {
-        cbMap[name].splice(index, 1);
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function emit(name, data) {
-    if (name === 'rawMessage') {
-        if (getCurrentRoomId() === data.to._id) {
-            emit('message', data);
-        }
-    }
-    if (!cbMap[name]) {
-        return;
-    }
-    cbMap[name].forEach((v) => {
-        v(data);
-    });
-}
-
-function init(bodyInit) {
-    body = bodyInit;
-}
-
-function registerCommand(commandName, cb) {
-    on('message', (msg) => {
-        const {
-            content,
-        } = msg;
-        const reg = new RegExp(`^${commandName}\\s*\\(([\\s\\S]*)\\)\\s*;?`);
-        const match = content.trim().match(reg);
-        if (match) {
-            cb(match[1] && match[1].trim(), msg);
-        }
-    });
-}
-const messageList = {};
-
-function getMessage(name, content, isNew) {
-    return messageList[name].render(content, isNew);
-}
-
-function registerMessage({
-    name,
-    showBase,
-    process,
-    render,
-}) {
-    messageList[name] = {
-        name,
-        showBase,
-        process,
-        render,
-    };
-}
 
 function getPluginMessageInfo(message) {
     let {
@@ -140,7 +75,7 @@ function getPluginMessageInfo(message) {
         return;
     }
 
-    const typeInfo = messageList[name];
+    const typeInfo = plugin.messageList[name];
     if (!typeInfo) {
         return;
     }
@@ -161,6 +96,7 @@ function getPluginMessageInfo(message) {
     };
     return ret;
 }
+
 
 function findUserMessage(userName) {
     let fullMatch = false;
@@ -185,16 +121,57 @@ function findUserMessage(userName) {
             }
         }
     }
+    $item.avatar = $item.find(".avatar-image,.avatar-text");
     return $item;
 }
-export default {
-    on,
-    off,
-    emit,
-    init,
-    registerCommand,
-    registerMessage,
-    getPluginMessageInfo,
-    getMessage,
+
+
+
+class PluginMessage extends React.Component {
+    componentDidMount() {
+        this.renderMessage();
+    }
+    shouldComponentUpdate(nextProps) {
+        const currentProps = this.props;
+        return !(
+            currentProps.content === nextProps.content &&
+            currentProps.name === nextProps.name
+        );
+    }
+
+    componentDidUpdate() {
+        this.renderMessage();
+    }
+
+    renderMessage() {
+        jQuery(this.dom).empty()
+            .append(plugin.getMessage(this.props.name, this.props.content, this.props.isNew));
+    }
+    render() {
+        return (<div
+            className="plugin-dom-container"
+            ref={dom => this.dom = dom}
+        />);
+    }
+}
+
+PluginMessage.propTypes = {
+    name: PropTypes.string.isRequired,
+    content: PropTypes.any,
+    isNew: PropTypes.bool.isRequired,
+};
+
+
+plugin.init({
     findUserMessage,
+    jQuery
+})
+
+export default {
+    registerMessage: plugin.registerMessage,
+    getPluginMessageInfo,
+    getMessage: plugin.getMessage,
+    findUserMessage,
+    timestamp: 0,
+    PluginMessage
 };

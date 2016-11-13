@@ -1,4 +1,4 @@
-import api from '../api';
+import api from '../api.jsx';
 
 function plugin(message) {
     const pluginMessageInfo = api.getPluginMessageInfo(message);
