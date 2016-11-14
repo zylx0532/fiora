@@ -99,6 +99,9 @@ function getPluginMessageInfo(message) {
 
 
 function findUserMessage(userName) {
+    if(!userName){
+        return;
+    }
     let fullMatch = false;
     const match = userName.match(/^"([\s\S]*)"$/);
     if (match) {
@@ -121,7 +124,12 @@ function findUserMessage(userName) {
             }
         }
     }
-    $item.avatar = $item.find(".avatar-image,.avatar-text");
+    
+    if($item){
+        $item.avatar = $item.find(".avatar-image,.avatar-text");
+        $item.direction=$item.find(".message-self").length?'right':'left';
+    }
+
     return $item;
 }
 
@@ -164,6 +172,7 @@ PluginMessage.propTypes = {
 
 plugin.init({
     findUserMessage,
+    getPluginMessageInfo,
     jQuery
 })
 

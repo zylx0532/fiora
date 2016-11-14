@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react';
-import jQuery from 'jquery';
+import React from 'react';
 import base from './base';
 
 import api from '../../../../api.jsx';

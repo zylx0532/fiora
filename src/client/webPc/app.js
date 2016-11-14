@@ -6,7 +6,7 @@ import './app.scss';
 import user from '../action/user';
 import ui from '../action/pc';
 import socket from '../socket';
-import api, { publicApi } from '../api.jsx';
+import { publicApi } from '../api.jsx';
 import messageTool from '../util/message';
 
 import Notification from '../common/notification';
@@ -27,9 +27,6 @@ class App extends React.Component {
         router: React.PropTypes.object.isRequired,
     }
 
-    constructor(props, context) {
-        super(props, context);
-    }
 
     componentWillMount() {
         // force to root path
