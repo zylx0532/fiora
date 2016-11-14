@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     Text,
     View,
     Image,
     TextInput,
+    TouchableOpacity,
 } from 'react-native';
+import pureRenderMixin from 'react-addons-pure-render-mixin';
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
 export default class Login extends Component {
-    render() {
+    static propTypes = {
+        status: PropTypes.string,
+        navigator: PropTypes.object.isRequired,
+    }
+
+    constructor(props) {
+        super(props);
+        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
+        this.renderLogin = this.renderLogin.bind(this);
+        this.renderSignup = this.renderSignup.bind(this);
+    }
+
+    renderLogin() {
+        const { navigator } = this.props;
         return (
             <View style={styles.container()}>
                 <Image
@@ -21,24 +36,75 @@ export default class Login extends Component {
                 <View style={styles.textInputContainer()}>
                     <TextInput
                         style={styles.textInput()}
+                        autoCorrect={false}
+                        autoFocus
+                        maxLength={16}
+                        placeholder="请输入用户名"
                     />
                 </View>
                 <View style={[styles.textInputContainer(true)]}>
                     <TextInput
                         style={styles.textInput()}
                         secureTextEntry
+                        placeholder="请输入密码"
                     />
                 </View>
                 <View style={styles.buttonContainer()}>
                     <Text style={styles.button()}>登录</Text>
                 </View>
-                <View style={styles.textContainer()}>
+                <TouchableOpacity
+                    style={styles.textContainer()}
+                    onPress={() => navigator.push({ page: 'login', status: 'signup' })}
+                >
                     <Text
                         style={styles.text()}
                     >新司机注册</Text>
-                </View>
+                </TouchableOpacity>
             </View>
         );
+    }
+
+    renderSignup() {
+        const { navigator } = this.props;
+        return (
+            <View style={styles.container()}>
+                <Image
+                    style={styles.avatar()}
+                    source={{ uri: 'https://ogbhsgzz2.qnssl.com/user_avatar_default.png' }}
+                />
+                <View style={styles.textInputContainer()}>
+                    <TextInput
+                        style={styles.textInput()}
+                        autoCorrect={false}
+                        autoFocus
+                        maxLength={16}
+                        placeholder="请输入用户名(即昵称)"
+                    />
+                </View>
+                <View style={[styles.textInputContainer(true)]}>
+                    <TextInput
+                        style={styles.textInput()}
+                        secureTextEntry
+                        placeholder="请输入密码"
+                    />
+                </View>
+                <View style={styles.buttonContainer()}>
+                    <Text style={styles.button()}>注册</Text>
+                </View>
+                <TouchableOpacity
+                    style={styles.textContainer()}
+                    onPress={() => navigator.push({ page: 'login', status: 'login' })}
+                >
+                    <Text
+                        style={styles.text()}
+                    >老司机登录</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    }
+
+    render() {
+        return !this.props.status || this.props.status === 'login' ? this.renderLogin() : this.renderSignup();
     }
 }
 
@@ -47,6 +113,7 @@ styles = {
         cs.layout('center'),
         cs.flex(),
         cs.bgColor(color.gery[1]),
+        cs.position('relative'),
     ]),
     avatar: () => ([
         cs.size(80, 80),
@@ -81,7 +148,7 @@ styles = {
     textContainer: () => ([
         cs.center(),
         cs.size(100, 50),
-        cs.position('absolute', undefined, 0, 0),
+        cs.position('absolute', undefined, 0, 0, undefined),
     ]),
     text: () => ([
         cs.color(color.lightBlue[4]),

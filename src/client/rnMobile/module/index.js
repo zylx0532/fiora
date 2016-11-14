@@ -26,7 +26,7 @@ class Index extends Component {
 
         return (
             <Navigator
-                initialRoute={{ page: 'chat' }}
+                initialRoute={{ page: 'login', status: 'login' }}
                 renderScene={
                     (route, navigator) => {
                         const RenderComponent = routes[route.page];
