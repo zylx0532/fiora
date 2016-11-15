@@ -16,7 +16,7 @@ else {
 
 function createInterface(method) {
     return function (path, data, cb) {
-        if (this.token !== '') {
+        if (typeof this.token === 'string' && this.token !== '') {
             data.token = this.token;
         }
         this.emit('message', { method: method, path: path, data: data }, cb);
