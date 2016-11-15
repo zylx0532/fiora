@@ -1,24 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     Text,
     View,
     Image,
 } from 'react-native';
+import { connect } from 'react-redux';
+import pureRenderMixin from 'react-addons-pure-render-mixin';
+
 import color from '../../util/color.js';
+import url from '../../util/url.js';
 import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
-export default class UserList extends Component {
+class Header extends Component {
+    static propTypes = {
+        username: PropTypes.string.isRequired,
+        avatar: PropTypes.string.isRequired,
+        online: PropTypes.bool.isRequired,
+    }
+
+    constructor(props) {
+        super(props);
+        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
     render() {
+        const { username, avatar, online } = this.props;
+        console.log(username, avatar);
         return (
             <View style={styles.container()}>
                 <Image
                     style={styles.avatar()}
-                    source={{ uri: 'https://ogbhsgzz2.qnssl.com/user_avatar_default.png' }}
+                    source={{ uri: `${url(avatar)}?imageView2/2/w/34/h/34` }}
                 />
-                <View style={styles.online(true)} />
-                <Text style={styles.nick()}>碎碎酱</Text>
+                <View style={styles.online(online)} />
+                <Text style={styles.nick()}>{username}</Text>
             </View>
         );
     }
@@ -48,3 +65,11 @@ styles = {
         cs.color(color.gery[1]),
     ]),
 };
+
+export default connect(
+    state => ({
+        username: state.getIn(['user', 'username']),
+        avatar: state.getIn(['user', 'avatar']),
+        online: state.getIn(['user', 'online']),
+    })
+)(Header);

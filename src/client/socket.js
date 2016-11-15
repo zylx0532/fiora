@@ -1,5 +1,18 @@
-import socketClient from 'socket.io-client';
 import config from '../../config/config';
+
+let socketClient = null;
+let platformSocketParam = { };
+if (window.navigator.product === 'ReactNative') {
+    socketClient = require('../../node_modules/socket.io-client/socket.io');
+
+    window.navigator.userAgent = 'react-native';
+    window.location = {};
+    window.location.protocol = 'http:';
+    platformSocketParam = { jsonp: false };
+}
+else {
+    socketClient = require('socket.io-client');
+}
 
 function createInterface(method) {
     return function (path, data, cb) {
@@ -27,4 +40,4 @@ function socketWrap(socket) {
 const serverUrl = process.env.NODE_ENV === 'production' ?
     `http://${config.server}:${config.port}/` :
     `http://${config.localServer}:${config.localPort}/`;
-export default socketWrap(socketClient(serverUrl));
+export default socketWrap(socketClient(serverUrl, platformSocketParam));

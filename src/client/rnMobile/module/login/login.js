@@ -9,6 +9,8 @@ import {
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
+import user from '../../../action/user.js';
+import userDefaultAvatar from '../../../assets/image/user_avatar_default.png';
 
 let styles = null;
 
@@ -20,9 +22,26 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            username: '',
+            password: '',
+        };
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.renderLogin = this.renderLogin.bind(this);
         this.renderSignup = this.renderSignup.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleLogin() {
+        user.login(
+            this.state.username,
+            this.state.password
+        ).then(response => {
+            if (response.status === 201) {
+                user.online();
+                this.props.navigator.push({ page: 'userList' });
+            }
+        });
     }
 
     renderLogin() {
@@ -31,11 +50,12 @@ export default class Login extends Component {
             <View style={styles.container()}>
                 <Image
                     style={styles.avatar()}
-                    source={{ uri: 'https://ogbhsgzz2.qnssl.com/user_avatar_default.png' }}
+                    source={userDefaultAvatar}
                 />
                 <View style={styles.textInputContainer()}>
                     <TextInput
                         style={styles.textInput()}
+                        onChangeText={text => this.setState({ username: text })}
                         autoCorrect={false}
                         autoFocus
                         maxLength={16}
@@ -45,13 +65,17 @@ export default class Login extends Component {
                 <View style={[styles.textInputContainer(true)]}>
                     <TextInput
                         style={styles.textInput()}
+                        onChangeText={text => this.setState({ password: text })}
                         secureTextEntry
                         placeholder="请输入密码"
                     />
                 </View>
-                <View style={styles.buttonContainer()}>
+                <TouchableOpacity
+                    style={styles.buttonContainer()}
+                    onPress={this.handleLogin}
+                >
                     <Text style={styles.button()}>登录</Text>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
                     onPress={() => navigator.push({ page: 'login', status: 'signup' })}
@@ -70,7 +94,7 @@ export default class Login extends Component {
             <View style={styles.container()}>
                 <Image
                     style={styles.avatar()}
-                    source={{ uri: 'https://ogbhsgzz2.qnssl.com/user_avatar_default.png' }}
+                    source={userDefaultAvatar}
                 />
                 <View style={styles.textInputContainer()}>
                     <TextInput
@@ -88,9 +112,11 @@ export default class Login extends Component {
                         placeholder="请输入密码"
                     />
                 </View>
-                <View style={styles.buttonContainer()}>
+                <TouchableOpacity
+                    style={styles.buttonContainer()}
+                >
                     <Text style={styles.button()}>注册</Text>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
                     onPress={() => navigator.push({ page: 'login', status: 'login' })}
