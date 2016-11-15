@@ -57,6 +57,7 @@ export default class Login extends Component {
                         style={styles.textInput()}
                         onChangeText={text => this.setState({ username: text })}
                         autoCorrect={false}
+                        autoCapitalize="none"
                         autoFocus
                         maxLength={16}
                         placeholder="请输入用户名"
@@ -100,6 +101,7 @@ export default class Login extends Component {
                     <TextInput
                         style={styles.textInput()}
                         autoCorrect={false}
+                        autoCapitalize="none"
                         autoFocus
                         maxLength={16}
                         placeholder="请输入用户名(即昵称)"

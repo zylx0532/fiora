@@ -6,7 +6,7 @@ import './app.scss';
 import user from '../action/user';
 import ui from '../action/pc';
 import socket from '../socket';
-import { publicApi } from '../api.jsx';
+import publicApi from '../api.js';
 import messageTool from '../util/message';
 
 import Notification from '../common/notification';

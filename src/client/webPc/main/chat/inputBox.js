@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import './inputBox.scss';
 
 import ui from '../../../action/pc';
-// import api from '../../../api';
 import config from '../../../../../config/config';
 import send from '../../../util/send';
 
@@ -77,11 +76,7 @@ class InputBox extends React.Component {
                 img.src = message;
                 return;
             }
-            send(type, linkmanId, 'text', message).then(response => {
-                if (response.status === 201) {
-                    // api.emit('rawMessage', response.data);
-                }
-            });
+            send(type, linkmanId, 'text', message);
         }
     }
 
