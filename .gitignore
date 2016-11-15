@@ -1,6 +1,8 @@
 # visual studio code
 .DS_Store
 .vscode
+typings
+tsconfig.json
 
 # node.js
 node_modules
