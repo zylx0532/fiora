@@ -95,6 +95,7 @@ function messageHandle(message) {
 
 function initialMessagesHandle(messages) {
     return messages.map(m => {
+        m.preview = m.type === 'text' ? `${m.from.username}: ${m.content}` : `${m.from.username}: [${m.type}]`;
         m.isNew = false;
         return applyMiddleWares(m, thirdPartyMiddlewares);
     });

@@ -5,6 +5,7 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
+    AsyncStorage,
 } from 'react-native';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import color from '../../util/color.js';
@@ -32,12 +33,29 @@ export default class Login extends Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    componentDidMount() {
+        AsyncStorage.getItem('token', (err, token) => {
+            if (token && token !== '') {
+                user
+                .reConnect(token)
+                .then(result => {
+                    if (result.status === 201) {
+                        user.online();
+                        this.props.navigator.push({ page: 'userList' });
+                    }
+                });
+            }
+        });
+    }
+
+
     handleLogin() {
         user.login(
             this.state.username,
             this.state.password
         ).then(response => {
             if (response.status === 201) {
+                AsyncStorage.setItem('token', response.data.token);
                 user.online();
                 this.props.navigator.push({ page: 'userList' });
             }

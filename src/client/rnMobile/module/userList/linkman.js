@@ -3,37 +3,57 @@ import {
     Text,
     View,
     Image,
+    TouchableOpacity,
 } from 'react-native';
+import moment from 'moment';
+import pureRenderMixin from 'react-addons-pure-render-mixin';
+
 import color from '../../util/color.js';
+import url from '../../util/url.js';
 import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
 export default class Linkman extends Component {
     static propTypes = {
-        avatar: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
-        time: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired,
+        linkman: PropTypes.object.isRequired,
+    }
+
+    constructor(props) {
+        super(props);
+        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {
-        const { avatar, username, time, preview } = this.props;
+        const { linkman } = this.props;
+
+        const isGroup = linkman.get('type') === 'group';
+        const messagesLength = linkman.get('messages').size;
+        const time = moment(messagesLength === 0 ? linkman.get('createTime') : linkman.getIn(['messages', messagesLength - 1, 'createTime'])).format('HH:mm');
+        const message = messagesLength === 0 ? null : linkman.getIn(['messages', messagesLength - 1]);
+        let content = '...';
+        if (message) {
+            content = message.get('preview');
+        }
 
         return (
-            <View style={styles.container()}>
-                <Image
-                    style={styles.avatar()}
-                    source={{ uri: avatar }}
-                />
-                <View style={styles.content()}>
-                    <View style={styles.nickTimeContainer()}>
-                        <Text style={styles.nick()}>{username}</Text>
-                        <Text style={styles.time()}>{time}</Text>
+            <TouchableOpacity
+                onPress={() => console.log(`点击linkman, ${isGroup ? linkman.get('name') : linkman.get('username')}`)}
+            >
+                <View style={styles.container()}>
+                    <Image
+                        style={styles.avatar()}
+                        source={{ uri: url(linkman.get('avatar')) }}
+                    />
+                    <View style={styles.content()}>
+                        <View style={styles.nickTimeContainer()}>
+                            <Text style={styles.nick()}>{isGroup ? linkman.get('name') : linkman.get('username')}</Text>
+                            <Text style={styles.time()}>{time}</Text>
+                        </View>
+                        <Text style={styles.preview()}>{content}</Text>
                     </View>
-                    <Text style={styles.preview()}>{preview}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }

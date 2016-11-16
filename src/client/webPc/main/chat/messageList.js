@@ -99,7 +99,7 @@ class Message extends React.Component {
         let messageComponent = unknownMessage.render(message, me);
         for (const type of messageTypes) {
             if (type.shouldRender(message.get('type'))) {
-                messageComponent = type.render(message, me, scrollCallback);               
+                messageComponent = type.render(message, me, scrollCallback);
                 break;
             }
         }

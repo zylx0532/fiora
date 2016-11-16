@@ -1,85 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     View,
     ScrollView,
 } from 'react-native';
-import cs from '../../util/commonStyle.js';
+import { connect } from 'react-redux';
+import pureRenderMixin from 'react-addons-pure-render-mixin';
 
+import cs from '../../util/commonStyle.js';
 import Linkman from './linkman.js';
 
 let styles = null;
 
-export default class UserList extends Component {
+class UserList extends Component {
+    static propTypes = {
+        linkmans: PropTypes.object.isRequired,
+    }
+
+    constructor(props) {
+        super(props);
+        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
     render() {
+        const { linkmans } = this.props;
         return (
             <ScrollView>
                 <View style={styles.container()}>
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_5821339e137b2c54b6007cf8_1478570943622.jpeg'}
-                        username={'智者sama'}
-                        time={'12:34'}
-                        preview={'小跟班是个辣鸡'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
-                    <Linkman
-                        avatar={'https://ogb59u526.qnssl.com/user_57d657f09e1dc93d74ce47c4_1474428834611.gif'}
-                        username={'碎碎酱的小跟班'}
-                        time={'12:35'}
-                        preview={'对对对'}
-                    />
+                    {
+                        linkmans.map(linkman => (
+                            <Linkman
+                                key={linkman.get('type') + linkman.get('_id')}
+                                linkman={linkman}
+                            />
+                        ))
+                    }
                 </View>
             </ScrollView>
         );
@@ -92,3 +46,9 @@ styles = {
         cs.layout('stretch'),
     ]),
 };
+
+export default connect(
+    state => ({
+        linkmans: state.getIn(['user', 'linkmans']),
+    })
+)(UserList);
