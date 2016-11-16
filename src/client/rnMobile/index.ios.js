@@ -9,6 +9,7 @@ import {
     AppRegistry,
 } from 'react-native';
 
+import './util/reactotron.js';
 import Index from './module/index.js';
 
 export default class rnMobile extends Component {
