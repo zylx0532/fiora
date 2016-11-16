@@ -3,6 +3,7 @@ import {
     Navigator,
 } from 'react-native';
 import { connect, Provider } from 'react-redux';
+
 import Store from '../../store.js';
 
 import Chat from './chat/chat.js';

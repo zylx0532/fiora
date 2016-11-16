@@ -27,7 +27,6 @@ class Header extends Component {
 
     render() {
         const { username, avatar, online } = this.props;
-        console.log(username, avatar);
         return (
             <View style={styles.container()}>
                 <Image

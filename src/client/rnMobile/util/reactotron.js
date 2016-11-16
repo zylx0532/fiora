@@ -1,4 +1,4 @@
-import Reactotron from 'reactotron-react-native';
+import reactotron from 'reactotron-react-native';
 
-Reactotron.configure().connect();
-console.log = Reactotron.log;
+reactotron.configure().connect();
+console.rnLog = reactotron.log;

@@ -14,6 +14,7 @@ let styles = null;
 class UserList extends Component {
     static propTypes = {
         linkmans: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
     }
 
     constructor(props) {
@@ -22,7 +23,7 @@ class UserList extends Component {
     }
 
     render() {
-        const { linkmans } = this.props;
+        const { linkmans, navigator } = this.props;
         return (
             <ScrollView>
                 <View style={styles.container()}>
@@ -31,6 +32,7 @@ class UserList extends Component {
                             <Linkman
                                 key={linkman.get('type') + linkman.get('_id')}
                                 linkman={linkman}
+                                navigator={navigator}
                             />
                         ))
                     }

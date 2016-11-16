@@ -8,6 +8,7 @@ import {
     AsyncStorage,
 } from 'react-native';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 import user from '../../../action/user.js';

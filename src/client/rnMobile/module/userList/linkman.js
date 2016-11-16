@@ -17,11 +17,18 @@ let styles = null;
 export default class Linkman extends Component {
     static propTypes = {
         linkman: PropTypes.object.isRequired,
+        navigator: PropTypes.object.isRequired,
     }
 
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        const { linkman, navigator } = this.props;
+        navigator.push({ page: 'chat', linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
     }
 
     render() {
@@ -38,7 +45,7 @@ export default class Linkman extends Component {
 
         return (
             <TouchableOpacity
-                onPress={() => console.log(`点击linkman, ${isGroup ? linkman.get('name') : linkman.get('username')}`)}
+                onPress={this.handleClick}
             >
                 <View style={styles.container()}>
                     <Image
