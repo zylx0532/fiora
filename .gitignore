@@ -37,6 +37,8 @@ public/images/message
 #editor
 .brackets.json
 
+# redux-devtools
+remotedev-db.sqlite3
 
 
 # react-native
