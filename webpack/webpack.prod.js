@@ -1,8 +1,9 @@
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const progressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
-    entry: './src/client/webPc/index.js',
-    output: { path: './public', filename: 'app.js' },
+    output: { path: './public' },
     module: {
         loaders: [
             {
@@ -11,6 +12,10 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'stage-0', 'react'],
                 },
+            },
+            {
+                test: /\.js|\.jsx?$/,
+                loader: 'strip-loader?strip[]=console.log',
             },
             {
                 test: /\.(css)$/,
@@ -30,5 +35,15 @@ module.exports = {
             },
         ],
     },
-    postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+    postcss: [
+        autoprefixer({ browsers: ['last 2 versions'] }),
+    ],
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: `"${process.env.NODE_ENV}"`,
+            },
+        }),
+        new progressBarPlugin(),
+    ],
 };

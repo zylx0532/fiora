@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 
+import config from '../../config/config';
 import pc from './reducer/pc';
 import mobile from './reducer/mobile';
 import user from './reducer/user';
@@ -13,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
 const reducers = combineReducers({ pc, mobile, user });
 let store = null;
 if (devToolsEnhancer) {
-    store = createStore(reducers, devToolsEnhancer({ realtime: true, port: 8000 }));
+    store = createStore(reducers, devToolsEnhancer.default({ realtime: true, port: config.reduxDevPort }));
 }
 else {
     store = createStore(reducers);

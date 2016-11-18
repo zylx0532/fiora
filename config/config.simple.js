@@ -8,6 +8,9 @@ module.exports = {
     localServer: 'localhost',
     localPort: 9200,
 
+    // redux dev tool server
+    reduxDevPort: 8000,
+
     // database url and name
     database: 'database_name',
     testDatabase: 'test_database_name',

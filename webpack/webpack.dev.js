@@ -1,8 +1,9 @@
+const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const progressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
-    entry: './src/client/webMobile/index.js',
-    output: { path: './public', filename: 'app.mobile.js' },
+    output: { path: './public' },
     module: {
         loaders: [
             {
@@ -30,5 +31,22 @@ module.exports = {
             },
         ],
     },
-    postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+    postcss: [
+        autoprefixer({ browsers: ['last 2 versions'] }),
+    ],
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: `"${process.env.NODE_ENV}"`,
+            },
+        }),
+        new progressBarPlugin(),
+    ],
+    devServer: {
+        host: '0.0.0.0',
+        port: 8080,
+        displayErrorDetails: true,
+        historyApiFallback: true,
+        contentBase: 'public/',
+    },
 };
