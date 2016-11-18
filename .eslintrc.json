@@ -40,6 +40,7 @@
         "require-yield": 0, // generator函数必须有yield
         "no-else-return": 0,
         "no-mixed-operators": 0,
-        "react/prefer-stateless-function": 0
+        "react/prefer-stateless-function": 0,
+        "import/no-mutable-exports": 0
     }
 }
