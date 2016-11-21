@@ -11,6 +11,7 @@ const imageMessage = {
                 className="image"
             >
                 <img
+                    style={{ maxHeight: window.innerHeight > 800 ? 300 : 200 }}
                     src={message.get('content')}
                     ref={i => img = i}
                     onLoad={scrollMessage}
