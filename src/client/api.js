@@ -49,6 +49,26 @@ const publicApi = {
         const linkman = linkmans.find(l => l.get('type') === linkmanType && l.get(linkmanType === 'group' ? 'name' : 'username') === linkmanName);
         cb(null, linkman && linkman.get('_id'));
     },
+    setPluginData: function (data, cb) {
+        socket.put('/user/pluginData', { pluginData: data }, response => {
+            if (response.status === 200) {
+                cb(null, response.data);
+            }
+            else {
+                cb(response.data, undefined);
+            }
+        });
+    },
+    getPluginData: function (cb) {
+        socket.get('/user/me', { }, response => {
+            if (response.status === 200) {
+                cb(null, response.data.pluginData);
+            }
+            else {
+                cb(response.data, undefined);
+            }
+        });
+    },
 };
 
 export default publicApi;

@@ -97,6 +97,16 @@ const UserRoute = {
             qq: user.qq,
         });
     },
+    'PUT /user/pluginData': function* (data) {
+        yield* isLogin(this.socket, data, this.end);
+        assert(typeof data.pluginData !== 'string', this.end, 400, 'need qq param but not exists');
+
+        const user = yield User.findById(this.socket.user, '-password -salt');
+        user.pluginData = data.pluginData;
+        yield user.save();
+
+        this.end(200, user.pluginData);
+    },
     'GET /user/me': function* (data) {
         yield* isLogin(this.socket, data, this.end);
         const user = yield User.findById(this.socket.user, '-password -salt');

@@ -60,6 +60,10 @@ const UserSchema = new Schema({
             type: String,
         },
     ],
+    pluginData: {
+        type: String,
+        maxLength: 1024,
+    },
 });
 
 const User = mongoose.model('User', UserSchema);
