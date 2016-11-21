@@ -13,10 +13,6 @@ Fiora是一款web聊天应用. 使用node.js, koa和react编写.
 0. 消息长度限制, 消息发送频率限制
 0. 简易的插件系统
 
-## 运行截图
-
-![](screenshot_01.png)
-
 ## 安装
 
 该项目依赖于node.js和mongodb数据库. 安装[node.js](https://nodejs.org/en/download/) ([中国镜像](https://npm.taobao.org/mirrors/node)). 安装[mongodb](https://docs.mongodb.com/manual/installation/).
@@ -26,6 +22,22 @@ Fiora是一款web聊天应用. 使用node.js, koa和react编写.
 0. 创建配置文件 `cp config/config.simple.js config/config.js`. 编辑配置文件来设置数据库和其它参数, 其中 `localServer`, `localPort`, `database`, `jwtSecret` 是必需的.
 0. 运行项目 `npm start`
 0. 打开 `http://localhost:8080/webpack-dev-server/` 查看效果
+
+## Script
+
+* `start`: 启动后端服务, redux调试服务, pc端web开发服务和mobile端web开发服务
+* `devPc`: 启动pc端web开发服务
+* `devMobile`: 启动mobile端web开发服务
+* `buildPc`: 构建pc端web发布版本
+* `buildMobile`: 构建mobile端web发布版本
+* `rnServer`: 启动react native开发服务
+* `android`: 启动react native安卓客户端
+* `ios`: 启动react native ios客户端
+* `eslint`: 执行eslint检查
+
+## 运行截图
+
+![](screenshot_01.png)
 
 ## 贡献代码
 

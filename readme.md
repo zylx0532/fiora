@@ -13,10 +13,6 @@ Fiora is a web chat application. Made by node.js, koa, react.
 0. Limit message length, message frequency
 0. A simple plugin system
 
-## Run Shot
-
-![](screenshot_01.png)
-
 ## Installation
 
 The project is powered by node.js and mongodb database. To install [node.js](https://nodejs.org/en/download/) ([For China mirror](https://npm.taobao.org/mirrors/node)). To install [mongodb](https://docs.mongodb.com/manual/installation/).
@@ -26,11 +22,27 @@ The project is powered by node.js and mongodb database. To install [node.js](htt
 0. Go to repository directory and run  
 `npm install`
 0. Create config file from simple config. The `localServer`, `localPort`, `database`, `jwtSecret` is necessary.  
-`cp config/config.simple.js config/config.js`. 
-0. Set database and other params in config file
+`cp config/config.simple.js config/config.js`.
+0. Set database and other params in config file  
 0. Run the project  
 `npm start`
 0. Open `http://localhost:8080/webpack-dev-server/` and enjoy it
+
+## Script
+
+* `start`: start backend server, redux devtool server, pc web webpack dev server and mobile web webpack dev server
+* `devPc`: start pc web webpack dev server
+* `devMobile`: start mobile web webpack dev server
+* `buildPc`: build pc web release version
+* `buildMobile`: build mobile web release version
+* `rnServer`: start react native package server
+* `android`: start react native android client
+* `ios`: start react native ios client
+* `eslint`: run eslint check
+
+## Run Shot
+
+![](screenshot_01.png)
 
 ## Contribute
 
