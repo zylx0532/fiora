@@ -49,7 +49,7 @@ const MessageRoute = {
         let savedMessage = null;
         try {
             savedMessage = yield message.save();
-            yield Message.populate(message, { path: 'from', select: '_id username avatar' });
+            yield Message.populate(message, { path: 'from', select: '_id username avatar pluginData' });
             yield Message.populate(message, { path: 'to', select: '_id' });
         }
         catch (err) {

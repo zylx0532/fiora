@@ -59,7 +59,7 @@ const AuthRoute = {
             if (skip < 0) {
                 skip = 0;
             }
-            group.messages = yield GroupMessage.find({ to: group._id }, null, { skip: skip }).populate({ path: 'from', select: '_id username avatar' });
+            group.messages = yield GroupMessage.find({ to: group._id }, null, { skip: skip }).populate({ path: 'from', select: '_id username avatar pluginData' });
             yield Group.populate(group, { path: 'creator', select: '_id username' });
         }
 
@@ -128,7 +128,7 @@ const AuthRoute = {
             if (skip < 0) {
                 skip = 0;
             }
-            group.messages = yield GroupMessage.find({ to: group._id }, null, { skip: skip }).populate({ path: 'from', select: '_id username avatar' });
+            group.messages = yield GroupMessage.find({ to: group._id }, null, { skip: skip }).populate({ path: 'from', select: '_id username avatar pluginData' });
             yield Group.populate(group, { path: 'creator', select: '_id username' });
         }
 
