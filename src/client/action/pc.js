@@ -38,8 +38,10 @@ const actions = {
     // systemSetting
     openSystemSetting: () => dispatch({ type: 'OpenSystemSetting' }),
     closeSystemSetting: () => dispatch({ type: 'CloseSystemSetting' }),
-    toggleDesktopNotification: () => dispatch({ type: 'ToggleDesktopNotification' }),
-    toggleSoundNotification: () => dispatch({ type: 'ToggleSoundNotification' }),
+    openDesktopNotification: () => dispatch({ type: 'OpenDesktopNotification' }),
+    closeDesktopNotification: () => dispatch({ type: 'CloseDesktopNotification' }),
+    openSoundNotification: () => dispatch({ type: 'OpenSoundNotification' }),
+    closeSoundNotification: () => dispatch({ type: 'CloseSoundNotification' }),
 
     // groupaManage
     openCreateGroupInput: () => dispatch({ type: 'OpenCreateGroupInput' }),

@@ -32,6 +32,20 @@ class App extends React.Component {
         // force to root path
         this.context.router.push('/');
 
+        // system setting
+        if (window.localStorage.getItem('desktopNotification') === 'false') {
+            ui.closeDesktopNotification();
+        }
+        else {
+            ui.openDesktopNotification();
+        }
+        if (window.localStorage.getItem('soundNotification') === 'false') {
+            ui.closeSoundNotification();
+        }
+        else {
+            ui.openSoundNotification();
+        }
+
         // try auto login
         const token = window.localStorage.getItem('token');
         if (token && token !== '') {

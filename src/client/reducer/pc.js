@@ -63,8 +63,10 @@ function reducer(state = initialState, action) {
 
     case 'OpenSystemSetting': { return state.set('showSystemSetting', true); }
     case 'CloseSystemSetting': { return state.set('showSystemSetting', false); }
-    case 'ToggleDesktopNotification': { return state.set('desktopNotification', !state.get('desktopNotification')); }
-    case 'ToggleSoundNotification': { return state.set('soundNotification', !state.get('soundNotification')); }
+    case 'OpenDesktopNotification': { return state.set('desktopNotification', true); }
+    case 'CloseDesktopNotification': { return state.set('desktopNotification', false); }
+    case 'OpenSoundNotification': { return state.set('soundNotification', true); }
+    case 'CloseSoundNotification': { return state.set('soundNotification', false); }
 
     case 'OpenUserSetting': { return state.set('showUserSetting', true); }
     case 'CloseUserSetting': { return state.set('showUserSetting', false); }

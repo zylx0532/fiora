@@ -24,6 +24,8 @@ class SystemSetting extends React.Component {
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.handleDesktopSwitch = this.handleDesktopSwitch.bind(this);
+        this.handleSoundSwitch = this.handleSoundSwitch.bind(this);
     }
 
     handleCloseClick() {
@@ -39,6 +41,28 @@ class SystemSetting extends React.Component {
                 user.init();
             }
         });
+    }
+
+    handleDesktopSwitch() {
+        const { desktopNotification } = this.props;
+        if (desktopNotification) {
+            ui.closeDesktopNotification();
+        }
+        else {
+            ui.openDesktopNotification();
+        }
+        window.localStorage.setItem('desktopNotification', !desktopNotification);
+    }
+
+    handleSoundSwitch() {
+        const { soundNotification } = this.props;
+        if (soundNotification) {
+            ui.closeSoundNotification();
+        }
+        else {
+            ui.openSoundNotification();
+        }
+        window.localStorage.setItem('soundNotification', !soundNotification);
     }
 
     render() {
@@ -66,7 +90,7 @@ class SystemSetting extends React.Component {
                             <div className="switch">
                                 <span>启用桌面通知</span>
                                 <div
-                                    onClick={() => ui.toggleDesktopNotification()}
+                                    onClick={this.handleDesktopSwitch}
                                 >
                                     <div
                                         className={desktopNotification ? 'on' : 'off'}
@@ -76,7 +100,7 @@ class SystemSetting extends React.Component {
                             <div className="switch">
                                 <span>启用声音通知</span>
                                 <div
-                                    onClick={() => ui.toggleSoundNotification()}
+                                    onClick={this.handleSoundSwitch}
                                 >
                                     <div
                                         className={soundNotification ? 'on' : 'off'}
