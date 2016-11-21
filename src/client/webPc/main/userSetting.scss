@@ -34,6 +34,7 @@ $borderRadius: 10px;
         .background-image {
             @include size(300px, 300px);
             @include containerStart;
+            overflow: hidden;
             filter: blur(20px);
             background-repeat: no-repeat;
             background-size: 300px 300px;
