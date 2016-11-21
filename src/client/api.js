@@ -1,10 +1,12 @@
 import socket from './socket';
+import store from './store.js';
 
 const publicApi = {
     apis: {
         getApis: 'get api list. params( cb )',
         getOnlineCount: 'get online user count. params( cb )',
         sendMessage: 'send message. params( linkmanType, linkmanId, messageType, content, cb )',
+        getLinkmanId: 'get id from type and name. params( linkmanType, linkmanName, cb )',
     },
     getApis: function (cb) {
         cb(null, this.apis);
@@ -40,6 +42,12 @@ const publicApi = {
         } else {
             cb('invalid linkman type', null);
         }
+    },
+    getLinkmanId: function (linkmanType, linkmanName, cb) {
+        const state = store.getState();
+        const linkmans = state.getIn(['user', 'linkmans']);
+        const linkman = linkmans.find(l => l.get('type') === linkmanType && l.get(linkmanType === 'group' ? 'name' : 'username') === linkmanName);
+        cb(null, linkman && linkman.get('_id'));
     },
 };
 
