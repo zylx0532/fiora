@@ -12,6 +12,7 @@ import pureRenderMixin from 'react-addons-pure-render-mixin';
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 import user from '../../../action/user.js';
+import rn from '../../../action/rn.js';
 import userDefaultAvatar from '../../../assets/image/user_avatar_default.png';
 
 let styles = null;
@@ -19,7 +20,6 @@ let styles = null;
 export default class Login extends Component {
     static propTypes = {
         status: PropTypes.string,
-        navigator: PropTypes.object.isRequired,
     }
 
     constructor(props) {
@@ -42,7 +42,8 @@ export default class Login extends Component {
                 .then(result => {
                     if (result.status === 201) {
                         user.online();
-                        this.props.navigator.push({ page: 'userList' });
+                        // this.props.navigator.push({ page: 'userList' });
+                        rn.navigator('userList', {});
                     }
                 });
             }
@@ -58,13 +59,12 @@ export default class Login extends Component {
             if (response.status === 201) {
                 AsyncStorage.setItem('token', response.data.token);
                 user.online();
-                this.props.navigator.push({ page: 'userList' });
+                // this.props.navigator.push({ page: 'userList' });
             }
         });
     }
 
     renderLogin() {
-        const { navigator } = this.props;
         return (
             <View style={styles.container()}>
                 <Image
@@ -98,7 +98,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
-                    onPress={() => navigator.push({ page: 'login', status: 'signup' })}
+                    onPress={() => {}/* navigator.push({ page: 'login', status: 'signup' })*/}
                 >
                     <Text
                         style={styles.text()}
@@ -109,7 +109,6 @@ export default class Login extends Component {
     }
 
     renderSignup() {
-        const { navigator } = this.props;
         return (
             <View style={styles.container()}>
                 <Image
@@ -140,7 +139,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
-                    onPress={() => navigator.push({ page: 'login', status: 'login' })}
+                    onPress={() => {}/* navigator.push({ page: 'login', status: 'login' })*/}
                 >
                     <Text
                         style={styles.text()}

@@ -16,6 +16,29 @@ const routes = {
     userList: UserList,
 };
 
+class NavigatorContainer extends Component {
+    static propTypes = {
+        state: PropTypes.object,
+        router: PropTypes.string.isRequired,
+        routerParams: PropTypes.object.isRequired,
+    }
+
+    render() {
+        const { router, routerParams } = this.props;
+        const RenderComponent = routes[router];
+        return (
+            <RenderComponent {...routerParams.toJS()} />
+        );
+    }
+}
+
+const ConnectedNavigatorContainer = connect(
+    state => ({
+        router: state.getIn(['rn', 'router']),
+        routerParams: state.getIn(['rn', 'routerParams']),
+    })
+)(NavigatorContainer);
+
 class Index extends Component {
     static propTypes = {
         state: PropTypes.object,
@@ -27,17 +50,13 @@ class Index extends Component {
 
         return (
             <Navigator
-                initialRoute={{ page: 'login', status: 'login' }}
+                initialRoute={{}}
                 renderScene={
-                    (route, navigator) => {
-                        const RenderComponent = routes[route.page];
-                        return (
-                            <RenderComponent
-                                {...route}
-                                navigator={navigator}
-                            />
-                        );
-                    }
+                    (route, navigator) => (
+                        <ConnectedNavigatorContainer
+                            navigator={navigator}
+                        />
+                    )
                 }
             />
         );
@@ -47,6 +66,8 @@ class Index extends Component {
 const ConnectedIndex = connect(
     state => ({
         state,
+        router: state.getIn(['rn', 'router']),
+        routerParams: state.getIn(['rn', 'routerParams']),
     })
 )(Index);
 

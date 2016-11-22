@@ -17,7 +17,6 @@ let styles = null;
 export default class Linkman extends Component {
     static propTypes = {
         linkman: PropTypes.object.isRequired,
-        navigator: PropTypes.object.isRequired,
     }
 
     constructor(props) {
@@ -27,8 +26,8 @@ export default class Linkman extends Component {
     }
 
     handleClick() {
-        const { linkman, navigator } = this.props;
-        navigator.push({ page: 'chat', linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
+        // const { linkman } = this.props;
+        // navigator.push({ page: 'chat', linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
     }
 
     render() {
