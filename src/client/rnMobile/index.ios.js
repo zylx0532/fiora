@@ -12,10 +12,10 @@ import {
 import './util/reactotron.js';
 import Index from './module/index.js';
 
-export default class rnMobile extends Component {
+export default class Fiora extends Component {
     render() {
         return Index;
     }
 }
 
-AppRegistry.registerComponent('fiora', () => rnMobile);
+AppRegistry.registerComponent('fiora', () => Fiora);

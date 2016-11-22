@@ -23,7 +23,7 @@ class Index extends Component {
 
     render() {
         // for debug
-        console.log(this.props.state.toJS());
+        console.logState('global state', this.props.state.toJS());
 
         return (
             <Navigator
