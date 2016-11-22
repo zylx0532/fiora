@@ -1,11 +1,12 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './login.scss';
 
 import user from '../../action/user';
 
+@pureRender
 class Login extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
@@ -13,7 +14,6 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             usernameInput: 'normal',
             passwordInput: 'normal',

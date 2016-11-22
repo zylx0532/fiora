@@ -1,25 +1,18 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './main.scss';
 
-// import Toolbar from './toolbar';
-
+@pureRender
 class Main extends React.Component {
     static propTypes = {
         children: PropTypes.element,
     };
 
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     render() {
         return (
             <div className="main">
                 { this.props.children }
-                {/* <Toolbar />*/}
             </div>
         );
     }

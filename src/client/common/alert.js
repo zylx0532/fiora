@@ -1,19 +1,15 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './alert.scss';
 
+@pureRender
 class Alert extends React.Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
         buttons: PropTypes.array.isRequired,
         children: PropTypes.object,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         const { title, buttons, children } = this.props;

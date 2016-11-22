@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './imageViewer.scss';
 
@@ -11,6 +11,7 @@ import user from '../action/user';
 let offsetX = 0;
 let offsetY = 0;
 
+@pureRender
 class ImageViewer extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -23,7 +24,6 @@ class ImageViewer extends React.Component {
             scale: 1,
             rotate: 0,
         };
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentWillUpdate(nextProps) {

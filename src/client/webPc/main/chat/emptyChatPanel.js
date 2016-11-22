@@ -1,15 +1,10 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './emptyChatPanel.scss';
 
-
+@pureRender
 class EmptyChatPanel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     render() {
         return (
             <div className="empty-chat-panel" />

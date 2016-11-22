@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './expression.scss';
 
@@ -12,6 +12,7 @@ import expressions from '../../../util/expressions';
 import send from '../../../util/send';
 
 
+@pureRender
 class Expression extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -22,7 +23,6 @@ class Expression extends React.Component {
 
     constructor(props) {
         super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = { page: 'default' };
     }
 

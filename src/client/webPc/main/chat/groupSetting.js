@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './groupSetting.scss';
 
@@ -10,6 +10,7 @@ import user from '../../../action/user';
 import FloatPanel from '../floatPanel';
 import Avatar from '../../../common/avatar';
 
+@pureRender
 class GroupSetting extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -21,11 +22,6 @@ class GroupSetting extends React.Component {
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     @autoBind

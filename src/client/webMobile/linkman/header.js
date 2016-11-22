@@ -1,14 +1,10 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './header.scss';
 
+@pureRender
 class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     render() {
         return (
             <div className="linkman-header">

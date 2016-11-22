@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './linkman.scss';
 
 import Avatar from '../../common/avatar';
 import Header from './header';
 
+@pureRender
 class LinkmanList extends React.Component {
     static propTypes = {
         linkmans: PropTypes.object,
@@ -17,11 +18,6 @@ class LinkmanList extends React.Component {
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {
@@ -45,6 +41,7 @@ class LinkmanList extends React.Component {
     }
 }
 
+@pureRender
 class Linkman extends React.Component {
     static propTypes = {
         linkman: PropTypes.object,
@@ -53,11 +50,6 @@ class Linkman extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     handleUserListItemClick() {

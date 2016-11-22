@@ -1,22 +1,18 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './userList.scss';
 
 import Avatar from '../../../common/avatar';
 import user from '../../../action/user';
 
+@pureRender
 class UserList extends React.Component {
     static propTypes = {
         children: PropTypes.object,
     };
-
-    constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         return (
@@ -27,6 +23,7 @@ class UserList extends React.Component {
     }
 }
 
+@pureRender
 class User extends React.Component {
     static propTypes = {
         linkman: PropTypes.object,
@@ -35,11 +32,6 @@ class User extends React.Component {
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     handleUserListItemClick() {

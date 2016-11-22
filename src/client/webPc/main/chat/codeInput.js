@@ -1,26 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './codeInput.scss';
 
 import ui from '../../../action/pc';
 import send from '../../../util/send';
 
-
+@pureRender
 class CodeInput extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
         linkmanId: PropTypes.string.isRequired,
         linkmanType: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     onSendClick() {

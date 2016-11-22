@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './chatPanel.scss';
 
@@ -15,16 +15,12 @@ import CodeInput from './codeInput';
 import UserInfo from './userInfo';
 import user from '../../../action/user';
 
+@pureRender
 class ChatPanel extends React.Component {
     static propTypes = {
         linkman: PropTypes.object.isRequired,
         me: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     componentWillUpdate(nextProps) {
         if (nextProps.linkman.get('unread') > 0 && nextProps.shouldScrollMessage) {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './main.scss';
 
@@ -8,6 +8,7 @@ import Header from './header';
 import SystemSetting from './systemSetting';
 import UserSetting from './userSetting';
 
+@pureRender
 class Main extends React.Component {
     static propTypes = {
         children: PropTypes.element,
@@ -17,11 +18,6 @@ class Main extends React.Component {
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentWillUpdate(nextProps) {

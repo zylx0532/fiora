@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './login.scss';
 
@@ -9,6 +9,7 @@ import user from '../../action/user';
 import ui from '../../action/pc';
 import Avatar from '../../common/avatar';
 
+@pureRender
 class Login extends React.Component {
     static propTypes = {
         location: PropTypes.object.isRequired,
@@ -22,7 +23,6 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = {
             usernameInput: 'normal',
             passwordInput: 'normal',

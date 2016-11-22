@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './userPanel.scss';
 
@@ -9,6 +9,7 @@ import Avatar from '../../common/avatar';
 import ui from '../../action/pc';
 import mask from '../../util/mask';
 
+@pureRender
 class UserPanel extends React.Component {
     static propTypes = {
         avatar: PropTypes.string.isRequired,
@@ -16,11 +17,6 @@ class UserPanel extends React.Component {
         online: PropTypes.bool,
         user: PropTypes.object.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     handleAvatarClick() {

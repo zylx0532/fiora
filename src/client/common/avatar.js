@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './avatar.scss';
 
+@pureRender
 class Avatar extends React.Component {
     static propTypes = {
         avatar: PropTypes.string.isRequired,
@@ -14,11 +15,6 @@ class Avatar extends React.Component {
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         const { avatar, name, width, height, title, onClick, onMouseEnter, onMouseLeave } = this.props;

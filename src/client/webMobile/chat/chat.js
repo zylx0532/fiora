@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
+import pureRender from 'pure-render-decorator';
 import autoBind from 'autobind-decorator';
 
 import './chat.scss';
@@ -17,17 +17,13 @@ import user from '../../action/user';
 let onScrollHandle = null;
 let scrollMessage = null;
 
+@pureRender
 class Chat extends React.Component {
     static propTypes = {
         linkmans: PropTypes.object.isRequired,
         me: PropTypes.string.isRequired,
         routeParams: PropTypes.object,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     componentWillUpdate(nextProps) {
         const { linkmans, routeParams } = nextProps;
@@ -96,6 +92,7 @@ class Chat extends React.Component {
     }
 }
 
+@pureRender
 class Message extends React.Component {
     static propTypes = {
         me: PropTypes.string.isRequired,
@@ -105,11 +102,6 @@ class Message extends React.Component {
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentDidMount() {

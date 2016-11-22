@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './toolbar.scss';
 
@@ -8,15 +8,11 @@ import ui from '../../../action/pc';
 import mask from '../../../util/mask';
 import send from '../../../util/send';
 
+@pureRender
 class Toolbar extends React.Component {
     static propTypes = {
         linkmanId: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     onExpressionClick() {

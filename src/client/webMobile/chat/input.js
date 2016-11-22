@@ -1,22 +1,18 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './input.scss';
 
 import config from '../../../../config/config';
 import user from '../../action/user';
 
+@pureRender
 class Input extends React.Component {
     static propTypes = {
         type: PropTypes.string,
         linkmanId: PropTypes.string.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     insertAtCursor(input, value) {
         if (document.selection) {

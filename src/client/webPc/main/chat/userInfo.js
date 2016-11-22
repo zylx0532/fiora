@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './userInfo.scss';
 
@@ -21,6 +21,7 @@ const initialState = {
     qq: '',
 };
 
+@pureRender
 class UserInfo extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -34,7 +35,6 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = initialState;
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentWillUpdate(nextProps) {

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './inputBox.scss';
 
@@ -9,17 +9,13 @@ import ui from '../../../action/pc';
 import config from '../../../../../config/config';
 import send from '../../../util/send';
 
+@pureRender
 class InputBox extends React.Component {
     static propTypes = {
         linkmanId: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         insertTexts: PropTypes.object.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     componentWillUpdate(nextProps) {
         if (!nextProps.insertTexts.equals(this.props.insertTexts)) {

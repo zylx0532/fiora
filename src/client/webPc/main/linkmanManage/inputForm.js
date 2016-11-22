@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Motion, spring } from 'react-motion';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './inputForm.scss';
 
+@pureRender
 class InputForm extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -11,11 +12,6 @@ class InputForm extends React.Component {
         onClick: PropTypes.func,
         onClose: PropTypes.func,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         const { show, title, onClick, onClose } = this.props;

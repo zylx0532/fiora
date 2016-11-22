@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import moment from 'moment';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './userSetting.scss';
 
@@ -11,6 +11,7 @@ import ui from '../../action/pc';
 import user from '../../action/user';
 import Avatar from '../../common/avatar';
 
+@pureRender
 class UserSetting extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -27,7 +28,6 @@ class UserSetting extends React.Component {
             avatarHover: false,
             editStatus: false,
         };
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     handleCloseClick() {

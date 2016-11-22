@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './systemSetting.scss';
 
 import ui from '../../action/pc';
 import user from '../../action/user';
 
+@pureRender
 class SystemSetting extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -18,11 +19,6 @@ class SystemSetting extends React.Component {
 
     static contextTypes = {
         router: React.PropTypes.object.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     handleCloseClick() {

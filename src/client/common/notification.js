@@ -1,20 +1,15 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import pureRender from 'pure-render-decorator';
 
 import './notification.scss';
 
-
+@pureRender
 class Notification extends React.Component {
     static propTypes = {
         content: PropTypes.string.isRequired,
         show: PropTypes.bool.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     renderNotification() {
         const { content } = this.props;

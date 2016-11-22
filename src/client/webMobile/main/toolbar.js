@@ -1,14 +1,10 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './toolbar.scss';
 
+@pureRender
 class Toolbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     render() {
         return (
             <div className="toolbar">

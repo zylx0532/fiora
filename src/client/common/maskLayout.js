@@ -1,18 +1,14 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import pureRender from 'pure-render-decorator';
 
 import './maskLayout.scss';
 
+@pureRender
 class MaskLayout extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         return (

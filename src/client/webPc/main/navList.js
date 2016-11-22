@@ -1,16 +1,13 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './navList.scss';
 
+@pureRender
 class NavList extends React.Component {
     static propTypes = {
         children: PropTypes.arrayOf(PropTypes.object),
     };
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         return (
@@ -21,6 +18,7 @@ class NavList extends React.Component {
     }
 }
 
+@pureRender
 class Nav extends React.Component {
     static propTypes = {
         icon: PropTypes.string.isRequired,
@@ -28,11 +26,6 @@ class Nav extends React.Component {
         title: PropTypes.string,
         onClick: PropTypes.func,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         const { icon, selected, title, onClick } = this.props;

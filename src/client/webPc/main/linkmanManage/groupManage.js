@@ -1,5 +1,5 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import './groupManage.scss';
 
@@ -8,12 +8,8 @@ import AddGroup from './addGroup';
 import ui from '../../../action/pc';
 import mask from '../../../util/mask';
 
+@pureRender
 class GroupManage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     handleCreateGroupClick() {
         ui.openCreateGroupInput();
         mask(ui.closeCreateGroupInput);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import pureRender from 'pure-render-decorator';
 
 import './chat.scss';
 
@@ -8,6 +8,7 @@ import UserList from './userList';
 import ChatPanel from './chatPanel';
 import EmptyChatPanel from './emptyChatPanel';
 
+@pureRender
 class Chat extends React.Component {
     static propTypes = {
         linkmans: PropTypes.object.isRequired,
@@ -15,11 +16,6 @@ class Chat extends React.Component {
         location: PropTypes.object.isRequired,
         routeParams: PropTypes.object.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     render() {
         const { linkmans, me, location, routeParams } = this.props;

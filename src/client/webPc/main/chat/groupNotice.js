@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './groupNotice.scss';
 
@@ -10,6 +10,7 @@ import ui from '../../../action/pc';
 import user from '../../../action/user';
 import FloatPanel from '../floatPanel';
 
+@pureRender
 class GroupNotice extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
@@ -23,7 +24,6 @@ class GroupNotice extends React.Component {
         this.state = {
             editor: false,
         };
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     @autoBind

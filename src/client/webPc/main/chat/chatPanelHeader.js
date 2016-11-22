@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
 import autoBind from 'autobind-decorator';
+import pureRender from 'pure-render-decorator';
 
 import './chatPanelHeader.scss';
 
@@ -9,6 +9,7 @@ import user from '../../../action/user';
 import mask from '../../../util/mask';
 import Avatar from '../../../common/avatar';
 
+@pureRender
 class ChatPanelHeader extends React.Component {
     static propTypes = {
         avatar: PropTypes.string.isRequired,
@@ -16,11 +17,6 @@ class ChatPanelHeader extends React.Component {
         type: PropTypes.string,
         linkmanId: PropTypes.string,
     };
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
 
     @autoBind
     onGroupNoticeClick() {
