@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
 import pureRender from 'pure-render-decorator';
 import autoBind from 'autobind-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './chat.scss';
 
@@ -20,7 +21,7 @@ let scrollMessage = null;
 @pureRender
 class Chat extends React.Component {
     static propTypes = {
-        linkmans: PropTypes.object.isRequired,
+        linkmans: ImmutablePropTypes.list.isRequired,
         me: PropTypes.string.isRequired,
         routeParams: PropTypes.object,
     };
@@ -96,7 +97,7 @@ class Chat extends React.Component {
 class Message extends React.Component {
     static propTypes = {
         me: PropTypes.string.isRequired,
-        message: PropTypes.object.isRequired,
+        message: ImmutablePropTypes.map.isRequired,
         shouldScrollMessage: PropTypes.bool,
     };
 

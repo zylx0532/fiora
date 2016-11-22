@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './groupNotice.scss';
 
@@ -14,9 +15,9 @@ import FloatPanel from '../floatPanel';
 class GroupNotice extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
-        creator: PropTypes.object,
+        creator: ImmutablePropTypes.map,
         me: PropTypes.string,
-        linkman: PropTypes.object.isRequired,
+        linkman: ImmutablePropTypes.map.isRequired,
     };
 
     constructor(props) {

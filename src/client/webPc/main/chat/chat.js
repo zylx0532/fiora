@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './chat.scss';
 
@@ -11,7 +12,7 @@ import EmptyChatPanel from './emptyChatPanel';
 @pureRender
 class Chat extends React.Component {
     static propTypes = {
-        linkmans: PropTypes.object.isRequired,
+        linkmans: ImmutablePropTypes.list.isRequired,
         me: PropTypes.string.isRequired,
         location: PropTypes.object.isRequired,
         routeParams: PropTypes.object.isRequired,

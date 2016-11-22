@@ -15,12 +15,11 @@ class UserPanel extends React.Component {
         avatar: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
         online: PropTypes.bool,
-        user: PropTypes.object.isRequired,
     };
 
     @autoBind
     handleAvatarClick() {
-        ui.openUserSetting(this.props.user);
+        ui.openUserSetting();
         mask(ui.closeUserSetting);
     }
 
@@ -51,6 +50,5 @@ export default connect(
         avatar: state.getIn(['user', 'avatar']),
         username: state.getIn(['user', 'username']),
         online: state.getIn(['user', 'online']),
-        user: state.get('user'),
     })
 )(UserPanel);

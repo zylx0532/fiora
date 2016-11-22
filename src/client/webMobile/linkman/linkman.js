@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './linkman.scss';
 
@@ -12,12 +13,12 @@ import Header from './header';
 @pureRender
 class LinkmanList extends React.Component {
     static propTypes = {
-        linkmans: PropTypes.object,
+        linkmans: ImmutablePropTypes.list,
         me: PropTypes.string,
     };
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: PropTypes.object.isRequired,
     }
 
     render() {
@@ -44,11 +45,11 @@ class LinkmanList extends React.Component {
 @pureRender
 class Linkman extends React.Component {
     static propTypes = {
-        linkman: PropTypes.object,
+        linkman: ImmutablePropTypes.map,
     };
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: PropTypes.object.isRequired,
     };
 
     @autoBind

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './messageList.scss';
 
@@ -67,7 +68,7 @@ class MessageList extends React.Component {
 class Message extends React.Component {
     static propTypes = {
         me: PropTypes.string.isRequired,
-        message: PropTypes.object.isRequired,
+        message: ImmutablePropTypes.map.isRequired,
         shouldScrollMessage: PropTypes.bool,
         linkmanType: PropTypes.string,
         linkmanId: PropTypes.string,

@@ -4,6 +4,7 @@ import { Motion, spring } from 'react-motion';
 import moment from 'moment';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './userSetting.scss';
 
@@ -15,7 +16,7 @@ import Avatar from '../../common/avatar';
 class UserSetting extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
-        userInfo: PropTypes.object.isRequired,
+        userInfo: ImmutablePropTypes.map.isRequired,
     };
 
     static contextTypes = {

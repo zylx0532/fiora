@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './main.scss';
 
@@ -12,7 +13,7 @@ import UserSetting from './userSetting';
 class Main extends React.Component {
     static propTypes = {
         children: PropTypes.element,
-        user: PropTypes.object,
+        user: ImmutablePropTypes.map,
         location: PropTypes.object,
     };
 

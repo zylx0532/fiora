@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './groupSetting.scss';
 
@@ -14,9 +15,9 @@ import Avatar from '../../../common/avatar';
 class GroupSetting extends React.Component {
     static propTypes = {
         show: PropTypes.bool.isRequired,
-        creator: PropTypes.object,
+        creator: ImmutablePropTypes.map,
         me: PropTypes.string,
-        members: PropTypes.object.isRequired,
+        members: ImmutablePropTypes.list.isRequired,
         linkmanId: PropTypes.string.isRequired,
     };
 

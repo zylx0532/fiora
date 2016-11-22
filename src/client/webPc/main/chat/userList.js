@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import moment from 'moment';
 import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './userList.scss';
 
@@ -26,11 +27,11 @@ class UserList extends React.Component {
 @pureRender
 class User extends React.Component {
     static propTypes = {
-        linkman: PropTypes.object,
+        linkman: ImmutablePropTypes.map,
     };
 
     static contextTypes = {
-        router: React.PropTypes.object.isRequired,
+        router: PropTypes.object.isRequired,
     };
 
     @autoBind
