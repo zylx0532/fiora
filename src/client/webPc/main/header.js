@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './header.scss';
 
@@ -21,9 +22,9 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleSettingClick = this.handleSettingClick.bind(this);
     }
 
+    @autoBind
     handleSettingClick() {
         ui.openSystemSetting();
         mask(ui.closeSystemSetting);

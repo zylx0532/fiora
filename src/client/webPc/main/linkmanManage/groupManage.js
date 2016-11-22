@@ -12,7 +12,6 @@ class GroupManage extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleCreateGroupClick = this.handleCreateGroupClick.bind(this);
     }
 
     handleCreateGroupClick() {

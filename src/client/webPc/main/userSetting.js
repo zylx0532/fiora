@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import moment from 'moment';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './userSetting.scss';
 
@@ -27,10 +28,6 @@ class UserSetting extends React.Component {
             editStatus: false,
         };
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleCloseClick = this.handleCloseClick.bind(this);
-        this.handleSelectImage = this.handleSelectImage.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-        this.handleOk = this.handleOk.bind(this);
     }
 
     handleCloseClick() {
@@ -38,6 +35,7 @@ class UserSetting extends React.Component {
         ui.closeMaskLayout();
     }
 
+    @autoBind
     handleSelectImage() {
         const image = this.image.files[0];
         if (!image) {
@@ -55,10 +53,12 @@ class UserSetting extends React.Component {
         reader.readAsDataURL(image);
     }
 
+    @autoBind
     handleEdit() {
         this.setState({ editStatus: true });
     }
 
+    @autoBind
     handleOk() {
         user.updateUser(
             this.gender.value,

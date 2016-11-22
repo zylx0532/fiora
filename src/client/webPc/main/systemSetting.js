@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './systemSetting.scss';
 
@@ -22,10 +23,6 @@ class SystemSetting extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleCloseClick = this.handleCloseClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
-        this.handleDesktopSwitch = this.handleDesktopSwitch.bind(this);
-        this.handleSoundSwitch = this.handleSoundSwitch.bind(this);
     }
 
     handleCloseClick() {
@@ -33,6 +30,7 @@ class SystemSetting extends React.Component {
         ui.closeMaskLayout();
     }
 
+    @autoBind
     handleLogoutClick() {
         user.logout().then(response => {
             if (response.status === 204) {
@@ -43,6 +41,7 @@ class SystemSetting extends React.Component {
         });
     }
 
+    @autoBind
     handleDesktopSwitch() {
         const { desktopNotification } = this.props;
         if (desktopNotification) {
@@ -54,6 +53,7 @@ class SystemSetting extends React.Component {
         window.localStorage.setItem('desktopNotification', !desktopNotification);
     }
 
+    @autoBind
     handleSoundSwitch() {
         const { soundNotification } = this.props;
         if (soundNotification) {

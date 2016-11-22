@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import autoBind from 'autobind-decorator';
 
 import './groupNotice.scss';
 
@@ -23,9 +24,9 @@ class GroupNotice extends React.Component {
             editor: false,
         };
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleSaveClick = this.handleSaveClick.bind(this);
     }
 
+    @autoBind
     handleSaveClick() {
         user.updateGroupAnnouncement(this.props.linkman.get('_id'), this.editor.value).then(response => {
             if (response.status === 201) {

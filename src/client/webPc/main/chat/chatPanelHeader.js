@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './chatPanelHeader.scss';
 
@@ -19,15 +20,15 @@ class ChatPanelHeader extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.onGroupNoticeClick = this.onGroupNoticeClick.bind(this);
-        this.onGroupSettingClick = this.onGroupSettingClick.bind(this);
     }
 
+    @autoBind
     onGroupNoticeClick() {
         ui.openGroupNotice();
         mask(ui.closeGroupNotice);
     }
 
+    @autoBind
     onGroupSettingClick() {
         user.getGroupInfo(this.props.linkmanId);
         ui.openGroupSetting();

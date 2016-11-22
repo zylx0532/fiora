@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import autoBind from 'autobind-decorator';
 
 import './imageViewer.scss';
 
@@ -23,8 +24,6 @@ class ImageViewer extends React.Component {
             rotate: 0,
         };
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.renderImageViewer = this.renderImageViewer.bind(this);
-        this.handleAddExpressionClick = this.handleAddExpressionClick.bind(this);
     }
 
     componentWillUpdate(nextProps) {
@@ -33,13 +32,14 @@ class ImageViewer extends React.Component {
         }
     }
 
-
+    @autoBind
     handleAddExpressionClick() {
         const { image } = this.props;
         user.addUserExpression(image);
         ui.closeImageViewer();
     }
 
+    @autoBind
     renderImageViewer() {
         const { image } = this.props;
         const { scale, rotate } = this.state;

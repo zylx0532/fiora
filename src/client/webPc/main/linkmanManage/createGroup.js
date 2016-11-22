@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import InputForm from './inputForm';
 import ui from '../../../action/pc';
@@ -18,10 +19,9 @@ class CreateGroup extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.handleClose = this.handleClose.bind(this);
     }
 
+    @autoBind
     handleClick(text) {
         user.createGroup(text).then(response => {
             if (response.status === 201) {
@@ -46,6 +46,7 @@ class CreateGroup extends React.Component {
         });
     }
 
+    @autoBind
     handleClose() {
         ui.closeCreateGroupInput();
         ui.closeMaskLayout();

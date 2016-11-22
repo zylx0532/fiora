@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './toolbar.scss';
 
@@ -15,22 +16,21 @@ class Toolbar extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.renderToolbar = this.renderToolbar.bind(this);
-        this.onExpressionClick = this.onExpressionClick.bind(this);
-        this.handleSelectImage = this.handleSelectImage.bind(this);
-        this.onCodeClick = this.onCodeClick.bind(this);
     }
 
+    @autoBind
     onExpressionClick() {
         ui.openExpression();
         mask(ui.closeExpression);
     }
 
+    @autoBind
     onCodeClick() {
         ui.openCodeInput();
         mask(ui.closeCodeInput);
     }
 
+    @autoBind
     handleSelectImage() {
         const image = this.image.files[0];
         if (!image) {

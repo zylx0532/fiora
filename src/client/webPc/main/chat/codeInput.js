@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { Motion, spring } from 'react-motion';
+import autoBind from 'autobind-decorator';
 
 import './codeInput.scss';
 
@@ -19,10 +20,9 @@ class CodeInput extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.onSendClick = this.onSendClick.bind(this);
-        this.onCancelClick = this.onCancelClick.bind(this);
     }
 
+    @autoBind
     onSendClick() {
         send(this.props.linkmanType, this.props.linkmanId, 'code', this.code.value);
         this.code.value = '';
@@ -30,6 +30,7 @@ class CodeInput extends React.Component {
         ui.closeMaskLayout();
     }
 
+    @autoBind
     onCancelClick() {
         ui.closeCodeInput();
         ui.closeMaskLayout();

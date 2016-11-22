@@ -3,6 +3,7 @@ import pureRenderMixin from 'react-addons-pure-render-mixin';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
+import autoBind from 'autobind-decorator';
 
 import './chat.scss';
 
@@ -26,7 +27,6 @@ class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleOnScroll = this.handleOnScroll.bind(this);
     }
 
     componentWillUpdate(nextProps) {
@@ -42,6 +42,7 @@ class Chat extends React.Component {
         }
     }
 
+    @autoBind
     handleOnScroll(linkmanId, linkmanType, messagesCount) {
         if (onScrollHandle) {
             clearTimeout(onScrollHandle);
@@ -109,7 +110,6 @@ class Message extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.renderContent = this.renderContent.bind(this);
     }
 
     componentDidMount() {
@@ -120,6 +120,7 @@ class Message extends React.Component {
         }
     }
 
+    @autoBind
     renderContent(type, content) {
         if (type === 'text') {
             content = content.replace(

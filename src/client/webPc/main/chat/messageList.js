@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import autoBind from 'autobind-decorator';
 
 import './messageList.scss';
 
@@ -37,9 +38,9 @@ class MessageList extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleOnScroll = this.handleOnScroll.bind(this);
     }
 
+    @autoBind
     handleOnScroll() {
         const { linkmanId, linkmanType, messagesCount } = this.props;
         if (onScrollHandle) {

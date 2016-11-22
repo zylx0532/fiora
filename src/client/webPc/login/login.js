@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './login.scss';
 
@@ -26,13 +27,9 @@ class Login extends React.Component {
             usernameInput: 'normal',
             passwordInput: 'normal',
         };
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleSignup = this.handleSignup.bind(this);
-        this.renderLogin = this.renderLogin.bind(this);
-        this.renderSignup = this.renderSignup.bind(this);
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
     }
 
+    @autoBind
     handleLogin() {
         user
             .login(this.username.value, this.password.value)
@@ -68,6 +65,7 @@ class Login extends React.Component {
             });
     }
 
+    @autoBind
     handleSignup() {
         user
             .signup(this.username.value, this.password.value)
@@ -104,10 +102,12 @@ class Login extends React.Component {
             });
     }
 
+    @autoBind
     handleUsernameChange() {
         ui.getUserAvatar(this.username.value);
     }
 
+    @autoBind
     renderLogin() {
         const { usernameInput, passwordInput } = this.state;
         const { username, avatar } = this.props;
@@ -167,6 +167,7 @@ class Login extends React.Component {
         );
     }
 
+    @autoBind
     renderSignup() {
         const { usernameInput, passwordInput } = this.state;
         return (

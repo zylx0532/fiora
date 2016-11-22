@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
+import autoBind from 'autobind-decorator';
 
 import './expression.scss';
 
@@ -23,19 +24,16 @@ class Expression extends React.Component {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
         this.state = { page: 'default' };
-        this.renderDefaultExpression = this.renderDefaultExpression.bind(this);
-        this.renderCollectExpression = this.renderCollectExpression.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.handleCollectExpressionClick = this.handleCollectExpressionClick.bind(this);
-        this.handleCollectExpressionDelete = this.handleCollectExpressionDelete.bind(this);
     }
 
+    @autoBind
     handleClick(value) {
         ui.insertText(`#(${value})`);
         ui.closeExpression();
         ui.closeMaskLayout();
     }
 
+    @autoBind
     handleCollectExpressionClick(src) {
         const { linkmanType, linkmanId } = this.props;
         send(linkmanType, linkmanId, 'image', src);
@@ -43,10 +41,12 @@ class Expression extends React.Component {
         ui.closeMaskLayout();
     }
 
+    @autoBind
     handleCollectExpressionDelete(src) {
         user.deleteUserExpression(src);
     }
 
+    @autoBind
     renderDefaultExpression() {
         return (
             <div className="default-expression">
@@ -64,6 +64,7 @@ class Expression extends React.Component {
         );
     }
 
+    @autoBind
     renderCollectExpression() {
         const { userExpressions } = this.props;
 

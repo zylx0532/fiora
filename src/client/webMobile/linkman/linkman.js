@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './linkman.scss';
 
@@ -56,9 +57,9 @@ class Linkman extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleUserListItemClick = this.handleUserListItemClick.bind(this);
     }
 
+    @autoBind
     handleUserListItemClick() {
         const { linkman } = this.props;
         this.context.router.push(`/chat/${linkman.get('type')}/${linkman.get('_id')}`);

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './input.scss';
 
@@ -15,9 +16,6 @@ class Input extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
-        this.handlePaste = this.handlePaste.bind(this);
-        this.sendMessage = this.sendMessage.bind(this);
     }
 
     insertAtCursor(input, value) {
@@ -44,6 +42,7 @@ class Input extends React.Component {
         }
     }
 
+    @autoBind
     sendMessage() {
         const { type, linkmanId } = this.props;
 
@@ -82,6 +81,7 @@ class Input extends React.Component {
         }
     }
 
+    @autoBind
     handleInputKeyDown(e) {
         if (e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
@@ -89,6 +89,7 @@ class Input extends React.Component {
         }
     }
 
+    @autoBind
     handlePaste(e) {
         const items = (e.clipboardData || e.originalEvent.clipboardData).items;
         const types = (e.clipboardData || e.originalEvent.clipboardData).types;

@@ -15,11 +15,6 @@ class InputForm extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleCloseClick = this.handleCloseClick.bind(this);
-    }
-
-    handleCloseClick() {
-
     }
 
     render() {

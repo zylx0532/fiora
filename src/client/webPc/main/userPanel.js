@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './userPanel.scss';
 
@@ -19,9 +20,9 @@ class UserPanel extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleAvatarClick = this.handleAvatarClick.bind(this);
     }
 
+    @autoBind
     handleAvatarClick() {
         ui.openUserSetting(this.props.user);
         mask(ui.closeUserSetting);

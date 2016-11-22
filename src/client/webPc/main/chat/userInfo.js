@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './userInfo.scss';
 
@@ -34,8 +35,6 @@ class UserInfo extends React.Component {
         super(props);
         this.state = initialState;
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleCloseClick = this.handleCloseClick.bind(this);
-        this.handleSendMessageClick = this.handleSendMessageClick.bind(this);
     }
 
     componentWillUpdate(nextProps) {
@@ -52,11 +51,13 @@ class UserInfo extends React.Component {
         }
     }
 
+    @autoBind
     handleCloseClick() {
         ui.closeUserInfo();
         ui.closeMaskLayout();
     }
 
+    @autoBind
     handleSendMessageClick() {
         user.addUserLinkman(this.state);
         ui.closeUserInfo();

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import autoBind from 'autobind-decorator';
 
 import './inputBox.scss';
 
@@ -18,8 +19,6 @@ class InputBox extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleInputKeyDown = this.handleInputKeyDown.bind(this);
-        this.handlePaste = this.handlePaste.bind(this);
     }
 
     componentWillUpdate(nextProps) {
@@ -55,6 +54,7 @@ class InputBox extends React.Component {
         }
     }
 
+    @autoBind
     handleInputKeyDown(e) {
         const { type, linkmanId } = this.props;
         if (e.keyCode === 13 && !e.shiftKey) {
@@ -80,6 +80,7 @@ class InputBox extends React.Component {
         }
     }
 
+    @autoBind
     handlePaste(e) {
         const items = (e.clipboardData || e.originalEvent.clipboardData).items;
         const types = (e.clipboardData || e.originalEvent.clipboardData).types;

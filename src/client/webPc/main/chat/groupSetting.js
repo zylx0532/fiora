@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
+import autoBind from 'autobind-decorator';
 
 import './groupSetting.scss';
 
@@ -25,10 +26,9 @@ class GroupSetting extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleSelectImage = this.handleSelectImage.bind(this);
-        this.handleLeaveGroup = this.handleLeaveGroup.bind(this);
     }
 
+    @autoBind
     handleSelectImage() {
         const image = this.image.files[0];
         if (!image) {
@@ -58,6 +58,7 @@ class GroupSetting extends React.Component {
         reader.readAsDataURL(image);
     }
 
+    @autoBind
     handleLeaveGroup() {
         const { linkmanId } = this.props;
         user.leaveGroup(linkmanId).then(response => {

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import pureRenderMixin from 'react-addons-pure-render-mixin';
+import autoBind from 'autobind-decorator';
 
 import './userList.scss';
 
@@ -38,9 +39,9 @@ class User extends React.Component {
     constructor(props) {
         super(props);
         this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleUserListItemClick = this.handleUserListItemClick.bind(this);
     }
 
+    @autoBind
     handleUserListItemClick() {
         const { linkman } = this.props;
         this.context.router.push(`/main/chat/${linkman.get('type')}/${linkman.get('_id')}`);
