@@ -12,6 +12,7 @@ import autoBind from 'autobind-decorator';
 import color from '../../util/color.js';
 import url from '../../util/url.js';
 import cs from '../../util/commonStyle.js';
+import rn from '../../../action/rn.js';
 
 let styles = null;
 
@@ -23,8 +24,8 @@ export default class Linkman extends Component {
 
     @autoBind
     handleClick() {
-        // const { linkman } = this.props;
-        // navigator.push({ page: 'chat', linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
+        const { linkman } = this.props;
+        rn.navigator('chat', { linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
     }
 
     render() {

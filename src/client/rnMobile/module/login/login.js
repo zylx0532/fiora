@@ -40,8 +40,7 @@ export default class Login extends Component {
                 .then(result => {
                     if (result.status === 201) {
                         user.online();
-                        // this.props.navigator.push({ page: 'userList' });
-                        rn.navigator('userList', {});
+                        rn.navigator('userList');
                     }
                 });
             }
@@ -57,7 +56,7 @@ export default class Login extends Component {
             if (response.status === 201) {
                 AsyncStorage.setItem('token', response.data.token);
                 user.online();
-                // this.props.navigator.push({ page: 'userList' });
+                rn.navigator('userList');
             }
         });
     }
@@ -97,7 +96,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
-                    onPress={() => {}/* navigator.push({ page: 'login', status: 'signup' })*/}
+                    onPress={() => rn.navigator('login', { status: 'signup' })}
                 >
                     <Text
                         style={styles.text()}
@@ -139,7 +138,7 @@ export default class Login extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.textContainer()}
-                    onPress={() => {}/* navigator.push({ page: 'login', status: 'login' })*/}
+                    onPress={() => rn.navigator('login', { status: 'login' })}
                 >
                     <Text
                         style={styles.text()}
