@@ -18,48 +18,40 @@ const routes = {
 };
 
 @pureRender
-class NavigatorContainer extends Component {
+class Index extends Component {
     static propTypes = {
         state: PropTypes.object,
         router: PropTypes.string.isRequired,
         routerParams: PropTypes.object.isRequired,
     }
 
-    render() {
-        const { router, routerParams } = this.props;
-        const RenderComponent = routes[router];
-        return (
-            <RenderComponent {...routerParams.toJS()} />
-        );
-    }
-}
-
-const ConnectedNavigatorContainer = connect(
-    state => ({
-        router: state.getIn(['rn', 'router']),
-        routerParams: state.getIn(['rn', 'routerParams']),
-    })
-)(NavigatorContainer);
-
-@pureRender
-class Index extends Component {
-    static propTypes = {
-        state: PropTypes.object,
+    componentWillUpdate(nextProps) {
+        if (
+            nextProps.router !== this.props.router
+        ) {
+            this.navigator.push({});
+        }
     }
 
     render() {
         // for debug
         console.logState('global state', this.props.state.toJS());
 
+        const { router, routerParams } = this.props;
         return (
             <Navigator
                 initialRoute={{}}
                 renderScene={
-                    (route, navigator) => (
-                        <ConnectedNavigatorContainer
-                            navigator={navigator}
-                        />
-                    )
+                    (route, navigator) => {
+                        console.log('do render scene');
+                        this.navigator = navigator;
+                        const RenderComponent = routes[router];
+                        return (
+                            <RenderComponent
+                                {...routerParams.toJS()}
+                            />
+                        );
+                    }
                 }
             />
         );
