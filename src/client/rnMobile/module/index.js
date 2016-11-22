@@ -29,7 +29,7 @@ class Index extends Component {
         if (
             nextProps.router !== this.props.router
         ) {
-            this.navigator.push({});
+            this.navigator.push({ router: nextProps.router, routerParams: nextProps.routerParams });
         }
     }
 
@@ -40,12 +40,11 @@ class Index extends Component {
         const { router, routerParams } = this.props;
         return (
             <Navigator
-                initialRoute={{}}
+                initialRoute={{ router, routerParams }}
                 renderScene={
                     (route, navigator) => {
-                        console.log('do render scene');
                         this.navigator = navigator;
-                        const RenderComponent = routes[router];
+                        const RenderComponent = routes[route.router];
                         return (
                             <RenderComponent
                                 {...routerParams.toJS()}
