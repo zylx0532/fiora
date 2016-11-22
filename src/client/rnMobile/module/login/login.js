@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     AsyncStorage,
 } from 'react-native';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
+import autoBind from 'autobind-decorator';
 
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
@@ -17,6 +18,7 @@ import userDefaultAvatar from '../../../assets/image/user_avatar_default.png';
 
 let styles = null;
 
+@pureRender
 export default class Login extends Component {
     static propTypes = {
         status: PropTypes.string,
@@ -28,10 +30,6 @@ export default class Login extends Component {
             username: '',
             password: '',
         };
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.renderLogin = this.renderLogin.bind(this);
-        this.renderSignup = this.renderSignup.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
     }
 
     componentDidMount() {
@@ -50,7 +48,7 @@ export default class Login extends Component {
         });
     }
 
-
+    @autoBind
     handleLogin() {
         user.login(
             this.state.username,
@@ -64,6 +62,7 @@ export default class Login extends Component {
         });
     }
 
+    @autoBind
     renderLogin() {
         return (
             <View style={styles.container()}>
@@ -108,6 +107,7 @@ export default class Login extends Component {
         );
     }
 
+    @autoBind
     renderSignup() {
         return (
             <View style={styles.container()}>

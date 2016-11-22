@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
 } from 'react-native';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import cs from '../../util/commonStyle.js';
 import Header from './header.js';
@@ -10,12 +10,8 @@ import LinkmanList from './linkmanList.js';
 
 let styles = null;
 
+@pureRender
 export default class UserList extends Component {
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
     render() {
         return (
             <View style={styles.container()}>

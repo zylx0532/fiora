@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
+import autoBind from 'autobind-decorator';
 
 import color from '../../util/color.js';
 import url from '../../util/url.js';
@@ -14,17 +15,13 @@ import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
+@pureRender
 export default class Linkman extends Component {
     static propTypes = {
         linkman: PropTypes.object.isRequired,
     }
 
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
+    @autoBind
     handleClick() {
         // const { linkman } = this.props;
         // navigator.push({ page: 'chat', linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });

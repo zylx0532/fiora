@@ -3,6 +3,8 @@ import {
     Text,
     View,
 } from 'react-native';
+import pureRender from 'pure-render-decorator';
+
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 
@@ -11,6 +13,7 @@ import Input from './input.js';
 
 let styles = null;
 
+@pureRender
 export default class Chat extends Component {
     render() {
         return (

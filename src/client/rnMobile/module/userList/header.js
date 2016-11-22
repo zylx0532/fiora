@@ -5,7 +5,7 @@ import {
     Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import pureRenderMixin from 'react-addons-pure-render-mixin';
+import pureRender from 'pure-render-decorator';
 
 import color from '../../util/color.js';
 import url from '../../util/url.js';
@@ -13,16 +13,12 @@ import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
+@pureRender
 class Header extends Component {
     static propTypes = {
         username: PropTypes.string.isRequired,
         avatar: PropTypes.string.isRequired,
         online: PropTypes.bool.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-        this.shouldComponentUpdate = pureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {

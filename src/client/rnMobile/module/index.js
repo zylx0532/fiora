@@ -3,6 +3,7 @@ import {
     Navigator,
 } from 'react-native';
 import { connect, Provider } from 'react-redux';
+import pureRender from 'pure-render-decorator';
 
 import Store from '../../store.js';
 
@@ -16,6 +17,7 @@ const routes = {
     userList: UserList,
 };
 
+@pureRender
 class NavigatorContainer extends Component {
     static propTypes = {
         state: PropTypes.object,
@@ -39,6 +41,7 @@ const ConnectedNavigatorContainer = connect(
     })
 )(NavigatorContainer);
 
+@pureRender
 class Index extends Component {
     static propTypes = {
         state: PropTypes.object,

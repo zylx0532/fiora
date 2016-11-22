@@ -5,11 +5,14 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import pureRender from 'pure-render-decorator';
+
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
+@pureRender
 export default class Input extends Component {
     render() {
         return (

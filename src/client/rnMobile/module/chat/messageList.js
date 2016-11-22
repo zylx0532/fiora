@@ -3,12 +3,14 @@ import {
     View,
     ScrollView,
 } from 'react-native';
-import cs from '../../util/commonStyle.js';
+import pureRender from 'pure-render-decorator';
 
+import cs from '../../util/commonStyle.js';
 import Message from './message.js';
 
 let styles = null;
 
+@pureRender
 export default class MessageList extends Component {
     render() {
         return (

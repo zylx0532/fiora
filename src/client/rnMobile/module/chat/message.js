@@ -4,11 +4,14 @@ import {
     View,
     Image,
 } from 'react-native';
+import pureRender from 'pure-render-decorator';
+
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 
 let styles = null;
 
+@pureRender
 export default class Message extends Component {
     static propTypes = {
         isSelf: PropTypes.bool,
