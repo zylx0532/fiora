@@ -4,9 +4,11 @@ import store from '../store';
 
 // third party middleware
 import plugin from '../middleware/plugin';
+import filterCrMessage from '../middleware/filterCrMessage.js';
 
 const thirdPartyMiddlewares = [
     plugin,
+    filterCrMessage,
 ];
 
 /**
