@@ -50,13 +50,31 @@ class Expression extends React.Component {
     renderDefaultExpression() {
         return (
             <div className="default-expression">
-                {
-                expressions.map((e, index) => (
+            {
+                expressions.baidu.map((e, index) => (
                     <div
                         key={index}
                         onClick={() => this.handleClick(e)}
                     >
                         <div style={{ backgroundPosition: `left ${-30 * index}px` }} />
+                    </div>
+                ))
+            }
+            </div>
+        );
+    }
+
+    @autoBind
+    renderAliExpression() {
+        return (
+            <div className="ali-expression">
+            {
+                expressions.ali.map((e, index) => (
+                    <div
+                        key={index}
+                        onClick={() => this.handleClick(`ali${e}`)}
+                    >
+                        <div style={{ backgroundPosition: `left ${-44 * index}px` }} />
                     </div>
                 ))
             }
@@ -102,13 +120,29 @@ class Expression extends React.Component {
                         className="expression"
                         style={{ opacity, transform: `scale(${scale})`, display: opacity === 0 ? 'none' : 'block' }}
                     >
-                        { page === 'default' ? this.renderDefaultExpression() : this.renderCollectExpression() }
+                        {
+                            ((p) => {
+                                if (p === 'ali') {
+                                    return this.renderAliExpression();
+                                }
+                                else if (p === 'collect') {
+                                    return this.renderCollectExpression();
+                                }
+                                return this.renderDefaultExpression();
+                            })(page)
+                        }
                         <div>
                             <div
                                 className={page === 'default' ? 'selected' : ''}
                                 onClick={() => this.setState({ page: 'default' })}
                             >
                                 <img src={'http://assets.suisuijiang.com/default-expression.png'} />
+                            </div>
+                            <div
+                                className={page === 'ali' ? 'selected' : ''}
+                                onClick={() => this.setState({ page: 'ali' })}
+                            >
+                                <img src={'http://assets.suisuijiang.com/ali-expression.png?imageView/2/w/20/h/20'} />
                             </div>
                             <div
                                 className={page === 'collect' ? 'selected' : ''}

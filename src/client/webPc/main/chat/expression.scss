@@ -1,7 +1,7 @@
 @import "../../../common/commonStyle";
 
 .expression {
-    @include size(400px, 234px);
+    @include size(410px, 234px);
     @include horizontalCenter;
     @include floatIndex;
     background-color: white;
@@ -22,6 +22,27 @@
                 @include size(30px, 30px);
                 background-repeat: no-repeat;
                 background-image: url('http://assets.suisuijiang.com/expressions.png');
+            }
+        }
+    }
+    .ali-expression {
+        @include size(100%, 200px);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow: {
+            x: hidden;
+            y: scroll;
+        };
+
+        & > div {
+            @include size(50px, 50px);
+            padding: 5px;
+
+            & > div {
+                @include size(44px, 44px);
+                background-repeat: no-repeat;
+                background-image: url('http://assets.suisuijiang.com/ali.png?imageView/2/w/44');
             }
         }
     }
