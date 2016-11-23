@@ -106,8 +106,7 @@ class SystemSetting extends React.Component {
                             <a
                                 className="button"
                                 href="https://github.com/yinxin630/fiora"
-                                rel="noopener noreferrer"
-                                target="_blank"
+                                target="_blank" // eslint-disable-line
                             >
                                 <i className="icon">&#xe611;</i>
                                 <span>源码</span>
