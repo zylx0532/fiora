@@ -7,8 +7,8 @@ import plugin from '../middleware/plugin';
 import handleRobotMessage from '../middleware/handleRobotMessage.js';
 
 const thirdPartyMiddlewares = [
-    plugin,
     handleRobotMessage,
+    plugin,
 ];
 
 /**
