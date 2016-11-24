@@ -32,8 +32,7 @@ export default function handleRobotMessage(message) {
         message.from.avatar = messageData.avatar;
         message.type = getMessageType(messageData);
         message.content = messageData.content;
-        message.preview = `${message.from.username}: ${message.type === 'text' ? message.content : message.type}`;
-        message.playSound = false;
+        message.preview = `${message.from.username}: ${message.type === 'text' ? message.content : `${message.type}`}`;
         if (message.showNotification) {
             message.notification.body = message.type === 'text' ? message.content : `[${message.type}]`;
             message.notification.title = `${message.from.username} - 发来消息:`;
