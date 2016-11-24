@@ -9,6 +9,11 @@ const MaxMessageLimit = 10; // every mimute
 );
 
 module.exports = function (userId) {
+    // 5835984b5fe025750e972349 -> fiora数据库中robot10的id
+    // 去掉机器人的消息频率限制
+    if (userId === '5835984b5fe025750e972349') {
+        return true;
+    }
     if (count[userId] === undefined) {
         count[userId] = 1;
         return true;
