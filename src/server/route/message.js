@@ -25,7 +25,7 @@ const MessageRoute = {
         if (data.type === 'text') {
             data.content = data.content.slice(0, config.maxMessageLength);
             data.content = data.content
-                .replace(/&/g, '&amp')
+                .replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')

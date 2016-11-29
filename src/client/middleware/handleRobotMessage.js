@@ -15,7 +15,7 @@ export default function handleRobotMessage(message) {
     // 5835984b5fe025750e972349 -> fiora数据库中robot10的id
     if (typeof message.from === 'object' && message.from._id === '5835984b5fe025750e972349') {
         message.content = message.content
-                .replace(/&amp/g, '&')
+                .replace(/&amp;/g, '&')
                 .replace(/&quot;/g, '"')
                 .replace(/&lt;/g, '<')
                 .replace(/&gt;/g, '>')
@@ -28,6 +28,12 @@ export default function handleRobotMessage(message) {
         catch (err) {
             return message;
         }
+        messageData.content = messageData.content
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/'/g, '&apos;');
         message.from.username = `CR - ${messageData.name}`;
         message.from.avatar = messageData.avatar;
         message.type = getMessageType(messageData);

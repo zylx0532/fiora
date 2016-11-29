@@ -25,7 +25,7 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
     const messageId = `self${Date.now()}`;
     if (messageType === 'text') {
         messageContentBackup = messageContentBackup
-            .replace(/&/g, '&amp')
+            .replace(/&/g, '&amp;')
             .replace(/"/g, '&quot;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')

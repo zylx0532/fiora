@@ -30,18 +30,23 @@ const UserSchema = new Schema({
     introduce: {
         type: String,
         default: '无',
+        maxLength: 256,
     },
     location: {
         type: String,
+        maxLength: 128,
     },
     github: {
         type: String,
+        maxLength: 64,
     },
     website: {
         type: String,
+        maxLength: 64,
     },
     qq: {
         type: String,
+        maxLength: 16,
     },
     friends: [
         {
