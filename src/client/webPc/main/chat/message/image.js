@@ -12,7 +12,7 @@ const imageMessage = {
             >
                 <img
                     style={{ maxHeight: window.innerHeight > 800 ? 300 : 200 }}
-                    src={message.get('content')}
+                    src={`${message.get('content')}?imageView/2/w/200/h/200`}
                     ref={i => img = i}
                     onLoad={scrollMessage}
                     onError={() => img.src = 'http://assets.suisuijiang.com/image_not_found.png?imageView2/2/w/250'}
