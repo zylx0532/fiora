@@ -15,7 +15,7 @@ Fiora是一款web聊天应用. 使用node.js, koa和react编写.
 
 ## 安装
 
-该项目依赖于node.js和mongodb数据库. 安装[node.js](https://nodejs.org/en/download/) ([中国镜像](https://npm.taobao.org/mirrors/node)). 安装[mongodb](https://docs.mongodb.com/manual/installation/).
+该项目依赖于node.js(>= 6.0, 推荐使用6.9.1)和mongodb数据库. 安装[node.js](https://nodejs.org/en/download/) ([中国镜像](https://npm.taobao.org/mirrors/node)). 安装[mongodb](https://docs.mongodb.com/manual/installation/).
 
 0. 从 `https://github.com/yinxin630/fiora` 克隆项目到本地
 0. 进行项目目录执行 `npm install`
