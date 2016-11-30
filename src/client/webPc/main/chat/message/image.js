@@ -7,13 +7,14 @@ const imageMessage = {
     render: (message, me, scrollMessage) => {
         let img = null;
         const content = message.get('content');
+        const maxHeight = window.innerHeight > 800 ? 300 : 200;
         return base(
             <div
                 className="image"
             >
                 <img
                     style={{ maxHeight: window.innerHeight > 800 ? 300 : 200 }}
-                    src={`${content}${/^http/.test(content) ? '?imageView/2/w/200/h/200' : ''}`}
+                    src={`${content}${/^http/.test(content) ? `?imageView/2/w/${maxHeight}/h/${maxHeight}` : ''}`}
                     ref={i => img = i}
                     onLoad={scrollMessage}
                     onError={() => img.src = 'http://assets.suisuijiang.com/image_not_found.png?imageView2/2/w/250'}

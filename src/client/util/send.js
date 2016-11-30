@@ -39,6 +39,7 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
         _id: messageId,
         type: messageType,
         content: messageContentBackup,
+        createTime: new Date(),
         from: {
             _id: state.getIn(['user', '_id']),
             avatar: state.getIn(['user', 'avatar']),
