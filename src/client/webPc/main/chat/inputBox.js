@@ -53,6 +53,11 @@ class InputBox extends React.Component {
     @autoBind
     handleInputKeyDown(e) {
         const { type, linkmanId } = this.props;
+        // 过滤tab键
+        if (e.keyCode === 9) {
+            e.preventDefault();
+            return;
+        }
         if (e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
 
