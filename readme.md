@@ -44,6 +44,49 @@ The project is powered by node.js and mongodb database. To install [node.js](htt
 
 ![](screenshot_01.png)
 
+## 目录结构
+
+    |-- [android]                 //react-native android directory
+    |-- [bin]                     //executable scripting tools
+    |    |-- develop.js           //back-end develop hot-reload support
+    |    |-- reduxDevServer.js    //redux-devtool local server
+    |-- [config]                  //project config
+    |    |-- config.simple.js     //simple config
+    |-- [ios]                     //react-native ios directory
+    |-- [public]                  //file server public root directory
+    |-- [src]                     //source
+    |    |-- client               //client source
+    |    |    |-- [action]        //redux action define
+    |    |    |-- [assets]        //resource
+    |    |    |-- [common]        //public component
+    |    |    |-- [middleware]    //message handle middleware
+    |    |    |-- [reducer]       //redux reducer define
+    |    |    |-- [rnMobile]      //react native client
+    |    |    |-- [util]          //tool function
+    |    |    |-- [webMobile]     //mobile web client
+    |    |    |-- [webPc]         //pc web client
+    |    |    |-- api.js          //web global api
+    |    |    |-- socket.js       //socket.io client
+    |    |    |-- store.js        //redux store define
+    |    |-- server               //server source
+    |    |    |-- [model]         //database model define
+    |    |    |-- [police]        //police
+    |    |    |-- [route]         //route define
+    |    |    |-- [util]          //tool function
+    |    |    |-- app.js          //entry
+    |-- [webpack]                 //webpack config
+    |    |-- webpackk.dev.js      //webpack dev config
+    |    |-- webpack.prod.js      //webpack prod config
+    |-- .babelrc                  //babel config
+    |-- .buckconfig               //react native need config
+    |-- .eslintignore             //eslint ignore config
+    |-- .eslintrc.json            //eslint rule config
+    |-- .flowconfig               //react native need config
+    |-- .gitignore                //git ignore config
+    |-- .watchmanconfig           //react native need config
+    |-- package.json              //npm
+    ...
+
 ## Contribute
 
 If you want to add functionality or fix bug, please observe the following process.

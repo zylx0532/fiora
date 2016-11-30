@@ -39,6 +39,49 @@ Fiora是一款web聊天应用. 使用node.js, koa和react编写.
 
 ![](screenshot_01.png)
 
+## 目录结构
+
+    |-- [android]                 //react-native android 文件夹
+    |-- [bin]                     //可执行的脚本工具
+    |    |-- develop.js           //开发环境服务端hot-reload支持
+    |    |-- reduxDevServer.js    //redux-devtool本地服务
+    |-- [config]                  //项目配置文件
+    |    |-- config.simple.js     //示例配置文件
+    |-- [ios]                     //react-native ios 文件夹
+    |-- [public]                  //文件服务器根目录
+    |-- [src]                     //源码
+    |    |-- client               //客户端代码
+    |    |    |-- [action]        //redux action定义
+    |    |    |-- [assets]        //资源
+    |    |    |-- [common]        //公共组件
+    |    |    |-- [middleware]    //消息处理中间件
+    |    |    |-- [reducer]       //redux reducer定义
+    |    |    |-- [rnMobile]      //react native客户端
+    |    |    |-- [util]          //工具函数
+    |    |    |-- [webMobile]     //mobile web客户端
+    |    |    |-- [webPc]         //pc web客户端
+    |    |    |-- api.js          //web全局api
+    |    |    |-- socket.js       //socket.io client
+    |    |    |-- store.js        //redux store定义
+    |    |-- server               //服务端代码
+    |    |    |-- [model]         //数据库模型定义
+    |    |    |-- [police]        //权限相关
+    |    |    |-- [route]         //路由
+    |    |    |-- [util]          //工具函数
+    |    |    |-- app.js          //入口
+    |-- [webpack]                 //webpack 配置文件
+    |    |-- webpackk.dev.js      //webpack dev环境配置
+    |    |-- webpack.prod.js      //webpack 发布环境配置
+    |-- .babelrc                  //babel配置
+    |-- .buckconfig               //react native所需配置
+    |-- .eslintignore             //eslint忽略配置
+    |-- .eslintrc.json            //eslint规则配置
+    |-- .flowconfig               //react native所需配置
+    |-- .gitignore                //git忽略配置
+    |-- .watchmanconfig           //react native所需配置
+    |-- package.json              //npm
+    ...
+
 ## 贡献代码
 
 如果你想要添加功能或者修复BUG. 请遵守下列流程.
