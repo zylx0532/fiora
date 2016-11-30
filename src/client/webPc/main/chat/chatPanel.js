@@ -23,9 +23,16 @@ class ChatPanel extends React.Component {
         me: PropTypes.string.isRequired,
     };
 
+    componentWillMount() {
+        user.getGroupInfo(this.props.linkman.get('_id'));
+    }
+
     componentWillUpdate(nextProps) {
         if (nextProps.linkman.get('unread') > 0 && nextProps.shouldScrollMessage) {
             user.clearUnread(nextProps.linkman.get('type'), nextProps.linkman.get('_id'));
+        }
+        if (this.props.linkman.get('_id') !== nextProps.linkman.get('_id') && nextProps.linkman.get('type') === 'group') {
+            user.getGroupInfo(nextProps.linkman.get('_id'));
         }
     }
 

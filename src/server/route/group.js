@@ -59,7 +59,7 @@ const GroupRoute = {
         assert(!data.groupId, this.end, 400, 'need groupId param but not exists');
         assert(!mongoose.Types.ObjectId.isValid(data.groupId), this.end, 400, 'groupId is invalid');
 
-        const group = yield Group.findById(data.groupId).populate({
+        const group = yield Group.findById(data.groupId, '-messages -isDefault').populate({
             path: 'members',
             select: '_id avatar username',
         });
