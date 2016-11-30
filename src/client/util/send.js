@@ -20,6 +20,10 @@ const filterReg = [
 ];
 
 function send(linkmanType, linkmanId, messageType, messageContent) {
+    if (messageContent.length > 1.5 * 1024 * 1024) {
+        ui.openNotification('图片太大了, 请压缩后再试.');
+        return;
+    }
     let messageContentBackup = `${messageContent}`;
     const state = Store.getState();
     const messageId = `self${Date.now()}`;
@@ -62,21 +66,20 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
         }
     }
 
+    function responseCallback(response) {
+        if (response.status === 401 && response.data === 'send messages too frequently') {
+            ui.openNotification('消息发送频率过快, 请稍候.');
+        }
+        else if (response.status !== 201) {
+            ui.openNotification('消息发送失败, 请重试.');
+        }
+        return response;
+    }
     if (linkmanType === 'group') {
-        return user.sendGroupMessage(linkmanId, messageType, messageContent).then(response => {
-            if (response.status === 401 && response.data === 'send messages too frequently') {
-                ui.openNotification('消息发送频率过快, 请稍候.');
-            }
-            return response;
-        });
+        return user.sendGroupMessage(linkmanId, messageType, messageContent).then(responseCallback);
     }
     else {
-        return user.sendMessage(linkmanId, messageType, messageContent).then(response => {
-            if (response.status === 401 && response.data === 'send messages too frequently') {
-                ui.openNotification('消息发送频率过快, 请稍候.');
-            }
-            return response;
-        });
+        return user.sendMessage(linkmanId, messageType, messageContent).then(responseCallback);
     }
 }
 
