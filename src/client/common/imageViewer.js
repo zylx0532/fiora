@@ -35,6 +35,10 @@ class ImageViewer extends React.Component {
     @autoBind
     handleAddExpressionClick() {
         const { image } = this.props;
+        if (/^data:/.test(image)) {
+            ui.openNotification('禁止添加base64图片到收藏夹, 请刷新页面后再添加.');
+            return;
+        }
         user.addUserExpression(image);
         ui.closeImageViewer();
     }
