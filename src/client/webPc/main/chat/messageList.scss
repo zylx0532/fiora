@@ -118,4 +118,13 @@
             margin-left: 5px;
         }
     }
+
+    .plugin-dom-container {
+        & > div > p {
+            white-space: nowrap !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+    }
 }
