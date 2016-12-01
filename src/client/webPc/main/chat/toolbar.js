@@ -71,7 +71,7 @@ class Toolbar extends React.Component {
                     className="image-input"
                     type="file"
                     ref={image => this.image = image}
-                    accept="image/*"
+                    accept="image/png,image/jpeg,image/gif"
                     onChange={this.handleSelectImage}
                 />
             </div>
