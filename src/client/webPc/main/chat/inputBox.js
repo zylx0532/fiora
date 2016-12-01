@@ -8,6 +8,7 @@ import './inputBox.scss';
 import ui from '../../../action/pc';
 import config from '../../../../../config/config';
 import send from '../../../util/send';
+import imageUtil from '../../../util/image';
 
 @pureRender
 class InputBox extends React.Component {
@@ -94,7 +95,9 @@ class InputBox extends React.Component {
                     const reader = new FileReader();
                     const instance = this;
                     reader.onloadend = function () {
-                        send(instance.props.type, instance.props.linkmanId, 'image', this.result);
+                        const img = new Image();
+                        img.src = this.result;
+                        send(instance.props.type, instance.props.linkmanId, 'image', imageUtil.convertToJpeg(img, 0.9));
                     };
                     reader.readAsDataURL(item.getAsFile());
                 }
