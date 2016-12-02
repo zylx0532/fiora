@@ -13,7 +13,7 @@ const textMessage = {
             (r, e) => {
                 const index = expressions.baidu.indexOf(e);
                 if (index !== -1) {
-                    return `<img class="expression-default-message" src="${transparentImage}" style="background-position: left ${-30 * index}px" onerror="this.style.display='none'">`;
+                    return `<img class="expression-default-message" src="${transparentImage}" style="background-position: left ${-30 * index}px" onerror="this.style.display='none'" alt="${r}">`;
                 }
                 return r;
             }
@@ -22,7 +22,7 @@ const textMessage = {
             (r, e) => {
                 const index = expressions.ali.indexOf(e);
                 if (index !== -1) {
-                    return `<img class="expression-ali-message" src="${transparentImage}" style="background-position: left ${-44 * index}px" onerror="this.style.display='none'">`;
+                    return `<img class="expression-ali-message" src="${transparentImage}" style="background-position: left ${-44 * index}px" onerror="this.style.display='none'" alt="${r}">`;
                 }
                 return r;
             }
