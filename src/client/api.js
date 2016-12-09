@@ -69,6 +69,12 @@ const publicApi = {
             }
         });
     },
+    getAllClients: function (cb) {
+        socket.get('/clients', {}, cb);
+    },
+    getAllAuths: function (cb) {
+        socket.get('/auths', {}, cb);
+    },
 };
 
 export default publicApi;
