@@ -3,7 +3,7 @@ import config from '../../config/config';
 let socketClient = null;
 let platformSocketParam = { };
 if (window.navigator.product === 'ReactNative') {
-    socketClient = require('../../node_modules/socket.io-client/socket.io');
+    socketClient = require('socket.io-client');
 
     window.navigator.userAgent = 'react-native';
     window.location = {};
