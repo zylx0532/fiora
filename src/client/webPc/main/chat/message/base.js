@@ -6,9 +6,15 @@ import ui from '../../../../action/pc';
 import mask from '../../../../util/mask';
 
 
-function handleAvatarClick(message) {
-    ui.openUserInfo(message.getIn(['from', '_id']));
-    mask(ui.closeUserInfo);
+const otherAvatar = { cursor: 'pointer' };
+const myAvatar = {};
+
+function handleAvatarClick(message, me) {
+    const from = message.getIn(['from', '_id']);
+    if (from !== me) {
+        ui.openUserInfo(from);
+        mask(ui.closeUserInfo);
+    }
 }
 
 /**
@@ -21,11 +27,12 @@ const baseMessage = function (payload, message, me) {
     return (
         <div className={`native-message ${message.getIn(['from', '_id']) === me ? 'message-self' : ''}`}>
             <Avatar
+                style={message.getIn(['from', '_id']) === me ? myAvatar : otherAvatar}
                 avatar={message.getIn(['from', 'avatar']) || ''}
                 name={message.getIn(['from', 'username']) || ''}
                 width={40}
                 height={40}
-                onClick={() => handleAvatarClick(message)}
+                onClick={() => handleAvatarClick(message, me)}
             />
             <div>
                 <div>

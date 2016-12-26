@@ -14,15 +14,16 @@ class Avatar extends React.Component {
         onClick: PropTypes.func,
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
+        style: PropTypes.object,
     };
 
     render() {
-        const { avatar, name, width, height, title, onClick, onMouseEnter, onMouseLeave } = this.props;
+        const { avatar, name, width, height, title, onClick, onMouseEnter, onMouseLeave, style } = this.props;
         return (
             avatar.match(/^(http|data:image)/) ?
                 <img
                     className="avatar-image"
-                    style={{ width, height, minWidth: width, minHeight: height }}
+                    style={{ width, height, minWidth: width, minHeight: height, ...style }}
                     src={/^http/.test(avatar) ? `${avatar}?imageView2/2/w/${width}/h/${height}` : avatar}
                     title={title}
                     onClick={onClick}
@@ -32,7 +33,7 @@ class Avatar extends React.Component {
             :
                 <div
                     className="avatar-text"
-                    style={{ backgroundColor: avatar, width, height, fontSize: width / 2.5, minWidth: width, minHeight: height }}
+                    style={{ backgroundColor: avatar, width, height, fontSize: width / 2.5, minWidth: width, minHeight: height, ...style }}
                     title={title}
                     onClick={onClick}
                     onMouseEnter={onMouseEnter}
