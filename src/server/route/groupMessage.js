@@ -21,6 +21,7 @@ const GroupMessageRoute = {
 
         const user = yield User.findById(this.socket.user);
         const group = yield Group.findById(data.linkmanId);
+        assert(!group, this.end, 400, 'group not exits');
 
         if (data.type === 'text') {
             data.content = data.content.slice(0, config.maxMessageLength);

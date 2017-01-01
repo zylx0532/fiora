@@ -21,6 +21,7 @@ const MessageRoute = {
 
         const sender = yield User.findById(this.socket.user);
         const receiver = yield User.findById(data.linkmanId);
+        assert(!receiver, this.end, 400, 'user not exits');
 
         if (data.type === 'text') {
             data.content = data.content.slice(0, config.maxMessageLength);
