@@ -24,21 +24,12 @@ function send(linkmanType, linkmanId, messageType, messageContent) {
         ui.openNotification('图片太大了, 请压缩后再试.');
         return;
     }
-    let messageContentBackup = `${messageContent}`;
     const state = Store.getState();
     const messageId = `self${Date.now()}`;
-    if (messageType === 'text') {
-        messageContentBackup = messageContentBackup
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/'/g, '&apos;');
-    }
     messageTool.messageHandle({
         _id: messageId,
         type: messageType,
-        content: messageContentBackup,
+        content: messageContent,
         createTime: new Date(),
         from: {
             _id: state.getIn(['user', '_id']),

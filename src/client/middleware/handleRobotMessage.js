@@ -1,3 +1,5 @@
+import xss from '../util/xss';
+
 function getMessageType(message) {
     if (message.type === 'imageMessage') {
         return 'image';
@@ -28,17 +30,11 @@ export default function handleRobotMessage(message) {
         catch (err) {
             return message;
         }
-        messageData.content = messageData.content
-                .replace(/&/g, '&amp;')
-                .replace(/"/g, '&quot;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/'/g, '&apos;');
-        message.from.username = `CR - ${messageData.name}`;
+        message.from.username = `${messageData.source} - ${messageData.name}`;
         message.from.avatar = messageData.avatar;
         message.type = getMessageType(messageData);
-        message.content = messageData.content;
-        message.preview = `${message.from.username}: ${message.type === 'text' ? message.content : `[${message.type}]`}`;
+        message.content = xss(messageData.content);
+        message.preview = `${message.from.username}: ${message.type === 'text' ? messageData.content : `[${message.type}]`}`;
         if (message.showNotification) {
             message.notification.body = message.type === 'text' ? message.content : `[${message.type}]`;
             message.notification.title = `${message.from.username} - 发来消息:`;

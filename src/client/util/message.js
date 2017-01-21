@@ -2,6 +2,8 @@ import user from '../action/user';
 import ui from '../action/pc';
 import store from '../store';
 
+import xss from './xss';
+
 // third party middleware
 import plugin from '../middleware/plugin';
 import handleRobotMessage from '../middleware/handleRobotMessage.js';
@@ -16,7 +18,7 @@ const thirdPartyMiddlewares = [
 /**
  * native handle before middleware
  */
-function addAdditionalFields(message) {
+function initialMessage(message) {
     message.notification = {
         title: `${message.from.username} - 发来消息:`,
         icon: /^http/.test(message.from.avatar) ? message.from.avatar : 'http://assets.suisuijiang.com/user_avatar_default.png',
@@ -27,10 +29,13 @@ function addAdditionalFields(message) {
     message.playSound = true;
     message.preview = message.type === 'text' ? `${message.from.username}: ${message.content}` : `${message.from.username}: [${message.type}]`;
     message.isNew = true;
+    if (message.type === 'text') {
+        message.content = xss(message.content);
+    }
     return message;
 }
 const beforeMiddleWareHandles = [
-    addAdditionalFields,
+    initialMessage,
 ];
 
 /**
@@ -101,6 +106,9 @@ function initialMessagesHandle(messages) {
     return messages.map(m => {
         m.preview = `${m.from.username}: ${m.type === 'text' ? m.content : `[${m.type}]`}`;
         m.isNew = false;
+        if (m.type === 'text') {
+            m.content = xss(m.content);
+        }
         return applyMiddleWares(m, thirdPartyMiddlewares);
     });
 }
