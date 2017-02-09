@@ -5,13 +5,13 @@ import store from '../store';
 import xss from './xss';
 
 // third party middleware
-import plugin from '../middleware/plugin';
+// import plugin from '../middleware/plugin';
 import handleRobotMessage from '../middleware/handleRobotMessage.js';
 import filterCrMessage from '../middleware/filterCrMessage.js';
 
 const thirdPartyMiddlewares = [
     handleRobotMessage,
-    plugin,
+    // plugin,
     filterCrMessage,
 ];
 
