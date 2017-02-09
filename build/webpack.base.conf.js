@@ -12,7 +12,7 @@ const useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
 
 module.exports = {
     entry: {
-        app: './src/main.js',
+        app: './src/client/webPc/index.js',
     },
     output: {
         path: config.build.assetsRoot,

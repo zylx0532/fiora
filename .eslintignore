@@ -1,5 +1,5 @@
 # webpack output directory
 public
 
-# react native project node_modules
-src/client/rnMobile/node_modules
+# webpack build config
+build
