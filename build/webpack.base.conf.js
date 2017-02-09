@@ -45,7 +45,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loader: process.env.NODE_ENV === 'production' ? 'babel-loader' : 'react-hot-loader!babel-loader',
+                loader: 'babel-loader',
                 include: [
                     path.join(projectRoot, 'src'),
                 ],
