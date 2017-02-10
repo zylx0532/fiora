@@ -13,6 +13,8 @@ import Notification from '../common/notification';
 import MaskLayout from '../common/maskLayout';
 import ImageViewer from '../common/imageViewer';
 
+import backImage from 'assets/image/background.jpg';
+
 window.fiora = publicApi;
 
 class App extends React.Component {
@@ -113,11 +115,11 @@ class App extends React.Component {
             <div className="window">
                 <div
                     className="background"
-                    style={{ backgroundSize: `${width}px ${height - 50}px` }}
+                    style={{ backgroundSize: `${width}px ${height - 50}px`, backgroundImage: `url(${backImage})` }}
                 >
                     {
                     /^\/main/.test(this.props.location.pathname) ?
-                        <div style={{ backgroundSize: `${width}px ${height - 50}px` }} />
+                        <div style={{ backgroundSize: `${width}px ${height - 50}px`, backgroundImage: `url(${backImage})` }} />
                     :
                         null
                 }
