@@ -8,7 +8,7 @@ class Header extends React.Component {
     render() {
         return (
             <div className="linkman-header">
-                <img src="http://assets.suisuijiang.com/logo.png" />
+                <img src={require('assets/images/logo.png')} />
             </div>
         );
     }

@@ -14,7 +14,7 @@ import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
 import user from '../../../action/user.js';
 import rn from '../../../action/rn.js';
-import userDefaultAvatar from '../../../assets/image/user_avatar_default.png';
+import userDefaultAvatar from 'assets/images/user_avatar_default.png';
 
 let styles = null;
 

@@ -21,7 +21,6 @@
             & > div {
                 @include size(30px, 30px);
                 background-repeat: no-repeat;
-                background-image: url('http://assets.suisuijiang.com/expressions.png');
             }
         }
     }
@@ -42,7 +41,7 @@
             & > div {
                 @include size(44px, 44px);
                 background-repeat: no-repeat;
-                background-image: url('http://assets.suisuijiang.com/ali.png?imageView/2/w/44');
+                background-size: 44px auto;
             }
         }
     }

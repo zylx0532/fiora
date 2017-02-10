@@ -29,7 +29,6 @@ body {
 
 .background {
     @include size;
-    background-image: url('../assets/image/background.jpg');
     background-repeat: no-repeat;
     position: fixed;
     z-index: -1;
@@ -38,7 +37,6 @@ body {
         @include size(1000px, 100%);
         position: absolute;
         left: calc((100vw - 1000px) / 2);
-        background-image: url('../assets/image/background.jpg');
         background-repeat: no-repeat;
         background-position: calc((1000px - 100vw) / 2) 0px;
         filter: blur(10px);

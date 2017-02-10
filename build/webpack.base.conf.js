@@ -24,8 +24,7 @@ module.exports = {
         fallback: [path.join(__dirname, '../node_modules')],
         alias: {
             src: path.resolve(__dirname, '../src'),
-            assets: path.resolve(__dirname, '../src/assets'),
-            components: path.resolve(__dirname, '../src/components'),
+            assets: path.resolve(__dirname, '../src/client/assets'),
         },
     },
     resolveLoader: {
@@ -45,7 +44,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                loader: process.env.NODE_ENV === 'production' ? 'babel-loader' : 'react-hot-loader!babel-loader',
+                loader: process.env.NODE_ENV === 'production' ? 'babel-loader' : 'react-hot-loader/webpack!babel-loader',
                 include: [
                     path.join(projectRoot, 'src'),
                 ],
@@ -60,7 +59,7 @@ module.exports = {
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+                    name: utils.assetsPath('images/[name].[hash:5].[ext]'),
                 },
             },
             {
@@ -68,7 +67,15 @@ module.exports = {
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
+                    name: utils.assetsPath('fonts/[name].[hash:5].[ext]'),
+                },
+            },
+            {
+                test: /\.(mp3|ogg|wav)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: utils.assetsPath('sounds/[name].[hash:5].[ext]'),
                 },
             },
         ],

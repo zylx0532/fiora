@@ -8,7 +8,7 @@ class Logo extends React.Component {
     render() {
         return (
             <div className="logo">
-                <img src={require('../../assets/image/logo.png')} />
+                <img src={require('assets/images/logo.png')} />
             </div>
         );
     }

@@ -112,7 +112,7 @@ class UserSetting extends React.Component {
                             >&#xe603;</i>
                             <div
                                 className="background-image"
-                                style={{ backgroundImage: `url('${/^http/.test(avatar) ? `${avatar}?imageView2/2/h/300/w/300/format/jpg` : 'http://assets.suisuijiang.com/user_avatar_default.png'}')` }}
+                                style={{ backgroundImage: `url('${/^http/.test(avatar) ? `${avatar}?imageView2/2/h/300/w/300/format/jpg` : require('assets/images/user_avatar_default.png')}')` }}
                             />
                             <div className="background-mask" />
                             <div className="content">
