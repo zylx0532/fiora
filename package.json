@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "(npm run devPc &) && (npm run devMobile &) && (node bin/reduxDevServer.js &) && node bin/develop.js",
-    "server": "export NODE_ENV=development && nodemon --harmony-async-await src/server/app.js",
+    "server": "export NODE_ENV=development && nodemon --harmony src/server/app.js --config nodemonrc.json",
     "devPc": "node build/dev-server.js",
     "devMobile": "export NODE_ENV=development && ./node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.js --port 8082 --entry ./src/client/webMobile/index.js --output-filename app.mobile.js",
     "buildPc": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --config webpack/webpack.prod.js --entry ./src/client/webPc/index.js --output-filename app.js",
