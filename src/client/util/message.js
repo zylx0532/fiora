@@ -9,6 +9,8 @@ import xss from './xss';
 import handleRobotMessage from '../middleware/handleRobotMessage.js';
 import filterCrMessage from '../middleware/filterCrMessage.js';
 
+import userDefaultAvatar from 'assets/images/user_avatar_default.png';
+
 const thirdPartyMiddlewares = [
     handleRobotMessage,
     // plugin,
@@ -21,7 +23,7 @@ const thirdPartyMiddlewares = [
 function initialMessage(message) {
     message.notification = {
         title: `${message.from.username} - 发来消息:`,
-        icon: /^http/.test(message.from.avatar) ? message.from.avatar : 'http://assets.suisuijiang.com/user_avatar_default.png',
+        icon: /^http/.test(message.from.avatar) ? message.from.avatar : userDefaultAvatar,
         body: message.type === 'text' ? message.content : `[${message.type}]`,
         tag: message.from.id,
     };

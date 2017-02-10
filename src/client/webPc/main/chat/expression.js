@@ -56,7 +56,7 @@ class Expression extends React.Component {
                         key={index}
                         onClick={() => this.handleClick(e)}
                     >
-                        <div style={{ backgroundPosition: `left ${-30 * index}px` }} />
+                        <div style={{ backgroundPosition: `left ${-30 * index}px`, backgroundImage: `url(${require('assets/images/expressions.png')})` }} />
                     </div>
                 ))
             }
@@ -74,7 +74,7 @@ class Expression extends React.Component {
                         key={index}
                         onClick={() => this.handleClick(`ali${e}`)}
                     >
-                        <div style={{ backgroundPosition: `left ${-44 * index}px` }} />
+                        <div style={{ backgroundPosition: `left ${-44 * index}px`, backgroundImage: `url(${require('assets/images/ali.png')})` }} />
                     </div>
                 ))
             }
@@ -136,19 +136,19 @@ class Expression extends React.Component {
                                 className={page === 'default' ? 'selected' : ''}
                                 onClick={() => this.setState({ page: 'default' })}
                             >
-                                <img src={'http://assets.suisuijiang.com/default-expression.png'} />
+                                <img src={require('assets/images/default-expression.png')} />
                             </div>
                             <div
                                 className={page === 'ali' ? 'selected' : ''}
                                 onClick={() => this.setState({ page: 'ali' })}
                             >
-                                <img src={'http://assets.suisuijiang.com/ali-expression.png?imageView/2/w/20/h/20'} />
+                                <img src={require('assets/images/ali-expression.png')} />
                             </div>
                             <div
                                 className={page === 'collect' ? 'selected' : ''}
                                 onClick={() => this.setState({ page: 'collect' })}
                             >
-                                <img src={'http://assets.suisuijiang.com/collect-expression.png'} />
+                                <img src={require('assets/images/collect-expression.png')} />
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import './app.scss';
+import 'assets/styles/monokai-sublime.min.css';
 
 import user from '../action/user';
 import ui from '../action/pc';
@@ -13,7 +14,7 @@ import Notification from '../common/notification';
 import MaskLayout from '../common/maskLayout';
 import ImageViewer from '../common/imageViewer';
 
-import backImage from 'assets/image/background.jpg';
+import backImage from 'assets/images/background.jpg';
 
 window.fiora = publicApi;
 
@@ -130,9 +131,9 @@ class App extends React.Component {
                 <audio
                     ref={sound => this.sound = sound}
                 >
-                    <source src="http://assets.suisuijiang.com/message_sound.mp3" type="audio/mp3" />
-                    <source src="http://assets.suisuijiang.com/message_sound.ogg" type="audio/ogg" />
-                    <source src="http://assets.suisuijiang.com/message_sound.wav" type="audio/wav" />
+                    <source src={require('assets/sounds/message_sound.mp3')} type="audio/mp3" />
+                    <source src={require('assets/sounds/message_sound.ogg')} type="audio/ogg" />
+                    <source src={require('assets/sounds/message_sound.wav')} type="audio/wav" />
                 </audio>
                 { this.props.children }
             </div>

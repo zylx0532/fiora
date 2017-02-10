@@ -59,7 +59,7 @@ module.exports = {
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: utils.assetsPath('img/[name].[hash:5].[ext]'),
+                    name: utils.assetsPath('images/[name].[hash:5].[ext]'),
                 },
             },
             {
@@ -68,6 +68,14 @@ module.exports = {
                 query: {
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:5].[ext]'),
+                },
+            },
+            {
+                test: /\.(mp3|ogg|wav)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 10000,
+                    name: utils.assetsPath('sounds/[name].[hash:5].[ext]'),
                 },
             },
         ],

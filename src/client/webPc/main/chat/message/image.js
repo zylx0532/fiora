@@ -17,7 +17,7 @@ const imageMessage = {
                     src={`${content}${/^http/.test(content) ? `?imageView/2/w/${maxHeight}/h/${maxHeight}` : ''}`}
                     ref={i => img = i}
                     onLoad={scrollMessage}
-                    onError={() => img.src = 'http://assets.suisuijiang.com/image_not_found.png?imageView2/2/w/250'}
+                    onError={() => img.src = require('assets/images/image_not_found.png')}
                     onDoubleClick={() => ui.openImageViewer(message.get('content'))}
                 />
             </div>,
