@@ -11,6 +11,7 @@ const cssSourceMapProd = (env === 'production' && config.build.productionSourceM
 const useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
 
 module.exports = {
+    cache: true,
     entry: {
         app: './src/client/webPc/index.js',
     },
@@ -23,6 +24,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json'],
         fallback: [path.join(__dirname, '../node_modules')],
         alias: {
+            react: path.join(projectRoot, 'node_modules/react'),
             src: path.resolve(__dirname, '../src'),
             assets: path.resolve(__dirname, '../src/client/assets'),
         },
