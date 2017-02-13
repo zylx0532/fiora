@@ -5,8 +5,8 @@ module.exports = {
     port: 9200,
 
     // local test config
-    localServer: 'localhost',
-    localPort: 9200,
+    devServer: 'localhost',
+    devPort: 9200,
 
     // redux dev tool server
     reduxDevPort: 8000,

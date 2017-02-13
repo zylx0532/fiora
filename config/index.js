@@ -6,7 +6,7 @@ module.exports = {
         env: require('./prod.env'),
         index: path.resolve(__dirname, '../public/index.html'),
         assetsRoot: path.resolve(__dirname, '../public'),
-        assetsSubDirectory: '/',
+        assetsSubDirectory: '.',
         assetsPublicPath: '/',
         productionSourceMap: false,
     // Gzip off by default as many popular static hosts such as

@@ -25,7 +25,7 @@ The project is powered by node.js(>= 6.0, recommend use 6.9.1) and mongodb datab
 `git clone git@github.com:yinxin630/fiora.git`
 0. Go to repository directory and run  
 `npm install`
-0. Create config file from simple config. The `localServer`, `localPort`, `database`, `jwtSecret` is necessary.  
+0. Create config file from simple config. The `devServer`, `devPort`, `database`, `jwtSecret` is necessary.  
 `cp config/config.simple.js config/config.js`.
 0. Set database and other params in config file  
 0. Run the project  

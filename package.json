@@ -8,6 +8,7 @@
     "server": "export NODE_ENV=development && (node bin/reduxDevServer.js &) && nodemon --harmony src/server/app.js --config nodemonrc.json",
     "devPc": "node build/dev-server.js",
     "devMobile": "export NODE_ENV=development && ./node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.js --port 8082 --entry ./src/client/webMobile/index.js --output-filename app.mobile.js",
+    "build": "node build/build.js",
     "buildPc": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --config webpack/webpack.prod.js --entry ./src/client/webPc/index.js --output-filename app.js",
     "buildMobile": "export NODE_ENV=production && ./node_modules/.bin/webpack -p --config webpack/webpack.prod.js --entry ./src/client/webMobile/index.js --output-filename app.mobile.js",
     "rnServer": "node node_modules/react-native/local-cli/cli.js start --root src/client/rnMobile --reset-cache",

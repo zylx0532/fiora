@@ -39,5 +39,5 @@ function socketWrap(socket) {
 
 const serverUrl = process.env.NODE_ENV === 'production' ?
     `http://${config.server}:${config.port}/` :
-    `http://${config.localServer}:${config.localPort}/`;
+    `http://${config.devServer}:${config.devPort}/`;
 export default socketWrap(socketClient(serverUrl, platformSocketParam));

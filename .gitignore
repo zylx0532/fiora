@@ -22,8 +22,7 @@ coverage
 config.js
 
 # public
-public/*.js
-public/*.map
+public/
 
 # server api test
 client.test.js
