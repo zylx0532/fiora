@@ -1,6 +1,8 @@
-Language: [简体中文](readme-zh.md) | [English](readme.md)
-
 # Fiora
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+
+Language: [简体中文](readme-zh.md) | [English](readme.md)
 
 Fiora is a web chat application. Made by node.js, koa, react.
 
