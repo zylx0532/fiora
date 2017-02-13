@@ -1,5 +1,7 @@
 # Fiora
 
+[![author](https://img.shields.io/badge/author-%E7%A2%8E%E7%A2%8E%E9%85%B1-blue.svg)](http://suisuijiang.com/)
+[![Node.js Version](https://img.shields.io/badge/node.js-7.0.0-blue.svg)](http://nodejs.org/download/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 Language: [简体中文](readme-zh.md) | [English](readme.md)
