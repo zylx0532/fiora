@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -37,8 +36,7 @@ class MessageList extends React.Component {
         messagesCount: PropTypes.number,
     };
 
-    @autoBind
-    handleOnScroll() {
+    handleOnScroll = () => {
         const { linkmanId, linkmanType, messagesCount } = this.props;
         if (onScrollHandle) {
             clearTimeout(onScrollHandle);

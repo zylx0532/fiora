@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './inputBox.scss';
@@ -51,8 +50,7 @@ class InputBox extends React.Component {
         }
     }
 
-    @autoBind
-    handleInputKeyDown(e) {
+    handleInputKeyDown = (e) => {
         const { type, linkmanId } = this.props;
         // 过滤tab键
         if (e.keyCode === 9) {
@@ -82,8 +80,7 @@ class InputBox extends React.Component {
         }
     }
 
-    @autoBind
-    handlePaste(e) {
+    handlePaste = (e) => {
         const items = (e.clipboardData || e.originalEvent.clipboardData).items;
         const types = (e.clipboardData || e.originalEvent.clipboardData).types;
 

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './input.scss';
@@ -38,8 +37,7 @@ class Input extends React.Component {
         }
     }
 
-    @autoBind
-    sendMessage() {
+    sendMessage = () => {
         const { type, linkmanId } = this.props;
 
         const message = this.input.value;
@@ -77,16 +75,14 @@ class Input extends React.Component {
         }
     }
 
-    @autoBind
-    handleInputKeyDown(e) {
+    handleInputKeyDown = (e) => {
         if (e.keyCode === 13 && !e.shiftKey) {
             e.preventDefault();
             this.sendMessage();
         }
     }
 
-    @autoBind
-    handlePaste(e) {
+    handlePaste = (e) => {
         const items = (e.clipboardData || e.originalEvent.clipboardData).items;
         const types = (e.clipboardData || e.originalEvent.clipboardData).types;
 

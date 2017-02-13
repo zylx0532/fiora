@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import InputForm from './inputForm';
@@ -17,8 +16,7 @@ class CreateGroup extends React.Component {
         router: PropTypes.object.isRequired,
     }
 
-    @autoBind
-    handleClick(text) {
+    handleClick = (text) => {
         user.createGroup(text).then(response => {
             if (response.status === 201) {
                 ui.closeCreateGroupInput();
@@ -42,7 +40,6 @@ class CreateGroup extends React.Component {
         });
     }
 
-    @autoBind
     handleClose() {
         ui.closeCreateGroupInput();
         ui.closeMaskLayout();

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import InputForm from './inputForm';
@@ -17,8 +16,7 @@ class AddGroup extends React.Component {
         router: PropTypes.object.isRequired,
     }
 
-    @autoBind
-    handleClick(groupName) {
+    handleClick = (groupName) => {
         user.joinGroup(groupName).then(response => {
             if (response.status === 201) {
                 ui.closeAddGroupInput();

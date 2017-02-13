@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -25,8 +24,7 @@ class GroupSetting extends React.Component {
         router: React.PropTypes.object.isRequired,
     }
 
-    @autoBind
-    handleSelectImage() {
+    handleSelectImage = () => {
         const image = this.image.files[0];
         if (!image) {
             return;
@@ -55,8 +53,7 @@ class GroupSetting extends React.Component {
         reader.readAsDataURL(image);
     }
 
-    @autoBind
-    handleLeaveGroup() {
+    handleLeaveGroup = () => {
         const { linkmanId } = this.props;
         user.leaveGroup(linkmanId).then(response => {
             if (response.status === 204) {

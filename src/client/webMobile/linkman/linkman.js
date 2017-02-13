@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -52,8 +51,7 @@ class Linkman extends React.Component {
         router: PropTypes.object.isRequired,
     };
 
-    @autoBind
-    handleUserListItemClick() {
+    handleUserListItemClick = () => {
         const { linkman } = this.props;
         this.context.router.push(`/chat/${linkman.get('type')}/${linkman.get('_id')}`);
     }

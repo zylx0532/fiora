@@ -8,7 +8,6 @@ import {
     AsyncStorage,
 } from 'react-native';
 import pureRender from 'pure-render-decorator';
-import autoBind from 'autobind-decorator';
 
 import color from '../../util/color.js';
 import cs from '../../util/commonStyle.js';
@@ -47,8 +46,7 @@ export default class Login extends Component {
         });
     }
 
-    @autoBind
-    handleLogin() {
+    handleLogin = () => {
         user.login(
             this.state.username,
             this.state.password
@@ -61,92 +59,86 @@ export default class Login extends Component {
         });
     }
 
-    @autoBind
-    renderLogin() {
-        return (
-            <View style={styles.container()}>
-                <Image
-                    style={styles.avatar()}
-                    source={userDefaultAvatar}
+    renderLogin = () => (
+        <View style={styles.container()}>
+            <Image
+                style={styles.avatar()}
+                source={userDefaultAvatar}
+            />
+            <View style={styles.textInputContainer()}>
+                <TextInput
+                    style={styles.textInput()}
+                    onChangeText={text => this.setState({ username: text })}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    autoFocus
+                    maxLength={16}
+                    placeholder="请输入用户名"
                 />
-                <View style={styles.textInputContainer()}>
-                    <TextInput
-                        style={styles.textInput()}
-                        onChangeText={text => this.setState({ username: text })}
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        autoFocus
-                        maxLength={16}
-                        placeholder="请输入用户名"
-                    />
-                </View>
-                <View style={[styles.textInputContainer(true)]}>
-                    <TextInput
-                        style={styles.textInput()}
-                        onChangeText={text => this.setState({ password: text })}
-                        secureTextEntry
-                        placeholder="请输入密码"
-                    />
-                </View>
-                <TouchableOpacity
-                    style={styles.buttonContainer()}
-                    onPress={this.handleLogin}
-                >
-                    <Text style={styles.button()}>登录</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.textContainer()}
-                    onPress={() => rn.navigator('login', { status: 'signup' })}
-                >
-                    <Text
-                        style={styles.text()}
-                    >新司机注册</Text>
-                </TouchableOpacity>
             </View>
-        );
-    }
+            <View style={[styles.textInputContainer(true)]}>
+                <TextInput
+                    style={styles.textInput()}
+                    onChangeText={text => this.setState({ password: text })}
+                    secureTextEntry
+                    placeholder="请输入密码"
+                />
+            </View>
+            <TouchableOpacity
+                style={styles.buttonContainer()}
+                onPress={this.handleLogin}
+            >
+                <Text style={styles.button()}>登录</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.textContainer()}
+                onPress={() => rn.navigator('login', { status: 'signup' })}
+            >
+                <Text
+                    style={styles.text()}
+                >新司机注册</Text>
+            </TouchableOpacity>
+        </View>
+    )
 
-    @autoBind
-    renderSignup() {
-        return (
-            <View style={styles.container()}>
-                <Image
-                    style={styles.avatar()}
-                    source={userDefaultAvatar}
+    renderSignup = () => (
+        <View style={styles.container()}>
+            <Image
+                style={styles.avatar()}
+                source={userDefaultAvatar}
+            />
+            <View style={styles.textInputContainer()}>
+                <TextInput
+                    style={styles.textInput()}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    autoFocus
+                    maxLength={16}
+                    placeholder="请输入用户名(即昵称)"
                 />
-                <View style={styles.textInputContainer()}>
-                    <TextInput
-                        style={styles.textInput()}
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        autoFocus
-                        maxLength={16}
-                        placeholder="请输入用户名(即昵称)"
-                    />
-                </View>
-                <View style={[styles.textInputContainer(true)]}>
-                    <TextInput
-                        style={styles.textInput()}
-                        secureTextEntry
-                        placeholder="请输入密码"
-                    />
-                </View>
-                <TouchableOpacity
-                    style={styles.buttonContainer()}
-                >
-                    <Text style={styles.button()}>注册</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.textContainer()}
-                    onPress={() => rn.navigator('login', { status: 'login' })}
-                >
-                    <Text
-                        style={styles.text()}
-                    >老司机登录</Text>
-                </TouchableOpacity>
             </View>
-        );
-    }
+            <View style={[styles.textInputContainer(true)]}>
+                <TextInput
+                    style={styles.textInput()}
+                    secureTextEntry
+                    placeholder="请输入密码"
+                />
+            </View>
+            <TouchableOpacity
+                style={styles.buttonContainer()}
+            >
+                <Text style={styles.button()}>注册</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.textContainer()}
+                onPress={() => rn.navigator('login', { status: 'login' })}
+            >
+                <Text
+                    style={styles.text()}
+                >老司机登录</Text>
+            </TouchableOpacity>
+        </View>
+    )
 
     render() {
         return !this.props.status || this.props.status === 'login' ? this.renderLogin() : this.renderSignup();

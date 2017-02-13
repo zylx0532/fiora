@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Motion, spring } from 'react-motion';
-import autoBind from 'autobind-decorator';
 
 import './floatPanel.scss';
 
@@ -14,8 +13,7 @@ class FloatPanel extends React.Component {
         children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     };
 
-    @autoBind
-    handleCloseClick() {
+    handleCloseClick = () => {
         this.props.onClose();
         ui.closeMaskLayout();
     }

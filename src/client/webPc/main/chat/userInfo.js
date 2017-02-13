@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './userInfo.scss';
@@ -51,14 +50,12 @@ class UserInfo extends React.Component {
         }
     }
 
-    @autoBind
-    handleCloseClick() {
+    handleCloseClick = () => {
         ui.closeUserInfo();
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    handleSendMessageClick() {
+    handleSendMessageClick = () => {
         user.addUserLinkman(this.state);
         ui.closeUserInfo();
         ui.closeMaskLayout();

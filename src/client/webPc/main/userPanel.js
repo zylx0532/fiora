@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './userPanel.scss';
@@ -17,7 +16,6 @@ class UserPanel extends React.Component {
         online: PropTypes.bool,
     };
 
-    @autoBind
     handleAvatarClick() {
         ui.openUserSetting();
         mask(ui.closeUserSetting);

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './login.scss';
@@ -29,8 +28,7 @@ class Login extends React.Component {
         };
     }
 
-    @autoBind
-    handleLogin() {
+    handleLogin = () => {
         user
             .login(this.username.value, this.password.value)
             .then(result => {
@@ -65,8 +63,7 @@ class Login extends React.Component {
             });
     }
 
-    @autoBind
-    handleSignup() {
+    handleSignup = () => {
         user
             .signup(this.username.value, this.password.value)
             .then(result => {
@@ -102,13 +99,11 @@ class Login extends React.Component {
             });
     }
 
-    @autoBind
-    handleUsernameChange() {
+    handleUsernameChange = () => {
         ui.getUserAvatar(this.username.value);
     }
 
-    @autoBind
-    renderLogin() {
+    renderLogin = () => {
         const { usernameInput, passwordInput } = this.state;
         const { username, avatar } = this.props;
         return (
@@ -167,8 +162,7 @@ class Login extends React.Component {
         );
     }
 
-    @autoBind
-    renderSignup() {
+    renderSignup = () => {
         const { usernameInput, passwordInput } = this.state;
         return (
             <div className="login">

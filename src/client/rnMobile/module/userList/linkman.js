@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import pureRender from 'pure-render-decorator';
-import autoBind from 'autobind-decorator';
 
 import color from '../../util/color.js';
 import url from '../../util/url.js';
@@ -22,8 +21,7 @@ export default class Linkman extends Component {
         linkman: PropTypes.object.isRequired,
     }
 
-    @autoBind
-    handleClick() {
+    handleClick = () => {
         const { linkman } = this.props;
         rn.navigator('chat', { linkmanType: linkman.get('type'), linkmanId: linkman.get('_id') });
     }

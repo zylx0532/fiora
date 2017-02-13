@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -34,8 +33,7 @@ class User extends React.Component {
         router: PropTypes.object.isRequired,
     };
 
-    @autoBind
-    handleUserListItemClick() {
+    handleUserListItemClick = () => {
         const { linkman } = this.props;
         this.context.router.push(`/main/chat/${linkman.get('type')}/${linkman.get('_id')}`);
         user.clearUnread(linkman.get('type'), linkman.get('_id'));

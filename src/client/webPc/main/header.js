@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './header.scss';
@@ -20,8 +19,7 @@ class Header extends React.Component {
         router: React.PropTypes.object.isRequired,
     }
 
-    @autoBind
-    handleSettingClick() {
+    handleSettingClick = () => {
         ui.openSystemSetting();
         mask(ui.closeSystemSetting);
     }

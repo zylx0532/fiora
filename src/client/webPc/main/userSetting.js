@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
 import moment from 'moment';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -36,8 +35,7 @@ class UserSetting extends React.Component {
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    handleSelectImage() {
+    handleSelectImage = () => {
         const image = this.image.files[0];
         if (!image) {
             return;
@@ -54,13 +52,11 @@ class UserSetting extends React.Component {
         reader.readAsDataURL(image);
     }
 
-    @autoBind
-    handleEdit() {
+    handleEdit = () => {
         this.setState({ editStatus: true });
     }
 
-    @autoBind
-    handleOk() {
+    handleOk = () => {
         user.updateUser(
             this.gender.value,
             this.birthday.value,

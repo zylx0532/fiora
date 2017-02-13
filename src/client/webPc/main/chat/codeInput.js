@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './codeInput.scss';
@@ -17,16 +16,14 @@ class CodeInput extends React.Component {
         linkmanType: PropTypes.string.isRequired,
     };
 
-    @autoBind
-    onSendClick() {
+    onSendClick = () => {
         send(this.props.linkmanType, this.props.linkmanId, 'code', this.code.value);
         this.code.value = '';
         ui.closeCodeInput();
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    onCancelClick() {
+    onCancelClick = () => {
         ui.closeCodeInput();
         ui.closeMaskLayout();
     }

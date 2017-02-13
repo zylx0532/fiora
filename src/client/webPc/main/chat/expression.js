@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './expression.scss';
@@ -26,64 +25,54 @@ class Expression extends React.Component {
         this.state = { page: 'default' };
     }
 
-    @autoBind
-    handleClick(value) {
+    handleClick = (value) => {
         ui.insertText(`#(${value})`);
         ui.closeExpression();
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    handleCollectExpressionClick(src) {
+    handleCollectExpressionClick = (src) => {
         const { linkmanType, linkmanId } = this.props;
         send(linkmanType, linkmanId, 'image', src);
         ui.closeExpression();
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    handleCollectExpressionDelete(src) {
+    handleCollectExpressionDelete = (src) => {
         user.deleteUserExpression(src);
     }
 
-    @autoBind
-    renderDefaultExpression() {
-        return (
-            <div className="default-expression">
-            {
-                expressions.baidu.map((e, index) => (
-                    <div
-                        key={index}
-                        onClick={() => this.handleClick(e)}
-                    >
-                        <div style={{ backgroundPosition: `left ${-30 * index}px`, backgroundImage: `url(${require('assets/images/expressions.png')})` }} />
-                    </div>
-                ))
-            }
-            </div>
-        );
-    }
+    renderDefaultExpression = () => (
+        <div className="default-expression">
+        {
+            expressions.baidu.map((e, index) => (
+                <div
+                    key={index}
+                    onClick={() => this.handleClick(e)}
+                >
+                    <div style={{ backgroundPosition: `left ${-30 * index}px`, backgroundImage: `url(${require('assets/images/expressions.png')})` }} />
+                </div>
+            ))
+        }
+        </div>
+    )
 
-    @autoBind
-    renderAliExpression() {
-        return (
-            <div className="ali-expression">
-            {
-                expressions.ali.map((e, index) => (
-                    <div
-                        key={index}
-                        onClick={() => this.handleClick(`ali${e}`)}
-                    >
-                        <div style={{ backgroundPosition: `left ${-44 * index}px`, backgroundImage: `url(${require('assets/images/ali.png')})` }} />
-                    </div>
-                ))
-            }
-            </div>
-        );
-    }
+    renderAliExpression = () => (
+        <div className="ali-expression">
+        {
+            expressions.ali.map((e, index) => (
+                <div
+                    key={index}
+                    onClick={() => this.handleClick(`ali${e}`)}
+                >
+                    <div style={{ backgroundPosition: `left ${-44 * index}px`, backgroundImage: `url(${require('assets/images/ali.png')})` }} />
+                </div>
+            ))
+        }
+        </div>
+    )
 
-    @autoBind
-    renderCollectExpression() {
+    renderCollectExpression = () => {
         const { userExpressions } = this.props;
 
         return (

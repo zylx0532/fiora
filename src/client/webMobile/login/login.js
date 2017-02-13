@@ -1,5 +1,4 @@
 import React from 'react';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './login.scss';
@@ -20,8 +19,7 @@ class Login extends React.Component {
         };
     }
 
-    @autoBind
-    handleLogin() {
+    handleLogin = () => {
         user
             .login(this.username.value, this.password.value)
             .then(result => {
@@ -56,8 +54,7 @@ class Login extends React.Component {
             });
     }
 
-    @autoBind
-    handleSignup() {
+    handleSignup = () => {
         user
             .signup(this.username.value, this.password.value)
             .then(result => {

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './chatPanelHeader.scss';
@@ -18,14 +17,12 @@ class ChatPanelHeader extends React.Component {
         linkmanId: PropTypes.string,
     };
 
-    @autoBind
-    onGroupNoticeClick() {
+    onGroupNoticeClick = () => {
         ui.openGroupNotice();
         mask(ui.closeGroupNotice);
     }
 
-    @autoBind
-    onGroupSettingClick() {
+    onGroupSettingClick = () => {
         user.getGroupInfo(this.props.linkmanId);
         ui.openGroupSetting();
         mask(ui.closeGroupSetting);

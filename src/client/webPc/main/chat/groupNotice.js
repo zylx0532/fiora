@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -27,8 +26,7 @@ class GroupNotice extends React.Component {
         };
     }
 
-    @autoBind
-    handleSaveClick() {
+    handleSaveClick = () => {
         user.updateGroupAnnouncement(this.props.linkman.get('_id'), this.editor.value).then(response => {
             if (response.status === 201) {
                 this.setState({ editor: false });

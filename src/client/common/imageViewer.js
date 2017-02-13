@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './imageViewer.scss';
@@ -32,8 +31,7 @@ class ImageViewer extends React.Component {
         }
     }
 
-    @autoBind
-    handleAddExpressionClick() {
+    handleAddExpressionClick = () => {
         const { image } = this.props;
         if (/^data:/.test(image)) {
             ui.openNotification('禁止添加base64图片到收藏夹, 请刷新页面后再添加.');
@@ -43,8 +41,7 @@ class ImageViewer extends React.Component {
         ui.closeImageViewer();
     }
 
-    @autoBind
-    renderImageViewer() {
+    renderImageViewer = () => {
         const { image } = this.props;
         const { scale, rotate } = this.state;
 

@@ -3,7 +3,6 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import Highlight from 'react-highlight';
 import pureRender from 'pure-render-decorator';
-import autoBind from 'autobind-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './chat.scss';
@@ -39,8 +38,7 @@ class Chat extends React.Component {
         }
     }
 
-    @autoBind
-    handleOnScroll(linkmanId, linkmanType, messagesCount) {
+    handleOnScroll = (linkmanId, linkmanType, messagesCount) => {
         if (onScrollHandle) {
             clearTimeout(onScrollHandle);
         }
@@ -113,8 +111,7 @@ class Message extends React.Component {
         }
     }
 
-    @autoBind
-    renderContent(type, content) {
+    renderContent = (type, content) => {
         if (type === 'text') {
             content = content.replace(
                 /#\(([\u4e00-\u9fa5a-z]+)\)/g,

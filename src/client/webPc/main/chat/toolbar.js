@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './toolbar.scss';
@@ -14,20 +13,17 @@ class Toolbar extends React.Component {
         linkmanId: PropTypes.string.isRequired,
     };
 
-    @autoBind
-    onExpressionClick() {
+    onExpressionClick = () => {
         ui.openExpression();
         mask(ui.closeExpression);
     }
 
-    @autoBind
-    onCodeClick() {
+    onCodeClick = () => {
         ui.openCodeInput();
         mask(ui.closeCodeInput);
     }
 
-    @autoBind
-    handleSelectImage() {
+    handleSelectImage = () => {
         const image = this.image.files[0];
         if (!image) {
             return;

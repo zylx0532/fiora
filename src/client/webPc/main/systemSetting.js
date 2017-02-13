@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Motion, spring } from 'react-motion';
-import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 
 import './systemSetting.scss';
@@ -26,8 +25,7 @@ class SystemSetting extends React.Component {
         ui.closeMaskLayout();
     }
 
-    @autoBind
-    handleLogoutClick() {
+    handleLogoutClick = () => {
         user.logout().then(response => {
             if (response.status === 204) {
                 this.context.router.push('/login');
@@ -37,8 +35,7 @@ class SystemSetting extends React.Component {
         });
     }
 
-    @autoBind
-    handleDesktopSwitch() {
+    handleDesktopSwitch = () => {
         const { desktopNotification } = this.props;
         if (desktopNotification) {
             ui.closeDesktopNotification();
@@ -49,8 +46,7 @@ class SystemSetting extends React.Component {
         window.localStorage.setItem('desktopNotification', !desktopNotification);
     }
 
-    @autoBind
-    handleSoundSwitch() {
+    handleSoundSwitch = () => {
         const { soundNotification } = this.props;
         if (soundNotification) {
             ui.closeSoundNotification();
