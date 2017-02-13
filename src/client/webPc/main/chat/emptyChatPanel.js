@@ -7,10 +7,7 @@ import './emptyChatPanel.scss';
 class EmptyChatPanel extends React.Component {
     render() {
         return (
-            <div className="empty-chat-panel" >
-                <div>hehe</div>
-                <div>hehe2</div>
-            </div>
+            <div className="empty-chat-panel" />
         );
     }
 }
