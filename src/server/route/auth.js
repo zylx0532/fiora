@@ -8,7 +8,7 @@ const Group = require('../model/group');
 const GroupMessage = require('../model/groupMessage');
 
 const assert = require('../util/assert');
-const config = require('../../../config/config');
+const config = require('../../../config/project');
 const isLogin = require('../police/isLogin');
 
 const AuthRoute = {

@@ -4,7 +4,7 @@ require('shelljs/global');
 env.NODE_ENV = 'production';
 
 const path = require('path');
-const config = require('../config');
+const config = require('../config/webpack');
 const ora = require('ora');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.prod.conf');

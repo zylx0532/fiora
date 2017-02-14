@@ -5,7 +5,7 @@ import pureRender from 'pure-render-decorator';
 import './inputBox.scss';
 
 import ui from '../../../action/pc';
-import config from '../../../../../config/config';
+import config from '../../../../../config/project';
 import send from '../../../util/send';
 import imageUtil from '../../../util/image';
 

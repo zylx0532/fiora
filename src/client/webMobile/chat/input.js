@@ -3,7 +3,7 @@ import pureRender from 'pure-render-decorator';
 
 import './input.scss';
 
-import config from '../../../../config/config';
+import config from '../../../../config/project';
 import user from '../../action/user';
 
 @pureRender

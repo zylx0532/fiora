@@ -1,5 +1,5 @@
 require('./check-versions')();
-const config = require('../config');
+const config = require('../config/webpack');
 if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV);
 const path = require('path');
 const express = require('express');
@@ -12,7 +12,7 @@ const webpackConfig = process.env.NODE_ENV === 'testing'
 
 // start redux dev tool server
 // const remotedev = require('remotedev-server');
-// const projectConfig = require('../config/config');
+// const projectConfig = require('../config/project');
 // remotedev({ hostname: 'localhost', port: config.reduxDevPort });
 
 // default port where dev server listens for incoming traffic

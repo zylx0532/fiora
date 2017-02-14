@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 
-import config from '../../config/config';
+import config from '../../config/project';
 import pc from './reducer/pc';
 import mobile from './reducer/mobile';
 import rn from './reducer/rn';

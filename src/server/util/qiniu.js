@@ -1,6 +1,6 @@
 const qiniu = require('qiniu');
 const promise = require('bluebird');
-const config = require('../../../config/config');
+const config = require('../../../config/project');
 
 qiniu.conf.ACCESS_KEY = config.accessKey;
 qiniu.conf.SECRET_KEY = config.secretKey;

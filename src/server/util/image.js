@@ -3,7 +3,7 @@ const fs = require('fs');
 const promise = require('bluebird');
 const http = require('http');
 
-const config = require('../../../config/config');
+const config = require('../../../config/project');
 const qiniu = require('./qiniu');
 
 module.exports = {

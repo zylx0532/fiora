@@ -5,7 +5,7 @@ const imageUtil = require('../util/image');
 const User = require('../model/user');
 const Message = require('../model/message');
 const Auth = require('../model/auth');
-const config = require('../../../config/config');
+const config = require('../../../config/project');
 const messageFrequency = require('../util/messageFrequency');
 
 const MessageRoute = {

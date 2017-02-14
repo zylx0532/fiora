@@ -1,5 +1,5 @@
 const jwt = require('jwt-simple');
-const config = require('../../../config/config');
+const config = require('../../../config/project');
 const assert = require('../util/assert');
 
 function* isLogin(socket, data, end) {
