@@ -2,6 +2,11 @@
   "verbose": true,
   "ignore": [
     "src/client/*",
-    "build/*"
+    "build/*",
+    "test/*",
+    "android/*",
+    "ios/*",
+    "node_modules/*",
+    "public/*"
   ]
 }
