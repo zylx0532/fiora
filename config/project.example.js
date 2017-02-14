@@ -1,10 +1,10 @@
 module.exports = {
-    // server config.
+    // release config.
     // you can use domain name, ip address or localhost.
     server: 'example.com',
     port: 9200,
 
-    // local test config
+    // local dev config
     devServer: 'localhost',
     devPort: 9200,
 
