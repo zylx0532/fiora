@@ -1,7 +1,7 @@
 {
   "name": "fiora",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "An interesting chat application power by koa, react and react-native. ",
   "main": "index.js",
   "scripts": {
     "server": "export NODE_ENV=development && nodemon --harmony src/server/app.js --config nodemonrc.json",
@@ -21,8 +21,8 @@
     "type": "git",
     "url": "git+https://github.com/yinxin630/fiora.git"
   },
-  "author": "yinxin630",
-  "license": "ISC",
+  "author": "碎碎酱 <yinxin630@gmail.com>",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/yinxin630/fiora/issues"
   },
