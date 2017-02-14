@@ -20,12 +20,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         filename: utils.assetsPath('js/[name].[chunkhash:10].js'),
         chunkFilename: utils.assetsPath('js/[id].[chunkhash:10].js'),
     },
-    vue: {
-        loaders: utils.cssLoaders({
-            sourceMap: config.build.productionSourceMap,
-            extract: true,
-        }),
-    },
     plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
         new webpack.DefinePlugin({
@@ -46,16 +40,28 @@ const webpackConfig = merge(baseWebpackConfig, {
             filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,
-            template: './src/client/webPc/index.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['pc'],
             inject: true,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
                 removeAttributeQuotes: true,
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
             },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+            chunksSortMode: 'dependency',
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'mobile.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['mobile'],
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+            },
             chunksSortMode: 'dependency',
         }),
     // split vendor js into its own file

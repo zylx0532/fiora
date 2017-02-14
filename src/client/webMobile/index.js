@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, Redirect, IndexRoute, browserHistory } from 'react-router';
 
 import Store from '../store';
 
@@ -14,6 +14,7 @@ import Chat from './chat/chat';
 ReactDom.render(
     <Provider store={Store}>
         <Router history={browserHistory}>
+            <Redirect from="/mobile.html" to="/" />
             <Route path="/" component={App}>
                 <IndexRoute component={Login} />
                 <Route path="login" component={Login} />

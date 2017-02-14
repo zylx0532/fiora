@@ -13,7 +13,8 @@ const useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
 module.exports = {
     cache: true,
     entry: {
-        app: './src/client/webPc/index.js',
+        'pc': './src/client/webPc/index.js',
+        'mobile': './src/client/webMobile/index.js',
     },
     output: {
         path: config.build.assetsRoot,

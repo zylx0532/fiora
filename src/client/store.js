@@ -8,7 +8,7 @@ import rn from './reducer/rn';
 import user from './reducer/user';
 
 let devToolsEnhancer = null;
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === '') {
     devToolsEnhancer = require('remote-redux-devtools');
 }
 

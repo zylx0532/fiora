@@ -28,7 +28,16 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/client/webPc/index.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['pc'],
+            inject: true,
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'mobile.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['mobile'],
             inject: true,
         }),
         new FriendlyErrors(),
