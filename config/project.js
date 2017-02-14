@@ -1,17 +1,30 @@
 module.exports = {
-    server: 'suisuijiang.com',
-    port: 10615,
+    // release config.
+    // you can use domain name, ip address or localhost.
+    server: 'example.com',
+    port: 9200,
+
+    // local dev config
     devServer: 'localhost',
     devPort: 9200,
+
+    // redux dev tool server
     reduxDevPort: 8000,
-    database: 'localhost:27017/fiora-new',
-    testDatabase: 'localhost:27017/fiora-new-test',
-    jwtSecret: '$2a$10$2PcdOiDdZZVK4g80kei.Fiora',
 
-    accessKey: 'tzNHpTrZu8Df4LTk_zEYObEfkvX0_FhEPog8_8zI',
-    secretKey: 'c3HgVyWrv9idXCLood-c_33sX8KLZdPD67LDNXlV',
-    bucket: 'teemo',
-    bucketUrl: 'ocvcaqr26.bkt.clouddn.com',
+    // database url and name
+    database: 'database_name',
+    testDatabase: 'test_database_name',
 
+    // jwt encryption secret
+    jwtSecret: 'jwt_token_secret',
+
+    // qiniu CDN config.
+    // this is not necessary. if you not modify this config. image will save to local disk.
+    accessKey: 'qiniu_access_key',
+    secretKey: 'qiniu_secret_key',
+    bucket: 'bucket_name',
+    bucketUrl: 'bucket_outside_url',
+
+    // max message lenght. for both backend and frontend
     maxMessageLength: 1024,
 };

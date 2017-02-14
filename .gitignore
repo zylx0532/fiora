@@ -18,8 +18,12 @@ coverage
 # Optional npm cache directory
 .npm
 
+# qiniu
+qiniurc.json
+
 # config file
-config.js
+project.js
+webpack.js
 
 # public
 public/
