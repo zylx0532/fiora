@@ -42,7 +42,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         : config.build.index,
             template: './src/client/index.html',
             favicon: './src/client/assets/images/favicon.png',
-            chunks: ['pc'],
+            chunks: ['manifest', 'vendor', 'pc'],
             inject: true,
             minify: {
                 removeComments: true,
@@ -55,7 +55,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             filename: 'mobile.html',
             template: './src/client/index.html',
             favicon: './src/client/assets/images/favicon.png',
-            chunks: ['mobile'],
+            chunks: ['manifest', 'vendor', 'mobile'],
             inject: true,
             minify: {
                 removeComments: true,

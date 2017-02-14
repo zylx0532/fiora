@@ -10,6 +10,11 @@ const webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf');
 
+// start redux dev tool server
+// const remotedev = require('remotedev-server');
+// const projectConfig = require('../config/config');
+// remotedev({ hostname: 'localhost', port: config.reduxDevPort });
+
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port;
 // Define HTTP proxies to your custom API backend
