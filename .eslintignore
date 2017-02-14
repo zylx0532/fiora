@@ -3,3 +3,6 @@ public
 
 # webpack build config
 build
+
+# test
+test
