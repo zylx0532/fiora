@@ -40,6 +40,13 @@ module.exports = merge(baseWebpackConfig, {
             chunks: ['mobile'],
             inject: true,
         }),
+        new HtmlWebpackPlugin({
+            filename: 'next.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['next'],
+            inject: true,
+        }),
         new FriendlyErrors(),
     ],
 });

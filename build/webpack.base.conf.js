@@ -15,6 +15,7 @@ module.exports = {
     entry: {
         'pc': './src/client/webPc/index.js',
         'mobile': './src/client/webMobile/index.js',
+        'next': './src/client/next/index.js',
     },
     output: {
         path: config.build.assetsRoot,
@@ -28,6 +29,7 @@ module.exports = {
             react: path.join(projectRoot, 'node_modules/react'),
             src: path.resolve(__dirname, '../src'),
             assets: path.resolve(__dirname, '../src/client/assets'),
+            next: path.resolve(__dirname, '../src/client/next'),
         },
     },
     resolveLoader: {
