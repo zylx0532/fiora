@@ -1,9 +1,28 @@
-@import "~antd/lib/style/themes/default.less";
+@import "./variable.less";
+@import "./util.less";
+
+@font-face {
+    font-family: 'iconfont';  /* project id 127492 */
+    src: url('//at.alicdn.com/t/font_47c4zbxgijvh1tt9.eot');
+    src: url('//at.alicdn.com/t/font_47c4zbxgijvh1tt9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_47c4zbxgijvh1tt9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_47c4zbxgijvh1tt9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_47c4zbxgijvh1tt9.svg#iconfont') format('svg');
+}
 
 html {
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 }
 
-.title {
-    color: @primary-color;
+.icon {
+    font-family: 'iconfont';
+    font-style: normal;
+}
+
+.app {
+    .size(100vw, 100vh);
+
+    .row {
+        flex-direction: row;
+    }
 }

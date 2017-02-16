@@ -1,0 +1,36 @@
+@import "./util.less";
+
+
+.sider {
+    .ant-menu {
+        padding-top: 16px;
+    }
+    .ant-menu-item {
+        height: 56px;
+        .layout(flex-start, center);
+        &.ant-menu-item-selected {
+            .bgc(black);
+        }
+    }
+    .icon {
+        font-size: 26px;
+    }
+    .nav-text {
+        font-size: 14px;
+        margin-left: 16px;
+    }
+
+    .collapsed {
+        .ant-menu-item {
+            padding: 0 !important;
+            .center;
+        }
+        .icon {
+            font-size: 32px;
+            transition: font-size 0.5s;
+        }
+        .nav-text {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+@import "./variable.less";
+@import "./util.less";
+
+.header {
+    .bgc(#0084f2);
+    .layout;
+    padding: 0;
+
+    .user {
+        .size(240px, 100%);
+    }
+    .function {
+        flex: 1;
+    }
+    .logo {
+        .size(240px, 100%);
+        .layout(flex-end, center);
+        & > img {
+            .size(131px, 42px);
+            margin-right: 24px;
+        }
+    }
+}
