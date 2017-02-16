@@ -9,7 +9,7 @@ class AppSider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: false,
+            collapsed: true,
         };
     }
 
@@ -17,17 +17,22 @@ class AppSider extends Component {
         this.setState({ collapsed: !this.state.collapsed });
     }
 
+    handleMenuClick = ({ key }) => {
+        console.log(key);
+    }
+
     render() {
         const { collapsed } = this.state;
         return (
             <Sider
-                className="sider" width={240} collapsedWidth={56}
+                className="sider" width={200} collapsedWidth={56}
                 collapsed={collapsed} onCollapse={this.handleCollapseChange}
-                collapsible defaultCollapsed
+                collapsible
             >
                 <Menu
                     className={collapsed ? 'collapsed sider' : 'sider'}
-                    theme="dark" mode="inline"
+                    theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                    onClick={this.handleMenuClick}
                 >
                     <Menu.Item key="1">
                         <i className="icon">&#xe607;</i>

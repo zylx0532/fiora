@@ -29,6 +29,7 @@ module.exports = {
             react: path.join(projectRoot, 'node_modules/react'),
             src: path.resolve(__dirname, '../src'),
             assets: path.resolve(__dirname, '../src/client/assets'),
+            components: path.resolve(__dirname, '../src/client/components'),
             next: path.resolve(__dirname, '../src/client/next'),
         },
     },

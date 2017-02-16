@@ -8,6 +8,18 @@
 
     .user {
         .size(240px, 100%);
+        padding-left: 24px;
+        .layout(flex-start, center);
+
+        & > div {
+            .size(auto, 44px);
+            .layout(flex-start, center);
+        }
+        .nick {
+            color: white;
+            font-size: 16px;
+            margin-left: 16px;
+        }
     }
     .function {
         flex: 1;
