@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Layout, Dropdown, Menu } from 'antd';
+import { Layout, Dropdown, Menu, Input } from 'antd';
 import Avatar from 'components/Avatar';
 
 import 'next/styles/header.less';
 
 const { Header } = Layout;
+const Search = Input.Search;
 
 function handleMenuClick({ key }) {
     console.log(`click at ${key}`);
@@ -34,7 +35,13 @@ class AppHeader extends Component {
                         </div>
                     </Dropdown>
                 </div>
-                <div className="function" />
+                <div className="function">
+                    <Search
+                        placeholder="input search text"
+                        style={{ width: 200 }}
+                        onSearch={value => console.log(value)}
+                    />
+                </div>
                 <div className="logo">
                     <img src={require('assets/images/logo.png')} alt="logo" />
                 </div>

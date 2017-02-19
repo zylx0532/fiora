@@ -8,7 +8,7 @@ import 'next/styles/chat.less';
 class Chat extends Component {
     render() {
         return (
-            <Layout className="flex-row">
+            <Layout className="flex-row chat">
                 <Linkman />
                 <ChatForm />
             </Layout>

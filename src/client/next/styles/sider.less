@@ -1,7 +1,9 @@
 @import "./util.less";
-
+@import "./variable.less";
 
 .sider {
+    .bgc(#ececec);
+
     .ant-menu {
         padding-top: 16px;
     }
@@ -9,15 +11,23 @@
         height: 56px;
         .layout(flex-start, center);
         &.ant-menu-item-selected {
-            .bgc(black);
+            .bgc(#d1d1d1);
+        }
+    }
+    .ant-layout-sider-trigger {
+        .bgc(#ccc);
+        & > i {
+            color: #333;
         }
     }
     .icon {
         font-size: 26px;
+        color: #333;
     }
     .nav-text {
         font-size: 14px;
         margin-left: 16px;
+        color: #333;
     }
 
     .collapsed {
