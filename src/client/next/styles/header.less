@@ -1,6 +1,8 @@
 @import "./variable.less";
 @import "./util.less";
 
+@margin: 80px;
+
 .header {
     .bgc(#0084f2);
     .layout;
@@ -8,30 +10,29 @@
     height: 56px;
     line-height: 56px;
 
-    .user {
-        .size(240px, 100%);
-        padding-left: 24px;
-        .layout(flex-start, center);
-
-        & > div {
-            .size(auto, 44px);
-            .layout(flex-start, center);
-        }
-        .nick {
-            color: white;
-            font-size: 16px;
-            margin-left: 16px;
-        }
-    }
     .function {
         flex: 1;
+        .layout(flex-end, center);
+        .ant-input-preSuffix-wrapper {
+            margin-right: @margin * 2;
+            width: auto;
+            .ant-input-search {
+                width: 160px;
+                border-radius: 14px;
+                padding-left: 14px;
+                transition: width 0.2s;
+            }
+            .input-focus {
+                width: 240px;
+            }
+        }
     }
     .logo {
         .size(240px, 100%);
-        .layout(flex-end, center);
+        .layout(flex-start, center);
         & > img {
-            .size(131px, 42px);
-            margin-right: 24px;
+            .size(130px, 40px);
+            margin-left: @margin;
         }
     }
 }
