@@ -31,11 +31,14 @@ class Button extends Component {
         const minValue = Math.min(width, height);
         return (
             <button
-                className={isClick ? 'icon button click' : 'icon button'}
-                style={{ width, height, fontSize: minValue - 14 }}
+                className={isClick ? 'button click' : 'button'}
+                style={{ width, height }}
                 onClick={this.handleClick}
             >
-                { code }
+                <i
+                    className="icon" style={{ fontSize: minValue - 14 }}
+                    dangerouslySetInnerHTML={{ __html: code }}
+                />
             </button>
         );
     }

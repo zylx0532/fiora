@@ -10,6 +10,23 @@ class MessageList extends Component {
             <Content className="chat-message-list">
                 <Message />
                 <Message />
+                <Message />
+                <Message self />
+                <Message />
+                <Message />
+                <Message self />
+                <Message />
+                <Message />
+                <Message self />
+                <Message />
+                <Message />
+                <Message self />
+                <Message />
+                <Message />
+                <Message self />
+                <Message />
+                <Message />
+                <Message self />
             </Content>
         );
     }

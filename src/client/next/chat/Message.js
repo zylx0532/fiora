@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class Tag extends Component {
+/* class Tag extends Component {
     static propTypes = {
         children: PropTypes.string,
         color: PropTypes.string,
@@ -13,13 +13,17 @@ class Tag extends Component {
             </div>
         );
     }
-}
+}*/
 
 class Message extends Component {
+    static propTypes = {
+        self: PropTypes.bool,
+    }
     render() {
+        const { self } = this.props;
         return (
-            <div className="message">
-                <div className="native-message ">
+            <div className="message self">
+                <div className={self ? 'native-message message-self' : 'native-message'}>
                     <img
                         className="avatar-image" style={{ width: 32, height: 32, minWidth: 32, minHeight: 32, cursor: 'pointer' }}
                         src="http://ooo.0o0.ooo/2016/10/16/5803453dda3f9.gif?imageView2/2/w/40/h/40"
@@ -27,9 +31,6 @@ class Message extends Component {
                     <div className="message-content">
                         <div className="nick-time">
                             <span className="message-username">blackmiaool</span>
-                            <Tag color="#2db7f5">cr</Tag>
-                            <Tag color="orange">大神</Tag>
-                            <Tag color="purple">碎碎酱</Tag>
                             <span>21:35</span>
                         </div>
                         <div className="text">
