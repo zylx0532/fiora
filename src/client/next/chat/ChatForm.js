@@ -35,7 +35,63 @@ class ChatForm extends Component {
                     <div>输入区</div>
                 </div>
                 <div className={isSlideShowed ? 'chat-form-slide show' : 'chat-form-slide'}>
-                    slide
+                    <div className="content">
+                        <div className="block bulletin">
+                            <h2>公告</h2>
+                            <div>
+                                <p>
+                                    这里是公告的内容, 应该会有很多内容的样子
+                                </p>
+                            </div>
+                        </div>
+                        <div className="block online-list">
+                            <h2>在线用户</h2>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <img
+                                                className="avatar-image"
+                                                src="http://ooo.0o0.ooo/2016/10/16/5803453dda3f9.gif?imageView2/2/w/40/h/40"
+                                            />
+                                            <span>碎碎酱</span>
+                                        </div>
+                                        <i className="icon">&#xe651;</i>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <img
+                                                className="avatar-image"
+                                                src="http://ooo.0o0.ooo/2016/10/16/5803453dda3f9.gif?imageView2/2/w/40/h/40"
+                                            />
+                                            <span>碎碎酱的小跟班</span>
+                                        </div>
+                                        <i className="icon">&#xe61c;</i>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <img
+                                                className="avatar-image"
+                                                src="http://ooo.0o0.ooo/2016/10/16/5803453dda3f9.gif?imageView2/2/w/40/h/40"
+                                            />
+                                            <span>blackmiaool</span>
+                                        </div>
+                                        <i className="icon">&#xe63a;</i>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <img
+                                                className="avatar-image"
+                                                src="http://ooo.0o0.ooo/2016/10/16/5803453dda3f9.gif?imageView2/2/w/40/h/40"
+                                            />
+                                            <span>碎碎酱</span>
+                                        </div>
+                                        <i className="icon">&#xe618;</i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </Layout>
         );
