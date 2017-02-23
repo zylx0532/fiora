@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Layout } from 'antd';
+import Avatar from 'components/Avatar';
 
 const { Sider } = Layout;
 
@@ -29,6 +30,7 @@ class AppSider extends Component {
                 collapsed={collapsed} onCollapse={this.handleCollapseChange}
                 collapsible
             >
+                <Avatar width={48} height={48} />
                 <Menu
                     className={collapsed ? 'collapsed sider' : 'sider'}
                     theme="dark" mode="inline" defaultSelectedKeys={['1']}

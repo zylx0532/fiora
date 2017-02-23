@@ -2,32 +2,30 @@
 @import "./variable.less";
 
 .sider {
-    .bgc(#ececec);
-
+    .layout(flex-start, center);
+    flex-direction: column;
+    & > .avatar {
+        margin-top: 20px;
+    }
     .ant-menu {
         padding-top: 16px;
+        width: 100%;
     }
     .ant-menu-item {
-        height: 56px;
+        .size(100%, 56px);
         .layout(flex-start, center);
         &.ant-menu-item-selected {
-            .bgc(#d1d1d1);
+            .bgc(#000);
         }
     }
     .ant-layout-sider-trigger {
-        .bgc(#ccc);
-        & > i {
-            color: #333;
-        }
     }
     .icon {
         font-size: 26px;
-        color: #333;
     }
     .nav-text {
         font-size: 14px;
         margin-left: 16px;
-        color: #333;
     }
 
     .collapsed {
