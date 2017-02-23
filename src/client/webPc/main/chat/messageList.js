@@ -14,14 +14,14 @@ import imageMessage from './message/image';
 import urlMessage from './message/url';
 import codeMessage from './message/code';
 
-// import pluginMessage from './message/plugin';
+import pluginMessage from './message/plugin';
 
 const messageTypes = [
     textMessage,
     imageMessage,
     urlMessage,
     codeMessage,
-    // pluginMessage,
+    pluginMessage,
 ];
 
 let onScrollHandle = null;

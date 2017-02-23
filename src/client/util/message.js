@@ -5,7 +5,7 @@ import store from '../store';
 import xss from './xss';
 
 // third party middleware
-// import plugin from '../middleware/plugin';
+import plugin from '../middleware/plugin';
 import handleRobotMessage from '../middleware/handleRobotMessage.js';
 import filterCrMessage from '../middleware/filterCrMessage.js';
 
@@ -13,7 +13,7 @@ import userDefaultAvatar from 'assets/images/user_avatar_default.png';
 
 const thirdPartyMiddlewares = [
     handleRobotMessage,
-    // plugin,
+    plugin,
     filterCrMessage,
 ];
 

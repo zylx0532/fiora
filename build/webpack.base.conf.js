@@ -53,8 +53,9 @@ module.exports = {
                 loader: process.env.NODE_ENV === 'production' ? 'babel-loader' : 'react-hot-loader!babel-loader',
                 include: [
                     path.join(projectRoot, 'src'),
+                    /node_modules\/chat-room-plugin/,
                 ],
-                exclude: /node_modules/,
+                exclude: /node_modules(?!\/chat-room-plugin)/
             },
             {
                 test: /\.json$/,
