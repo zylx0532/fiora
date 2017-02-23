@@ -107,6 +107,22 @@
             }
          }
     }
+    .form-input {
+        .size(100%, 40px);
+        .center;
+        & > div {
+            max-width: 500px;
+            width: 100%;
+            .layout(flex-start, center);
+            & > div {
+                flex: 1;
+                & > input {
+                    .size(100%, 32px);
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
 }
 
 .chat-form-main {

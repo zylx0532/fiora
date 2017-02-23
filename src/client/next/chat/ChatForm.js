@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Input } from 'antd';
 import Button from 'components/Button';
 import MessageList from './MessageList';
 
@@ -7,7 +7,7 @@ class ChatForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSlideShowed: false,
+            isSlideShowed: true,
         };
     }
     handleShowSlideClick = () => {
@@ -32,7 +32,25 @@ class ChatForm extends Component {
                         </div>
                     </div>
                     <MessageList />
-                    <div>输入区</div>
+                    <div className="form-input">
+                        <div>
+                            <Button
+                                width={40} height={40} code="&#xe604;"
+                                onClick={() => console.log(111)}
+                            />
+                            <Button
+                                width={40} height={40} code="&#xe605;"
+                                onClick={() => console.log(111)}
+                            />
+                            <Button
+                                width={40} height={40} code="&#xe602;"
+                                onClick={() => console.log(111)}
+                            />
+                            <div>
+                                <Input placeholder="说点什么吧~" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={isSlideShowed ? 'chat-form-slide show' : 'chat-form-slide'}>
                     <div className="content">
