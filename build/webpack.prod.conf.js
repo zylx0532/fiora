@@ -64,6 +64,19 @@ const webpackConfig = merge(baseWebpackConfig, {
             },
             chunksSortMode: 'dependency',
         }),
+        new HtmlWebpackPlugin({
+            filename: 'next.html',
+            template: './src/client/index.html',
+            favicon: './src/client/assets/images/favicon.png',
+            chunks: ['manifest', 'vendor', 'next'],
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+            },
+            chunksSortMode: 'dependency',
+        }),
     // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',

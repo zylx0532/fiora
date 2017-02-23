@@ -9,6 +9,11 @@ const textMessage = {
     render: (message, me) => {
         let content = message.get('content');
         content = content.replace(
+            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g,
+            r => (
+                `<a href="${r}" rel="noopener noreferrer" target="_blank">${r}</a>`
+            )
+        ).replace(
             /#\(([\u4e00-\u9fa5a-z]+)\)/g,
             (r, e) => {
                 const index = expressions.baidu.indexOf(e);
@@ -26,11 +31,6 @@ const textMessage = {
                 }
                 return r;
             }
-        ).replace(
-            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g,
-            r => (
-                `<a href="${r}" rel="noopener noreferrer" target="_blank">${r}</a>`
-            )
         );
         return base(
             <div
