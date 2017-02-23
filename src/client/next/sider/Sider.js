@@ -30,25 +30,44 @@ class AppSider extends Component {
                 collapsed={collapsed} onCollapse={this.handleCollapseChange}
                 collapsible
             >
-                <Avatar width={48} height={48} />
-                <Menu
-                    className={collapsed ? 'collapsed sider' : 'sider'}
-                    theme="dark" mode="inline" defaultSelectedKeys={['1']}
-                    onClick={this.handleMenuClick}
-                >
-                    <Menu.Item key="1">
-                        <i className="icon">&#xe607;</i>
-                        <span className="nav-text">聊天</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <i className="icon">&#xe600;</i>
-                        <span className="nav-text">联系人</span>
-                    </Menu.Item>
-                    <Menu.Item key="3">
-                        <i className="icon">&#xe606;</i>
-                        <span className="nav-text">系统设置</span>
-                    </Menu.Item>
-                </Menu>
+                <div>
+                    <Avatar width={48} height={48} />
+                    <Menu
+                        className={collapsed ? 'collapsed' : ''}
+                        theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                        onClick={this.handleMenuClick}
+                    >
+                        <Menu.Item key="1">
+                            <i className="icon">&#xe607;</i>
+                            <span className="nav-text">聊天</span>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <i className="icon">&#xe600;</i>
+                            <span className="nav-text">联系人</span>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <i className="icon">&#xe606;</i>
+                            <span className="nav-text">系统设置</span>
+                        </Menu.Item>
+                    </Menu>
+                </div>
+                <div>
+                    <Menu
+                        className={collapsed ? 'collapsed' : ''}
+                        theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                        onClick={this.handleMenuClick}
+                    >
+                        <Menu.Item key="1">
+                            <i className="icon">&#xe607;</i>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <i className="icon">&#xe600;</i>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <i className="icon">&#xe606;</i>
+                        </Menu.Item>
+                    </Menu>
+                </div>
             </Sider>
         );
     }
