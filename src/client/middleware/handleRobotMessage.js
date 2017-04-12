@@ -1,13 +1,13 @@
 import xss from '../util/xss';
 
 function getMessageType(message) {
-    if (message.type === 'imageMessage') {
+    if (/image/.test(message.type)) {
         return 'image';
     }
-    else if (message.type === 'pluginMessage') {
+    else if (/plugin/.test(message.type)) {
         return 'plugin';
     }
-    else if (message.type === 'codeMessage') {
+    else if (/code/.test(message.type)) {
         return 'unknown';
     }
     return 'text';

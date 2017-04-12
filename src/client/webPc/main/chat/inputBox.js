@@ -94,7 +94,9 @@ class InputBox extends React.Component {
                     reader.onloadend = function () {
                         const img = new Image();
                         img.src = this.result;
-                        send(instance.props.type, instance.props.linkmanId, 'image', imageUtil.convertToJpeg(img, 0.9));
+                        img.onload = () => {
+                            send(instance.props.type, instance.props.linkmanId, 'image', imageUtil.convertToJpeg(img, 0.9));
+                        };
                     };
                     reader.readAsDataURL(item.getAsFile());
                 }
