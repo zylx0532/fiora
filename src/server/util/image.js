@@ -24,7 +24,7 @@ module.exports = {
         else {
             yield qiniu(fileName, fileSavePath);
             fs.unlinkSync(fileSavePath);
-            return `http://${config.bucketUrl}/${fileName}`;
+            return `https://${config.bucketUrl}/${fileName}`;
         }
     },
 
@@ -47,7 +47,7 @@ module.exports = {
         else {
             yield qiniu(fileName, fileSavePath);
             fs.unlinkSync(fileSavePath);
-            return `http://${config.bucketUrl}/${fileName}`;
+            return `https://${config.bucketUrl}/${fileName}`;
         }
     },
 };

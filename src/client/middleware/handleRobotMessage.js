@@ -14,8 +14,8 @@ function getMessageType(message) {
 }
 
 export default function handleRobotMessage(message) {
-    // 5869eafbf70ec72ce0c1de21 -> fiora数据库中robot10的id
-    if (typeof message.from === 'object' && message.from._id === '5869eafbf70ec72ce0c1de21') {
+    // 591ffd998cd75f2f076dfebf -> fiora数据库中robot10的id
+    if (typeof message.from === 'object' && message.from._id === '591ffd998cd75f2f076dfebf') {
         message.content = message.content
                 .replace(/&amp;/g, '&')
                 .replace(/&quot;/g, '"')

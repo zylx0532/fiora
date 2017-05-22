@@ -12,6 +12,10 @@ if (window.navigator.product === 'ReactNative') {
 }
 else {
     socketClient = require('socket.io-client');
+
+    if (process.env.NODE_ENV === 'production') {
+        platformSocketParam = { secure: true };
+    }
 }
 
 function createInterface(method) {
@@ -38,6 +42,6 @@ function socketWrap(socket) {
 }
 
 const serverUrl = process.env.NODE_ENV === 'production' ?
-    `http://${config.server}:${config.port}/` :
+    `//${config.server}/` :
     `http://${config.devServer}:${config.devPort}/`;
 export default socketWrap(socketClient(serverUrl, platformSocketParam));
